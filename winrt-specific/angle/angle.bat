@@ -1,38 +1,66 @@
-xcopy ".\..\angleproject\src\WP8\redist\vs2012\ARM\Release\libGLESv2_phone\libGLESv2_phone.dll" ".\..\..\wp8-specific\angle\prebuilt\ARM\" /iycq
-xcopy ".\..\angleproject\src\WP8\redist\vs2012\ARM\Release\libGLESv2_phone\libGLESv2_phone.lib" ".\..\..\wp8-specific\angle\prebuilt\ARM\" /iycq
-xcopy ".\..\angleproject\src\WP8\redist\vs2012\ARM\Release\libGLESv2_phone\libGLESv2_phone.exp" ".\..\..\wp8-specific\angle\prebuilt\ARM\" /iycq
-xcopy ".\..\angleproject\src\WP8\redist\vs2012\ARM\Release\libEGL_phone\libEGL_phone.dll" ".\..\..\wp8-specific\angle\prebuilt\ARM\" /iycq
-xcopy ".\..\angleproject\src\WP8\redist\vs2012\ARM\Release\libEGL_phone\libEGL_phone.lib" ".\..\..\wp8-specific\angle\prebuilt\ARM\" /iycq
-xcopy ".\..\angleproject\src\WP8\redist\vs2012\ARM\Release\libEGL_phone\libEGL_phone.exp" ".\..\..\wp8-specific\angle\prebuilt\ARM\" /iycq
+set IN_DIR=.\..\..\..\angle\src\WP8\redist\vs2012\ARM\Release
 
-xcopy ".\..\angleproject\src\WP8\redist\vs2012\Win32\Release\libGLESv2_phone\libGLESv2_phone.dll" ".\..\..\wp8-specific\angle\prebuilt\Win32\" /iycq
-xcopy ".\..\angleproject\src\WP8\redist\vs2012\Win32\Release\libGLESv2_phone\libGLESv2_phone.lib" ".\..\..\wp8-specific\angle\prebuilt\Win32\" /iycq
-xcopy ".\..\angleproject\src\WP8\redist\vs2012\Win32\Release\libGLESv2_phone\libGLESv2_phone.exp" ".\..\..\wp8-specific\angle\prebuilt\Win32\" /iycq
-xcopy ".\..\angleproject\src\WP8\redist\vs2012\Win32\Release\libEGL_phone\libEGL_phone.dll" ".\..\..\wp8-specific\angle\prebuilt\Win32\" /iycq
-xcopy ".\..\angleproject\src\WP8\redist\vs2012\Win32\Release\libEGL_phone\libEGL_phone.lib" ".\..\..\wp8-specific\angle\prebuilt\Win32\" /iycq
-xcopy ".\..\angleproject\src\WP8\redist\vs2012\Win32\Release\libEGL_phone\libEGL_phone.exp" ".\..\..\wp8-specific\angle\prebuilt\Win32\" /iycq
+set OUT_DIR=.\..\..\wp8-specific\angle\prebuilt\ARM\
+xcopy "%IN_DIR%\libGLESv2_phone\libGLESv2_phone.dll" "%OUT_DIR%" /iycq
 
-xcopy ".\..\angleproject\src\WinRT\redist\vs2013\ARM\Release\libGLESv2_winrt_2013\libGLESv2.dll" ".\..\..\winrt-specific\angle\prebuilt\ARM\" /iycq
-xcopy ".\..\angleproject\src\WinRT\redist\vs2013\ARM\Release\libGLESv2_winrt_2013\libGLESv2.lib" "prebuilt\ARM\" /iycq
-xcopy ".\..\angleproject\src\WinRT\redist\vs2013\ARM\Release\libGLESv2_winrt_2013\libGLESv2.exp" "prebuilt\ARM\" /iycq
-xcopy ".\..\angleproject\src\WinRT\redist\vs2013\ARM\Release\libEGL_winrt_2013\libEGL.dll" "prebuilt\ARM\" /iycq
-xcopy ".\..\angleproject\src\WinRT\redist\vs2013\ARM\Release\libEGL_winrt_2013\libEGL.lib" "prebuilt\ARM\" /iycq
-xcopy ".\..\angleproject\src\WinRT\redist\vs2013\ARM\Release\libEGL_winrt_2013\libEGL.exp" "prebuilt\ARM\" /iycq
+xcopy "%IN_DIR%\libGLESv2_phone\libGLESv2_phone.lib" "%OUT_DIR%" /iycq
 
-xcopy ".\..\angleproject\src\WinRT\redist\vs2013\Win32\Release\libGLESv2_winrt_2013\libGLESv2.dll" "prebuilt\Win32\" /iycq
-xcopy ".\..\angleproject\src\WinRT\redist\vs2013\Win32\Release\libGLESv2_winrt_2013\libGLESv2.lib" "prebuilt\Win32\" /iycq
-xcopy ".\..\angleproject\src\WinRT\redist\vs2013\Win32\Release\libGLESv2_winrt_2013\libGLESv2.exp" "prebuilt\Win32" /iycq
-xcopy ".\..\angleproject\src\WinRT\redist\vs2013\Win32\Release\libEGL_winrt_2013\libEGL.dll" "prebuilt\Win32\" /iycq
-xcopy ".\..\angleproject\src\WinRT\redist\vs2013\Win32\Release\libEGL_winrt_2013\libEGL.lib" "prebuilt\Win32\" /iycq
-xcopy ".\..\angleproject\src\WinRT\redist\vs2013\Win32\Release\libEGL_winrt_2013\libEGL.exp" "prebuilt\Win32\" /iycq
+xcopy "%IN_DIR%\libEGL_phone\libEGL_phone.dll" "%OUT_DIR%" /iycq
+
+xcopy "%IN_DIR%\libEGL_phone\libEGL_phone.lib" "%OUT_DIR%"  /iycq
+
+xcopy "%IN_DIR%\esUtil_phone\esUtil_phone.lib" "%OUT_DIR%"  /iycq
 
 
 
-xcopy ".\..\angleproject\include" "include" /eiycq
+set IN_DIR=.\..\..\..\angle\src\WP8\redist\vs2012\Win32\Release
 
-xcopy ".\..\angleproject\src\common\winrtangle.h" "include" /iycq
-xcopy ".\..\angleproject\src\common\winrtangleutils.h" "include" /iycq
-xcopy ".\..\angleproject\src\common\winrtplatform.h" "include" /iycq
-xcopy ".\..\angleproject\src\common\angleutils.h" "include" /iycq
-xcopy ".\..\angleproject\samples\gles2_book\Common\esUtil.h" "include" /iycq
+set OUT_DIR=.\..\..\wp8-specific\angle\prebuilt\Win32\
+
+
+xcopy "%IN_DIR%\libGLESv2_phone\libGLESv2_phone.dll" "%OUT_DIR%"  /iycq
+
+xcopy "%IN_DIR%\libGLESv2_phone\libGLESv2_phone.lib" "%OUT_DIR%"  /iycq
+
+xcopy "%IN_DIR%\libEGL_phone\libEGL_phone.dll" "%OUT_DIR%"  /iycq
+
+xcopy "%IN_DIR%\libEGL_phone\libEGL_phone.lib" "%OUT_DIR%"  /iycq
+
+xcopy "%IN_DIR%\esUtil_phone\esUtil_phone.lib" "%OUT_DIR%"  /iycq
+
+
+
+set IN_DIR=.\..\..\..\angle\src\WinRT\redist\vs2013\ARM\Release\
+set OUT_DIR=.\prebuilt\ARM\
+xcopy "%IN_DIR%\libGLESv2_winrt_2013\libGLESv2.dll" "%OUT_DIR%"  /iycq
+
+xcopy "%IN_DIR%\libGLESv2_winrt_2013\libGLESv2.lib" "%OUT_DIR%"  /iycq
+
+xcopy "%IN_DIR%\libEGL_winrt_2013\libEGL.dll" "%OUT_DIR%"  /iycq
+
+xcopy "%IN_DIR%\libEGL_winrt_2013\libEGL.lib" "%OUT_DIR%"  /iycq
+
+xcopy "%IN_DIR%\esUtil_winrt_2013\esUtil.lib" "%OUT_DIR%"  /iycq
+
+
+set IN_DIR=.\..\..\..\angle\src\WinRT\redist\vs2013\Win32\Release\
+set OUT_DIR=.\prebuilt\Win32\
+xcopy "%IN_DIR%\libGLESv2_winrt_2013\libGLESv2.dll" "%OUT_DIR%"  /iycq
+
+xcopy "%IN_DIR%\libGLESv2_winrt_2013\libGLESv2.lib" "%OUT_DIR%"  /iycq
+
+xcopy "%IN_DIR%\libEGL_winrt_2013\libEGL.dll" "%OUT_DIR%"  /iycq
+
+xcopy "%IN_DIR%\libEGL_winrt_2013\libEGL.lib" "%OUT_DIR%"  /iycq
+
+xcopy "%IN_DIR%\esUtil_winrt_2013\esUtil.lib" "%OUT_DIR%"  /iycq
+
+
+
+
+
+
+xcopy ".\..\..\..\angle\include" "include" /eiycq
+xcopy ".\..\..\..\angle\src\common\winrtangle.h" "include" /iycq
+xcopy ".\..\..\..\angle\samples\gles2_book\Common\esUtil.h" "include" /iycq
 
