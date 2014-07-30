@@ -78,13 +78,13 @@ namespace
         return p;
     }
     
-//    static tmsize_t tiffWriteProc(thandle_t fd, void* buf, tmsize_t size)
-//    {
-//        CC_UNUSED_PARAM(fd);
-//        CC_UNUSED_PARAM(buf);
-//        CC_UNUSED_PARAM(size);
-//        return 0;
-//    }
+    static tmsize_t tiffWriteProc(thandle_t fd, void* buf, tmsize_t size)
+    {
+        CC_UNUSED_PARAM(fd);
+        CC_UNUSED_PARAM(buf);
+        CC_UNUSED_PARAM(size);
+        return 0;
+    }
     
     
     static uint64 tiffSeekProc(thandle_t fd, uint64 off, int whence)
@@ -124,19 +124,20 @@ namespace
         return pImageSrc->size;
     }
     
-//    static int tiffCloseProc(thandle_t fd)
-//    {
-//        CC_UNUSED_PARAM(fd);
-//        return 0;
-//    }
-//    
-//    static int tiffMapProc(thandle_t fd, void** pbase, toff_t* psize)
-//    {
-//    }
-//    
-//    static void tiffUnmapProc(thandle_t fd, void* base, toff_t size)
-//    {
-//    }
+    static int tiffCloseProc(thandle_t fd)
+    {
+        CC_UNUSED_PARAM(fd);
+        return 0;
+    }
+    
+    static int tiffMapProc(thandle_t fd, void** pbase, toff_t* psize)
+    {
+        return 0;
+    }
+    
+    static void tiffUnmapProc(thandle_t fd, void* base, toff_t size)
+    {
+    }
     
     bool TIFFModuleInitWithTIFFData(const unsigned char *data, ssize_t dataLen, DataFromModule& dataInitFromTIFF)
     {
@@ -150,10 +151,10 @@ namespace
             imageSource.offset  = 0;
             
             TIFF* tif = TIFFClientOpen("file.tif", "r", (thandle_t)&imageSource,
-                                       tiffReadProc, nullptr,
-                                       tiffSeekProc, nullptr, tiffSizeProc,
-                                       nullptr,
-                                       nullptr);
+                                       tiffReadProc, tiffWriteProc,
+                                       tiffSeekProc, tiffCloseProc, tiffSizeProc,
+                                       tiffMapProc,
+                                       tiffUnmapProc);
             
             if(nullptr == tif) break;
             
@@ -211,6 +212,6 @@ namespace
         }
     };
     
-    static RegisterTIFF RegisterTIFF;
+    static RegisterTIFF registerTIFF;
 }
 
