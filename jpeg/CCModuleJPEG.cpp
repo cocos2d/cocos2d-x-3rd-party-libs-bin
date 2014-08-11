@@ -115,9 +115,9 @@ namespace
             cinfo.in_color_space = JCS_RGB;       /* colorspace of input image */
             
             jpeg_set_defaults(&cinfo);
-            jpeg_set_quality(&cinfo, 90, true);
+            jpeg_set_quality(&cinfo, 90, TRUE);
             
-            jpeg_start_compress(&cinfo, true);
+            jpeg_start_compress(&cinfo, TRUE);
             
             row_stride = image->getWidth() * 3; /* JSAMPLEs per row in image_buffer */
             
@@ -212,9 +212,9 @@ namespace
             /* reading the image header which contains image information */
 #if (JPEG_LIB_VERSION >= 90)
             // libjpeg 0.9 adds stricter types.
-            jpeg_read_header(&cinfo, true);
+            jpeg_read_header(&cinfo, TRUE);
 #else
-            jpeg_read_header(&cinfo, true);
+            jpeg_read_header(&cinfo, TRUE);
 #endif
             
             // we only support RGB or grayscale
