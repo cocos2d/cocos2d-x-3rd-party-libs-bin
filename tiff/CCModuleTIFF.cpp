@@ -21,7 +21,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
-
+#include "CCModuleTIFF.h"
 #include <string.h>
 #include "platform/CCImage.h"
 #include "tiffio.h"
@@ -200,18 +200,12 @@ namespace
         
         return ret;
     }
-    
-    class RegisterTIFF
-    {
-    public:
-        RegisterTIFF()
-        {
-            static struct TIFFModule tiffModule;
-            tiffModule.initWithTIFFData = TIFFModuleInitWithTIFFData;
-            ModuleManager::registerModule("tiff", &tiffModule);
-        }
-    };
-    
-    static RegisterTIFF registerTIFF;
+}
+
+void registerTIFFModule()
+{
+    static struct TIFFModule tiffModule;
+    tiffModule.initWithTIFFData = TIFFModuleInitWithTIFFData;
+    ModuleManager::registerModule("tiff", &tiffModule);
 }
 

@@ -21,6 +21,7 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
+#include "CCModuleWEBP.h"
 #include "platform/CCImage.h"
 #include "base/CCModuleManager.h"
 #include "decode.h"
@@ -66,20 +67,12 @@ namespace
 
         return ret;
     }
+}
 
-
-    class RegisterWEBP
-    {
-    public:
-        RegisterWEBP()
-        {
-            static struct WEBPModule webpModule;
-            webpModule.initWithWEBPData = WEBPModuleInitWithWEBPData;
-            ModuleManager::registerModule("webp", &webpModule);
-        }
-    };
-
-    static RegisterWEBP registerWEBP;
-
+void registerWEBPModule()
+{
+    static struct WEBPModule webpModule;
+    webpModule.initWithWEBPData = WEBPModuleInitWithWEBPData;
+    ModuleManager::registerModule("webp", &webpModule);
 }
 
