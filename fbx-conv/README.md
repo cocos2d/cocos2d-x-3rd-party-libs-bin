@@ -1,9 +1,10 @@
-fbxconverter version 0.2
+fbxconverter version 0.3
+It is for cocos2d-x after version v3.3
 
 Convert .fbx to .c3t used by cocos2d-x. Thanks to libgdx fbx-conv. We use their code and do some change.
 
-It is the first version and has many bugs for sure. Feel free to contact us. Source code is here,
-https://github.com/Trace0429/fbx-conv 
+Source code is here,
+https://github.com/lvlonggame/cocos2d-x-3rd-party-libs-src 
 
 USAGE:
 
@@ -21,4 +22,5 @@ fbx-conv -a|-b|t FBXFile
 -t export c3t
 
 
-Note: the bones in the FBX file should not be more than 60. 
+Note: 
+This version of fbx-conv supports multiple meshes and multiple materials.
