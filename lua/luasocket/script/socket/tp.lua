@@ -9,8 +9,8 @@
 -----------------------------------------------------------------------------
 local base = _G
 local string = require("string")
-local socket = require("socket")
-local ltn12 = require("ltn12")
+local socket = require("socket.socket")
+local ltn12 = require("socket.ltn12")
 
 socket.tp = {}
 local _M = socket.tp

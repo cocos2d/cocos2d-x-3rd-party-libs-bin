@@ -25,19 +25,19 @@ THE SOFTWARE.
 #include "LuaNodeManager.h"
 #include "base/CCDirector.h"
 
-#include "ccUtils.h"
+#include "base/ccUtils.h"
 #include "base/CCEventDispatcher.h"
 
 NS_CC_BEGIN
 
-LuaNodeManager* LuaNodeManager::s_sharedLuaNodeManager = nullptr;
+static LuaNodeManager* s_sharedLuaNodeManager = nullptr;
 
 LuaNodeManager* LuaNodeManager::getInstance()
 {
     if (s_sharedLuaNodeManager == nullptr)
     {
         s_sharedLuaNodeManager = new (std::nothrow) LuaNodeManager();
-        if(!s_sharedLuaNodeManager->init())
+        if (!s_sharedLuaNodeManager->init())
         {
             delete s_sharedLuaNodeManager;
             s_sharedLuaNodeManager = nullptr;
@@ -49,7 +49,7 @@ LuaNodeManager* LuaNodeManager::getInstance()
 
 void LuaNodeManager::destroyInstance()
 {
-//    log("---> LuaNodeManager::destroyInstance");
+    //    log("---> LuaNodeManager::destroyInstance");
     CC_SAFE_DELETE(s_sharedLuaNodeManager);
 }
 
@@ -60,8 +60,8 @@ LuaNodeManager::LuaNodeManager()
 
 LuaNodeManager::~LuaNodeManager()
 {
-//    log("---> Release LuaNodeManager");
-    if (_luaNodes.size()>0)
+    //    log("---> Release LuaNodeManager");
+    if (_luaNodes.size() > 0)
     {
         _luaNodes.clear();
     }
@@ -98,7 +98,7 @@ LuaEventNode* LuaNodeManager::getLuaNodeByNode(Node *node, bool toCreate)
 void LuaNodeManager::removeLuaNode(LuaEventNode *lnode)
 {
     _luaNodes.eraseObject(lnode);
-    if (_luaNodes.size()<1)
+    if (_luaNodes.size() < 1)
     {
         destroyInstance();
     }

@@ -48,19 +48,14 @@ class LuaTouchTargetNode;
 class CC_DLL LuaTouchEventManager : public Node
 {
 public:
-    /**
-     *  The singleton pointer of LuaTouchEventManager.
-     */
-    static LuaTouchEventManager* s_sharedLuaTouchEventManager;
-    
     /** returns a shared instance of the LuaTouchEventManager */
     static LuaTouchEventManager* getInstance();
-    
+
     /**
      *  Destroys the instance of LuaTouchEventManager.
      */
     static void destroyInstance();
-    
+
 
     void addTouchableNode(LuaEventNode *node);
     void removeTouchableNode(LuaEventNode *node);
@@ -74,17 +69,17 @@ public:
 
     using Node::addChild;
     virtual std::string getDescription() const override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     LuaTouchEventManager();
-     ~LuaTouchEventManager();
-    
+    ~LuaTouchEventManager();
+
     bool init();
     bool initWithSize(const Size& size);
 
 protected:
     friend class Node;
-    
+
     std::set<int> m_touchingIds;
     Vector<LuaEventNode*> _touchableNodes;
     Vector<LuaTouchTargetNode*> _touchingTargets;
@@ -96,19 +91,19 @@ protected:
     void disableTouchDispatching();
 
     void dispatchingTouchEvent(const std::vector<Touch*>& touches, Event *pEvent, int event);
-    
+
     /** Walks though scene graph to get the draw order for each node, it's called before sorting event listener with scene graph priority */
     void visitTarget(Node* node, bool isRootNode);
-    
+
     /** The map of node and LuaEventNode */
     std::unordered_map<Node*, LuaEventNode*> _nodeLuaEventNodeMap;
-    
+
     /** The map of node and its event priority */
     std::unordered_map<Node*, int> _nodePriorityMap;
-    
+
     /** key: Global Z Order, value: Sorted Nodes */
     std::unordered_map<float, std::vector<Node*>> _globalZOrderNodeMap;
-    
+
     int _nodePriorityIndex;
 };
 

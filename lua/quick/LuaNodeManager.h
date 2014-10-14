@@ -35,14 +35,9 @@ NS_CC_BEGIN
 class CC_DLL LuaNodeManager : public Ref
 {
 public:
-    /**
-     *  The singleton pointer of LuaNodeManager.
-     */
-    static LuaNodeManager* s_sharedLuaNodeManager;
-    
     /** returns a shared instance of the LuaNodeManager */
     static LuaNodeManager* getInstance();
-    
+
     /**
      *  Destroys the instance of LuaNodeManager.
      */
@@ -50,16 +45,15 @@ public:
 
     LuaEventNode* getLuaNodeByNode(Node *node, bool toCreate);
     void removeLuaNode(LuaEventNode *lnode);
-    
+
 CC_CONSTRUCTOR_ACCESS:
     LuaNodeManager();
-     ~LuaNodeManager();
-    
+    ~LuaNodeManager();
+
     bool init();
 
 protected:
     Vector<LuaEventNode*> _luaNodes;
-
 };
 
 // end of LuaNodeManager group
