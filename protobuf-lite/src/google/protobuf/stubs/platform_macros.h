@@ -57,6 +57,9 @@
 #elif defined(__ppc__)
 #define GOOGLE_PROTOBUF_ARCH_PPC 1
 #define GOOGLE_PROTOBUF_ARCH_32_BIT 1
+#elif defined(__aarch64__)
+#define GOOGLE_PROTOBUF_ARCH_ARM 1
+#define GOOGLE_PROTOBUF_ARCH_64_BIT 1
 #else
 #ifndef WP8
 #error Host architecture was not detected as supported by protobuf
