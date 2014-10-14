@@ -4,7 +4,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := cocos_protobuf-lite_static
 
-LOCAL_MODULE_FILENAME := protobuf-lite
+LOCAL_MODULE_FILENAME := libprotobuf-lite
 
 LOCAL_SRC_FILES := \
 src/google/protobuf/extension_set.cc \
@@ -24,5 +24,5 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/..
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/src \
                     $(LOCAL_PATH)/src/google/protobuf
-                                 
+
 include $(BUILD_STATIC_LIBRARY)
