@@ -30,20 +30,20 @@ THE SOFTWARE.
 #include "physics/CCPhysicsWorld.h"
 
 #include "LuaTouchTargetNode.h"
-#include "ccUtils.h"
+#include "base/ccUtils.h"
 #include "base/CCEventDispatcher.h"
 #include "deprecated/CCString.h"
 
 NS_CC_BEGIN
 
-LuaTouchEventManager* LuaTouchEventManager::s_sharedLuaTouchEventManager = nullptr;
+static LuaTouchEventManager* s_sharedLuaTouchEventManager = nullptr;
 
 LuaTouchEventManager* LuaTouchEventManager::getInstance()
 {
     if (s_sharedLuaTouchEventManager == nullptr)
     {
         s_sharedLuaTouchEventManager = new (std::nothrow) LuaTouchEventManager();
-        if(!s_sharedLuaTouchEventManager->init())
+        if (!s_sharedLuaTouchEventManager->init())
         {
             delete s_sharedLuaTouchEventManager;
             s_sharedLuaTouchEventManager = nullptr;
@@ -55,24 +55,24 @@ LuaTouchEventManager* LuaTouchEventManager::getInstance()
 
 void LuaTouchEventManager::destroyInstance()
 {
-//    log("---> LuaTouchEventManager::destroyInstance");
+    //    log("---> LuaTouchEventManager::destroyInstance");
     CC_SAFE_DELETE(s_sharedLuaTouchEventManager);
 }
 
 LuaTouchEventManager::LuaTouchEventManager()
-: m_touchDispatchingEnabled(false)
-, _touchListener(nullptr)
+    : m_touchDispatchingEnabled(false)
+    , _touchListener(nullptr)
 {
     _touchableNodes.reserve(100);
     _touchingTargets.reserve(10);
-    
+
     _ignoreAnchorPointForPosition = true;
     setAnchorPoint(Vec2(0.5f, 0.5f));
 }
 
 LuaTouchEventManager::~LuaTouchEventManager()
 {
-//    log("---> Release LuaTouchEventManager");
+    //    log("---> Release LuaTouchEventManager");
     if (_running) {
         cleanup();
     }
@@ -103,7 +103,7 @@ void LuaTouchEventManager::addTouchableNode(LuaEventNode *node)
     {
         _touchableNodes.pushBack(node);
         _nodeLuaEventNodeMap.insert(std::make_pair(node->getNode(), node));
-//        CCLOG("ADD TOUCHABLE NODE <%p>", node);
+        //        CCLOG("ADD TOUCHABLE NODE <%p>", node);
         if (!m_touchDispatchingEnabled)
         {
             enableTouchDispatching();
@@ -119,7 +119,7 @@ void LuaTouchEventManager::removeTouchableNode(LuaEventNode *node)
     {
         _nodeLuaEventNodeMap.erase(found);
     }
-//    CCLOG("REMOVE TOUCHABLE NODE <%p>", node);
+    //    CCLOG("REMOVE TOUCHABLE NODE <%p>", node);
     if (_touchableNodes.size() == 0 && m_touchDispatchingEnabled)
     {
         disableTouchDispatching();
@@ -129,7 +129,7 @@ void LuaTouchEventManager::removeTouchableNode(LuaEventNode *node)
 
 void LuaTouchEventManager::onTouchesBegan(const std::vector<Touch*>& touches, Event *event)
 {
-    if (!m_touchDispatchingEnabled || _touchableNodes.size()<1) return;
+    if (!m_touchDispatchingEnabled || _touchableNodes.size() < 1) return;
 
     // save touches id
     for (auto it = touches.begin(); it != touches.end(); ++it)
@@ -154,7 +154,7 @@ void LuaTouchEventManager::onTouchesBegan(const std::vector<Touch*>& touches, Ev
     LuaEventNode *checkTouchableNode = nullptr;
     LuaTouchTargetNode *touchTarget = nullptr;
 
-    for (auto iter=_touchableNodes.begin(); iter!=_touchableNodes.end(); ++iter)
+    for (auto iter = _touchableNodes.begin(); iter != _touchableNodes.end(); ++iter)
     {
         checkTouchableNode = node = *iter;
 
@@ -163,9 +163,9 @@ void LuaTouchEventManager::onTouchesBegan(const std::vector<Touch*>& touches, Ev
         do
         {
             isTouchable = isTouchable
-            && checkTouchableNode->isRunning()
-            && checkTouchableNode->isVisible()
-            && checkTouchableNode->isTouchCaptureEnabled();
+                && checkTouchableNode->isRunning()
+                && checkTouchableNode->isVisible()
+                && checkTouchableNode->isTouchCaptureEnabled();
             checkTouchableNode = checkTouchableNode->getParent();
         } while (checkTouchableNode && isTouchable);
         if (!isTouchable) continue;
@@ -257,7 +257,7 @@ void LuaTouchEventManager::onTouchesBegan(const std::vector<Touch*>& touches, Ev
             // target swallow touch event, stop dispatching
             break;
         }
-        
+
         // continue dispatching, try to next
     }
 }
@@ -282,7 +282,7 @@ void LuaTouchEventManager::onTouchesEnded(const std::vector<Touch*>& touches, Ev
     {
         dispatchingTouchEvent(touches, event, CCTOUCHENDED);
         // remove all touching nodes
-//    CCLOG("TOUCH ENDED, REMOVE ALL TOUCH TARGETS");
+        //    CCLOG("TOUCH ENDED, REMOVE ALL TOUCH TARGETS");
         _touchingTargets.clear();
     }
 }
@@ -291,7 +291,7 @@ void LuaTouchEventManager::onTouchesCancelled(const std::vector<Touch*>& touches
 {
     dispatchingTouchEvent(touches, event, CCTOUCHCANCELLED);
     // remove all touching nodes
-//    CCLOG("TOUCH CANCELLED, REMOVE ALL TOUCH TARGETS");
+    //    CCLOG("TOUCH CANCELLED, REMOVE ALL TOUCH TARGETS");
     _touchingTargets.clear();
 }
 
@@ -310,8 +310,8 @@ void LuaTouchEventManager::cleanup(void)
 void LuaTouchEventManager::sortAllTouchableNodes(Vector<LuaEventNode*>& nodes)
 {
     ssize_t length = nodes.size();
-    
-    if (length<1)
+
+    if (length < 1)
     {
         return;
     }
@@ -319,19 +319,19 @@ void LuaTouchEventManager::sortAllTouchableNodes(Vector<LuaEventNode*>& nodes)
     // Reset priority index
     _nodePriorityIndex = 0;
     _nodePriorityMap.clear();
-    
+
     auto rootNode = Director::getInstance()->getRunningScene();
     if (!rootNode)
     {
         return;
     }
     visitTarget(rootNode, true);
-    
+
     // After sort: priority < 0, > 0
     std::sort(nodes.begin(), nodes.end(), [this](const LuaEventNode* l1, const LuaEventNode* l2) {
         return _nodePriorityMap[l1->getNode()] > _nodePriorityMap[l2->getNode()];
     });
-    
+
 #if DUMP_LISTENER_ITEM_PRIORITY_INFO
     log("-----------------------------------");
     for (auto& l : nodes)
@@ -370,7 +370,7 @@ void LuaTouchEventManager::dispatchingTouchEvent(const std::vector<Touch*>& touc
     Touch *touch = nullptr;
 
     ssize_t count = _touchingTargets.size();
-//    CCLOG("TOUCH TARGETS COUNT [%u]", count);
+    //    CCLOG("TOUCH TARGETS COUNT [%u]", count);
     for (ssize_t i = 0; i < count; ++i)
     {
         touchTarget = _touchingTargets.at(i);
@@ -378,7 +378,7 @@ void LuaTouchEventManager::dispatchingTouchEvent(const std::vector<Touch*>& touc
         if (!touchTarget->getNode()->isRunning())
         {
             // target removed from scene, remove it
-//            CCLOG("REMOVE TARGET [%u]", i);
+            //            CCLOG("REMOVE TARGET [%u]", i);
             _touchingTargets.at(i);
             --count;
             --i;
@@ -414,49 +414,49 @@ void LuaTouchEventManager::dispatchingTouchEvent(const std::vector<Touch*>& touc
             {
                 switch (event)
                 {
-                    case CCTOUCHMOVED:
-                        node->ccTouchesCaptureMoved(touches, touchTarget->getNode());
-                        break;
+                case CCTOUCHMOVED:
+                    node->ccTouchesCaptureMoved(touches, touchTarget->getNode());
+                    break;
 
-                    case CCTOUCHENDED:
-                        node->ccTouchesCaptureEnded(touches, touchTarget->getNode());
-                        break;
+                case CCTOUCHENDED:
+                    node->ccTouchesCaptureEnded(touches, touchTarget->getNode());
+                    break;
 
-                    case CCTOUCHCANCELLED:
-                        node->ccTouchesCaptureCancelled(touches, touchTarget->getNode());
-                        break;
+                case CCTOUCHCANCELLED:
+                    node->ccTouchesCaptureCancelled(touches, touchTarget->getNode());
+                    break;
 
-                    case CCTOUCHADDED:
-                        node->ccTouchesCaptureAdded(touches, touchTarget->getNode());
-                        break;
+                case CCTOUCHADDED:
+                    node->ccTouchesCaptureAdded(touches, touchTarget->getNode());
+                    break;
 
-                    case CCTOUCHREMOVED:
-                        node->ccTouchesCaptureRemoved(touches, touchTarget->getNode());
-                        break;
+                case CCTOUCHREMOVED:
+                    node->ccTouchesCaptureRemoved(touches, touchTarget->getNode());
+                    break;
                 }
             }
             else
             {
                 switch (event)
                 {
-                    case CCTOUCHMOVED:
-                        node->ccTouchCaptureMoved(touch, touchTarget->getNode());
-                        break;
+                case CCTOUCHMOVED:
+                    node->ccTouchCaptureMoved(touch, touchTarget->getNode());
+                    break;
 
-                    case CCTOUCHENDED:
+                case CCTOUCHENDED:
+                    node->ccTouchCaptureEnded(touch, touchTarget->getNode());
+                    break;
+
+                case CCTOUCHCANCELLED:
+                    node->ccTouchCaptureCancelled(touch, touchTarget->getNode());
+                    break;
+
+                case CCTOUCHREMOVED:
+                    if (touch->getID() == touchTarget->getTouchId())
+                    {
                         node->ccTouchCaptureEnded(touch, touchTarget->getNode());
-                        break;
-
-                    case CCTOUCHCANCELLED:
-                        node->ccTouchCaptureCancelled(touch, touchTarget->getNode());
-                        break;
-
-                    case CCTOUCHREMOVED:
-                        if (touch->getID() == touchTarget->getTouchId())
-                        {
-                            node->ccTouchCaptureEnded(touch, touchTarget->getNode());
-                        }
-                        break;
+                    }
+                    break;
                 }
             }
         } // for (long j = path.size() - 1; j >= 0; --j)
@@ -467,54 +467,54 @@ void LuaTouchEventManager::dispatchingTouchEvent(const std::vector<Touch*>& touc
         {
             switch (event)
             {
-                case CCTOUCHMOVED:
-                    node->ccTouchesMoved(touches, pEvent);
-                    break;
+            case CCTOUCHMOVED:
+                node->ccTouchesMoved(touches, pEvent);
+                break;
 
-                case CCTOUCHENDED:
-                    node->ccTouchesEnded(touches, pEvent);
-                    break;
+            case CCTOUCHENDED:
+                node->ccTouchesEnded(touches, pEvent);
+                break;
 
-                case CCTOUCHCANCELLED:
-                    node->ccTouchesCancelled(touches, pEvent);
-                    break;
+            case CCTOUCHCANCELLED:
+                node->ccTouchesCancelled(touches, pEvent);
+                break;
 
-                case CCTOUCHADDED:
-                    node->ccTouchesAdded(touches, pEvent);
-                    break;
+            case CCTOUCHADDED:
+                node->ccTouchesAdded(touches, pEvent);
+                break;
 
-                case CCTOUCHREMOVED:
-                    node->ccTouchesRemoved(touches, pEvent);
-                    break;
+            case CCTOUCHREMOVED:
+                node->ccTouchesRemoved(touches, pEvent);
+                break;
             }
         }
         else
         {
             switch (event)
             {
-                case CCTOUCHMOVED:
-                    node->ccTouchMoved(touch, pEvent);
-                    break;
+            case CCTOUCHMOVED:
+                node->ccTouchMoved(touch, pEvent);
+                break;
 
-                case CCTOUCHENDED:
+            case CCTOUCHENDED:
+                node->ccTouchEnded(touch, pEvent);
+                break;
+
+            case CCTOUCHCANCELLED:
+                node->ccTouchCancelled(touch, pEvent);
+                break;
+
+            case CCTOUCHREMOVED:
+                if (touch->getID() == touchTarget->getTouchId())
+                {
                     node->ccTouchEnded(touch, pEvent);
-                    break;
-                    
-                case CCTOUCHCANCELLED:
-                    node->ccTouchCancelled(touch, pEvent);
-                    break;
-
-                case CCTOUCHREMOVED:
-                    if (touch->getID() == touchTarget->getTouchId())
-                    {
-                        node->ccTouchEnded(touch, pEvent);
-                        // target touching ended, remove it
-//                        CCLOG("REMOVE TARGET [%u]", i);
-                        _touchingTargets.erase(i);
-                        --count;
-                        --i;
-                    }
-                    break;
+                    // target touching ended, remove it
+                    //                        CCLOG("REMOVE TARGET [%u]", i);
+                    _touchingTargets.erase(i);
+                    --count;
+                    --i;
+                }
+                break;
             }
         }
     }
@@ -524,29 +524,29 @@ void LuaTouchEventManager::visitTarget(Node* node, bool isRootNode)
 {
     int i = 0;
     auto& children = node->getChildren();
-    
+
     auto childrenCount = children.size();
-    
-    if(childrenCount > 0)
+
+    if (childrenCount > 0)
     {
         Node* child = nullptr;
         // visit children zOrder < 0
-        for( ; i < childrenCount; i++ )
+        for (; i < childrenCount; i++)
         {
             child = children.at(i);
-            
-            if ( child && child->getLocalZOrder() < 0 )
+
+            if (child && child->getLocalZOrder() < 0)
                 visitTarget(child, false);
             else
                 break;
         }
-        
+
         if (_nodeLuaEventNodeMap.find(node) != _nodeLuaEventNodeMap.end())
         {
             _globalZOrderNodeMap[node->getGlobalZOrder()].push_back(node);
         }
-        
-        for( ; i < childrenCount; i++ )
+
+        for (; i < childrenCount; i++)
         {
             child = children.at(i);
             if (child)
@@ -560,21 +560,21 @@ void LuaTouchEventManager::visitTarget(Node* node, bool isRootNode)
             _globalZOrderNodeMap[node->getGlobalZOrder()].push_back(node);
         }
     }
-    
+
     if (isRootNode)
     {
         std::vector<float> globalZOrders;
         globalZOrders.reserve(_globalZOrderNodeMap.size());
-        
+
         for (const auto& e : _globalZOrderNodeMap)
         {
             globalZOrders.push_back(e.first);
         }
-        
+
         std::sort(globalZOrders.begin(), globalZOrders.end(), [](const float a, const float b){
             return a < b;
         });
-        
+
         for (const auto& globalZ : globalZOrders)
         {
             for (const auto& n : _globalZOrderNodeMap[globalZ])
@@ -582,7 +582,7 @@ void LuaTouchEventManager::visitTarget(Node* node, bool isRootNode)
                 _nodePriorityMap[n] = ++_nodePriorityIndex;
             }
         }
-        
+
         _globalZOrderNodeMap.clear();
     }
 }
