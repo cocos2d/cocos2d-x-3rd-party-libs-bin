@@ -20,7 +20,7 @@ src/google/protobuf/stubs/common.cc \
 src/google/protobuf/stubs/once.cc \
 src/google/protobuf/stubs/stringprintf.cc
 
-LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/..
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/src
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/src \
                     $(LOCAL_PATH)/src/google/protobuf
