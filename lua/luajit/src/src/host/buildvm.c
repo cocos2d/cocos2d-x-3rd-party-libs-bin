@@ -1,6 +1,6 @@
 /*
 ** LuaJIT VM builder.
-** Copyright (C) 2005-2013 Mike Pall. See Copyright Notice in luajit.h
+** Copyright (C) 2005-2014 Mike Pall. See Copyright Notice in luajit.h
 **
 ** This is a tool to build the hand-tuned assembler code required for
 ** LuaJIT's bytecode interpreter. It supports a variety of output formats
@@ -108,10 +108,16 @@ static const char *sym_decorate(BuildCtx *ctx,
   sprintf(name, "%s%s%s", symprefix, prefix, suffix);
   p = strchr(name, '@');
   if (p) {
+#if LJ_TARGET_X86ORX64
     if (!LJ_64 && (ctx->mode == BUILD_coffasm || ctx->mode == BUILD_peobj))
       name[0] = '@';
     else
       *p = '\0';
+#elif (LJ_TARGET_PPC  || LJ_TARGET_PPCSPE) && !LJ_TARGET_CONSOLE
+    /* Keep @plt. */
+#else
+    *p = '\0';
+#endif
   }
   p = (char *)malloc(strlen(name)+1);  /* MSVC doesn't like strdup. */
   strcpy(p, name);
