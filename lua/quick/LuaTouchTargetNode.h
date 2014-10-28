@@ -34,7 +34,7 @@ NS_CC_BEGIN
  * @{
  */
 
-class CC_DLL LuaTouchTargetNode : public Ref
+class LuaTouchTargetNode : public Ref
 {
 public:
     static LuaTouchTargetNode *create(LuaEventNode *node);

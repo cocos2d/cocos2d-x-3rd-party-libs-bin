@@ -45,7 +45,7 @@ NS_CC_BEGIN
  * @{
  */
 
-class CC_DLL LuaEventNode : public Ref
+class LuaEventNode : public Ref
 {
 public:
     static const int modeTouchesOneByOne = (int)Touch::DispatchMode::ONE_BY_ONE;
