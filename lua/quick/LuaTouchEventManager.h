@@ -45,7 +45,7 @@ class LuaTouchTargetNode;
 #define ccTouchMax          6
 
 
-class CC_DLL LuaTouchEventManager : public Node
+class LuaTouchEventManager : public Node
 {
 public:
     /** returns a shared instance of the LuaTouchEventManager */

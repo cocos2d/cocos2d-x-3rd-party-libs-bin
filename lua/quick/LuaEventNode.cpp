@@ -59,11 +59,23 @@ Node *LuaEventNode::getNode() const
 
 LuaEventNode* LuaEventNode::getParent()
 {
-    Node *node = _node->getParent();
-    if (node)
-    {
-        return LuaNodeManager::getInstance()->getLuaNodeByNode(node, false);
-    }
+    Node *node = _node;
+    LuaEventNode *eventNode = nullptr;
+
+    do {
+        node = node->getParent();
+        if (nullptr == node) {
+            //have no parent, return
+            return nullptr;
+        }
+
+        eventNode = LuaNodeManager::getInstance()->getLuaNodeByNode(node, false);
+        if (eventNode) {
+            //find the eventNode
+            return eventNode;
+        }
+    } while (true);
+
     return nullptr;
 }
 

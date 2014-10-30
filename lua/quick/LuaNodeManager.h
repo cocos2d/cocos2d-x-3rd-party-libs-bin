@@ -32,7 +32,7 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-class CC_DLL LuaNodeManager : public Ref
+class LuaNodeManager : public Ref
 {
 public:
     /** returns a shared instance of the LuaNodeManager */
