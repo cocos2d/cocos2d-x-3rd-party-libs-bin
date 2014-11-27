@@ -172,7 +172,7 @@ inline std::string AbsolutePath(const std::string &filepath) {
   #ifdef _WIN32
     char abs_path[MAX_PATH]; 
     #if defined(WP8) || defined(WINRT)
-    return ""
+    return 0
 	#else
 		return GetFullPathNameA(filepath.c_str(), MAX_PATH, abs_path, nullptr)
 	#endif
