@@ -171,8 +171,8 @@ inline void EnsureDirExists(const std::string &filepath) {
 inline std::string AbsolutePath(const std::string &filepath) {
   #ifdef _WIN32
     char abs_path[MAX_PATH]; 
-    #ifdef WP8
-		false
+    #if defined(WP8) || defined(WINRT)
+    return ""
 	#else
 		return GetFullPathNameA(filepath.c_str(), MAX_PATH, abs_path, nullptr)
 	#endif
