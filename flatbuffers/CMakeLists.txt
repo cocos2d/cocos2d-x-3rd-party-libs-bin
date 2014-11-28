@@ -1,3 +1,5 @@
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fexceptions")
+
 set(FLATBUFFERS_SRC
 ./flatc.cpp
 ./idl_gen_cpp.cpp
