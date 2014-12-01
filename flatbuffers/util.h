@@ -170,12 +170,12 @@ inline void EnsureDirExists(const std::string &filepath) {
 // Returns the input path if the absolute path couldn't be resolved.
 inline std::string AbsolutePath(const std::string &filepath) {
   #ifdef _WIN32
-    char abs_path[MAX_PATH]; 
+    char abs_path[MAX_PATH];
     #if defined(WP8) || defined(WINRT)
-    return ""
-	#else
-		return GetFullPathNameA(filepath.c_str(), MAX_PATH, abs_path, nullptr)
-	#endif
+        return ""
+    #else
+        return GetFullPathNameA(filepath.c_str(), MAX_PATH, abs_path, nullptr)
+    #endif
   #else
     char abs_path[PATH_MAX];
     return realpath(filepath.c_str(), abs_path)
