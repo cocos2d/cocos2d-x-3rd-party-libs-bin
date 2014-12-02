@@ -56,7 +56,11 @@
 /* #undef JS_INT32_TYPE */
 /* #undef JS_INT64_TYPE */
 /* #undef JS_INTPTR_TYPE */
+#if __arm64__
+#define JS_BYTES_PER_WORD 8
+#else
 #define JS_BYTES_PER_WORD 4
+#endif
 
 /* Some mozilla code uses JS-friend APIs that depend on JS_METHODJIT being
    correct. */
