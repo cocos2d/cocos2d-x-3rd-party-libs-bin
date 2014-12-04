@@ -56,7 +56,7 @@
 /* #undef JS_INT32_TYPE */
 /* #undef JS_INT64_TYPE */
 /* #undef JS_INTPTR_TYPE */
-#if __arm64__
+#if defined(__LP64__) && __LP64__
 #define JS_BYTES_PER_WORD 8
 #else
 #define JS_BYTES_PER_WORD 4
