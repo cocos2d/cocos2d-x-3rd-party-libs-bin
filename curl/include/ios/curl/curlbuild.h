@@ -8,7 +8,7 @@
  *                            | (__| |_| |  _ <| |___
  *                             \___|\___/|_| \_\_____|
  *
- * Copyright (C) 1998 - 2011, Daniel Stenberg, <daniel@haxx.se>, et al.
+ * Copyright (C) 1998 - 2012, Daniel Stenberg, <daniel@haxx.se>, et al.
  *
  * This software is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
@@ -152,8 +152,15 @@
 #  include <sys/socket.h>
 #endif
 
+/* Configure process defines this to 1 when it finds out that system  */
+/* header file sys/poll.h must be included by the external interface. */
+/* #undef CURL_PULL_SYS_POLL_H */
+#ifdef CURL_PULL_SYS_POLL_H
+#  include <sys/poll.h>
+#endif
+
 /* The size of `long', as computed by sizeof. */
-#define CURL_SIZEOF_LONG sizeof(long)
+#define CURL_SIZEOF_LONG 4
 
 /* Integral data type used for curl_socklen_t. */
 #define CURL_TYPEOF_CURL_SOCKLEN_T socklen_t
@@ -171,13 +178,13 @@ typedef CURL_TYPEOF_CURL_SOCKLEN_T curl_socklen_t;
 typedef CURL_TYPEOF_CURL_OFF_T curl_off_t;
 
 /* curl_off_t formatting string directive without "%" conversion specifier. */
-#define CURL_FORMAT_CURL_OFF_T PRId64
+#define CURL_FORMAT_CURL_OFF_T "lld"
 
 /* unsigned curl_off_t formatting string without "%" conversion specifier. */
-#define CURL_FORMAT_CURL_OFF_TU PRIu64
+#define CURL_FORMAT_CURL_OFF_TU "llu"
 
 /* curl_off_t formatting string directive with "%" conversion specifier. */
-#define CURL_FORMAT_OFF_T "%" PRId64
+#define CURL_FORMAT_OFF_T "%lld"
 
 /* The size of `curl_off_t', as computed by sizeof. */
 #define CURL_SIZEOF_CURL_OFF_T 8
