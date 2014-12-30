@@ -55,7 +55,9 @@ public:
 
     ~LuaEventNode();
 
-    Node *getNode() const;
+    Node *getDetachedNode() const;
+    Node *getActiveNode() const;
+    void detachNode();
 
     virtual LuaEventNode* getParent();
     
@@ -83,7 +85,7 @@ public:
     virtual void ccTouchesCaptureRemoved(const std::vector<Touch*>& touches, LuaEventNode *pTarget);
     
     virtual bool isTouchEnabled();
-    virtual void setTouchEnabled(bool value);
+    virtual void setLuaTouchEnabled(bool value);
     
     virtual void setTouchMode(int mode);
     virtual int getTouchMode();
@@ -104,6 +106,7 @@ private:
     LuaEventNode(Node *node);
 
     Node *_node;
+    Node *_nodePreuse;
     
     // touch events
     bool _bTouchCaptureEnabled;

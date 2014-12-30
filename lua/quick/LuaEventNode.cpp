@@ -43,22 +43,33 @@ LuaEventNode::LuaEventNode(Node *node)
 , _bTouchSwallowEnabled(true)
 , _bTouchEnabled(false)
 , _eTouchMode(modeTouchesOneByOne)
+, _nodePreuse(nullptr)
 {
     _node = node;
 }
 
 LuaEventNode::~LuaEventNode()
 {
-//    log("---> Release LuaEventNode");
+
 }
 
-Node *LuaEventNode::getNode() const
+Node *LuaEventNode::getDetachedNode() const
+{
+    if (_node)
+    {
+        return  _node;
+    }
+    return  _nodePreuse;
+}
+
+Node *LuaEventNode::getActiveNode() const
 {
     return  _node;
 }
 
 LuaEventNode* LuaEventNode::getParent()
 {
+    if (!_node) return nullptr;
     Node *node = _node;
     LuaEventNode *eventNode = nullptr;
 
@@ -81,12 +92,36 @@ LuaEventNode* LuaEventNode::getParent()
 
 bool LuaEventNode::isVisible() const
 {
-    return _node->isVisible();
+    if (!_node) { return false; }
+    Node *node = _node;
+    do {
+        if (!node) {
+            // here reach the top node
+            return true;
+        }
+        if (!node->isVisible()) {
+            return false;
+        }
+        node = node->getParent();
+    } while (true);
+
+    return false;
 }
 
 bool LuaEventNode::isRunning() const
 {
-    return _node->isRunning();
+    if (_node)
+    {
+        return _node->isRunning();
+    }
+    return false;
+}
+
+void LuaEventNode::detachNode()
+{
+//    log("---> Detach LuaEventNode %p", this);
+    _nodePreuse = _node;
+    _node = nullptr;
 }
 
 // ----------------------------------------
@@ -223,10 +258,10 @@ void LuaEventNode::ccTouchesCaptureRemoved(const std::vector<Touch*>& touches, L
 
 bool LuaEventNode::isTouchEnabled()
 {
-    return _bTouchEnabled;
+    return (_node!=nullptr) && _bTouchEnabled;
 }
 
-void LuaEventNode::setTouchEnabled(bool enabled)
+void LuaEventNode::setLuaTouchEnabled(bool enabled)
 {
     if (_bTouchEnabled != enabled)
     {
@@ -251,8 +286,8 @@ void LuaEventNode::setTouchMode(int mode)
         
 		if( _bTouchEnabled)
         {
-			setTouchEnabled(false);
-			setTouchEnabled(true);
+			setLuaTouchEnabled(false);
+			setLuaTouchEnabled(true);
 		}
     }
 }
@@ -355,6 +390,7 @@ void LuaEventNode::ccTouchesRemoved(const std::vector<Touch*>& touches, Event *p
 
 static LuaStack * initExecParam(Node *node, int phase)
 {
+    if (!node) return nullptr;
     int  id = node->_luaID;
     if (id<1)
     {
@@ -417,7 +453,7 @@ static int callNodeEventDispatcher(LuaStack *stack, LuaValueDict &event)
 
 int LuaEventNode::executeScriptTouchHandler(int nEventType, Touch *pTouch, int phase /* = NODE_TOUCH_TARGETING_PHASE */)
 {
-    auto stack = initExecParam(this->getNode(), phase);
+    auto stack = initExecParam(this->getActiveNode(), phase);
     if (!stack)
     {
         return 0;
@@ -475,7 +511,7 @@ int LuaEventNode::executeScriptTouchHandler(int nEventType, Touch *pTouch, int p
 
 int LuaEventNode::executeScriptTouchHandler(int nEventType, const std::vector<Touch*>& touches, int phase /* = NODE_TOUCH_TARGETING_PHASE */)
 {
-    auto stack = initExecParam(this->getNode(), phase);
+    auto stack = initExecParam(this->getActiveNode(), phase);
     if (!stack)
     {
         return 0;
