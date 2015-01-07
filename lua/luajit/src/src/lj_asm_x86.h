@@ -1,6 +1,6 @@
 /*
 ** x86/x64 IR assembler (SSA IR -> machine code).
-** Copyright (C) 2005-2013 Mike Pall. See Copyright Notice in luajit.h
+** Copyright (C) 2005-2014 Mike Pall. See Copyright Notice in luajit.h
 */
 
 /* -- Guard handling ------------------------------------------------------ */
@@ -512,6 +512,7 @@ static void asm_gencall(ASMState *as, const CCallInfo *ci, IRRef *args)
       }
       ofs += sizeof(intptr_t);
     }
+    checkmclim(as);
   }
 #if LJ_64 && !LJ_ABI_WIN
   if (patchnfpr) *patchnfpr = fpr - REGARG_FIRSTFPR;
@@ -608,7 +609,7 @@ static void *asm_callx_func(ASMState *as, IRIns *irf, IRRef func)
 
 static void asm_callx(ASMState *as, IRIns *ir)
 {
-  IRRef args[CCI_NARGS_MAX];
+  IRRef args[CCI_NARGS_MAX*2];
   CCallInfo ci;
   IRRef func;
   IRIns *irf;
@@ -646,6 +647,7 @@ static void asm_retf(ASMState *as, IRIns *ir)
   int32_t delta = 1+bc_a(*((const BCIns *)pc - 1));
   as->topslot -= (BCReg)delta;
   if ((int32_t)as->topslot < 0) as->topslot = 0;
+  irt_setmark(IR(REF_BASE)->t);  /* Children must not coalesce with BASE reg. */
   emit_setgl(as, base, jit_base);
   emit_addptr(as, base, -8*delta);
   asm_guardcc(as, CC_NE);
@@ -2211,6 +2213,7 @@ static void asm_comp_int64(ASMState *as, IRIns *ir)
     lefthi = asm_fuseload(as, ir->op1, allow);
   } else {
     lefthi = ra_alloc1(as, ir->op1, allow);
+    rset_clear(allow, lefthi);
     righthi = asm_fuseload(as, ir->op2, allow);
     if (righthi == RID_MRM) {
       if (as->mrm.base != RID_NONE) rset_clear(allow, as->mrm.base);
@@ -2226,13 +2229,8 @@ static void asm_comp_int64(ASMState *as, IRIns *ir)
     leftlo = asm_fuseload(as, (ir-1)->op1, allow);
   } else {
     leftlo = ra_alloc1(as, (ir-1)->op1, allow);
+    rset_clear(allow, leftlo);
     rightlo = asm_fuseload(as, (ir-1)->op2, allow);
-    if (rightlo == RID_MRM) {
-      if (as->mrm.base != RID_NONE) rset_clear(allow, as->mrm.base);
-      if (as->mrm.idx != RID_NONE) rset_clear(allow, as->mrm.idx);
-    } else {
-      rset_clear(allow, rightlo);
-    }
   }
 
   /* All register allocations must be performed _before_ this point. */
@@ -2484,7 +2482,7 @@ static void asm_head_root_base(ASMState *as)
   Reg r = ir->r;
   if (ra_hasreg(r)) {
     ra_free(as, r);
-    if (rset_test(as->modset, r))
+    if (rset_test(as->modset, r) || irt_ismarked(ir->t))
       ir->r = RID_INIT;  /* No inheritance for modified BASE register. */
     if (r != RID_BASE)
       emit_rr(as, XO_MOV, r, RID_BASE);
@@ -2498,7 +2496,7 @@ static RegSet asm_head_side_base(ASMState *as, IRIns *irp, RegSet allow)
   Reg r = ir->r;
   if (ra_hasreg(r)) {
     ra_free(as, r);
-    if (rset_test(as->modset, r))
+    if (rset_test(as->modset, r) || irt_ismarked(ir->t))
       ir->r = RID_INIT;  /* No inheritance for modified BASE register. */
     if (irp->r == r) {
       rset_clear(allow, r);  /* Mark same BASE register as coalesced. */
@@ -2745,7 +2743,7 @@ static void asm_ir(ASMState *as, IRIns *ir)
 /* Ensure there are enough stack slots for call arguments. */
 static Reg asm_setup_call_slots(ASMState *as, IRIns *ir, const CCallInfo *ci)
 {
-  IRRef args[CCI_NARGS_MAX];
+  IRRef args[CCI_NARGS_MAX*2];
   int nslots;
   asm_collectargs(as, ir, ci, args);
   nslots = asm_count_call_slots(as, ci, args);
