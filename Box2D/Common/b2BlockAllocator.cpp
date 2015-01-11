@@ -18,9 +18,8 @@
 
 #include <Box2D/Common/b2BlockAllocator.h>
 #include <limits.h>
-#include <memory.h>
-#include <stddef.h>
 #include <string.h>
+#include <stddef.h>
 
 int32 b2BlockAllocator::s_blockSizes[b2_blockSizes] = 
 {

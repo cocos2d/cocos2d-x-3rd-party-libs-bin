@@ -200,19 +200,19 @@ public:
 	/// @param force the world force vector, usually in Newtons (N).
 	/// @param point the world position of the point of application.
 	/// @param wake also wake up the body
-	void ApplyForce(const b2Vec2& force, const b2Vec2& point, bool wake);
+	void ApplyForce(const b2Vec2& force, const b2Vec2& point, bool wake=1);
 
 	/// Apply a force to the center of mass. This wakes up the body.
 	/// @param force the world force vector, usually in Newtons (N).
 	/// @param wake also wake up the body
-	void ApplyForceToCenter(const b2Vec2& force, bool wake);
+	void ApplyForceToCenter(const b2Vec2& force, bool wake=1);
 
 	/// Apply a torque. This affects the angular velocity
 	/// without affecting the linear velocity of the center of mass.
 	/// This wakes up the body.
 	/// @param torque about the z-axis (out of the screen), usually in N-m.
 	/// @param wake also wake up the body
-	void ApplyTorque(float32 torque, bool wake);
+	void ApplyTorque(float32 torque, bool wake=1);
 
 	/// Apply an impulse at a point. This immediately modifies the velocity.
 	/// It also modifies the angular velocity if the point of application
@@ -220,12 +220,12 @@ public:
 	/// @param impulse the world impulse vector, usually in N-seconds or kg-m/s.
 	/// @param point the world position of the point of application.
 	/// @param wake also wake up the body
-	void ApplyLinearImpulse(const b2Vec2& impulse, const b2Vec2& point, bool wake);
+	void ApplyLinearImpulse(const b2Vec2& impulse, const b2Vec2& point, bool wake=1);
 
 	/// Apply an angular impulse.
 	/// @param impulse the angular impulse in units of kg*m*m/s
 	/// @param wake also wake up the body
-	void ApplyAngularImpulse(float32 impulse, bool wake);
+	void ApplyAngularImpulse(float32 impulse, bool wake=1);
 
 	/// Get the total mass of the body.
 	/// @return the mass, usually in kilograms (kg).
