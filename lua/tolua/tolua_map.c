@@ -330,6 +330,30 @@ static int tolua_bnd_getcfunction(lua_State* L) {
     return 0;
 }
 
+static int tolua_bnd_iskindof(lua_State *L)
+{
+    if (lua_gettop(L) < 2)
+    {
+        lua_pushstring(L, "Miss arguments to iskindof.");
+        lua_error(L);
+    }
+
+    if (!lua_getmetatable(L, 1)) {
+        lua_pushstring(L, "Invalid argument #1 to iskindof: class or object expected.");
+        lua_error(L);
+    }
+
+    tolua_Error tolua_err;
+    const char *type = luaL_checkstring(L, 2);
+    if (!type)
+    {
+        lua_pushstring(L, "Invalid argument #2 to iskindof: string expected.");
+        lua_error(L);
+    }
+    lua_pushboolean(L, tolua_isusertype(L, 1, type, 0, &tolua_err));
+    return 1;
+}
+
 /* static int class_gc_event (lua_State* L); */
 
 TOLUA_API void tolua_open (lua_State* L)
@@ -411,6 +435,7 @@ TOLUA_API void tolua_open (lua_State* L)
         tolua_function(L, "getpeer", tolua_bnd_getpeer);
 #endif
         tolua_function(L,"getcfunction", tolua_bnd_getcfunction);
+        tolua_function(L,"iskindof", tolua_bnd_iskindof);
 
         tolua_endmodule(L);
         tolua_endmodule(L);
