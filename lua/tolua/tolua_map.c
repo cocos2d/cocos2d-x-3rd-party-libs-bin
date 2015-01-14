@@ -332,6 +332,8 @@ static int tolua_bnd_getcfunction(lua_State* L) {
 
 static int tolua_bnd_iskindof(lua_State *L)
 {
+    tolua_Error tolua_err;
+    const char *type = luaL_checkstring(L, 2);
     if (lua_gettop(L) < 2)
     {
         lua_pushstring(L, "Miss arguments to iskindof.");
@@ -342,9 +344,7 @@ static int tolua_bnd_iskindof(lua_State *L)
         lua_pushstring(L, "Invalid argument #1 to iskindof: class or object expected.");
         lua_error(L);
     }
-
-    tolua_Error tolua_err;
-    const char *type = luaL_checkstring(L, 2);
+    
     if (!type)
     {
         lua_pushstring(L, "Invalid argument #2 to iskindof: string expected.");
