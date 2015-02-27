@@ -17,6 +17,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+lua_State* tolua_lastState = NULL;
+
 TOLUA_API lua_Number tolua_tonumber (lua_State* L, int narg, lua_Number def)
 {
     return lua_gettop(L)<abs(narg) ? def : lua_tonumber(L,narg);
@@ -48,6 +50,8 @@ extern int push_table_instance(lua_State* L, int lo);
 
 TOLUA_API void* tolua_tousertype (lua_State* L, int narg, void* def)
 {
+    tolua_lastState = L;
+    
     if (lua_gettop(L)<abs(narg))
         return def;
     else
