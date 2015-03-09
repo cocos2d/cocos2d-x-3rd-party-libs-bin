@@ -167,14 +167,26 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/$(TARGET_ARCH_ABI)/include
 include $(PREBUILT_STATIC_LIBRARY)
 
 ##luajit
+# jit only when not using mips
+# non-jit for mips
 include $(CLEAR_VARS)
+ifneq ($(TARGET_ARCH_ABI),mips)
 LOCAL_MODULE := cocos_luajit_static
 LOCAL_MODULE_FILENAME := luajit
 LOCAL_SRC_FILES := $(TARGET_ARCH_ABI)/libs/libluajit.a
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/$(TARGET_ARCH_ABI)/include/luajit
+else
+LOCAL_MODULE := cocos_lua_static
+LOCAL_MODULE_FILENAME := lua
+LOCAL_SRC_FILES := $(TARGET_ARCH_ABI)/libs/liblua.a
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/$(TARGET_ARCH_ABI)/include/lua
+endif
 include $(PREBUILT_STATIC_LIBRARY)
 
-#jsb
+###jsb
+# only when not using mips
+# jsb not available yet on mips
+ifneq ($(TARGET_ARCH_ABI),mips)
 include $(CLEAR_VARS)
 LOCAL_MODULE    := spidermonkey_static
 LOCAL_MODULE_FILENAME := js_static
@@ -183,3 +195,4 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/$(TARGET_ARCH_ABI)/include/spidermonkey
 LOCAL_CPPFLAGS := -D__STDC_LIMIT_MACROS=1 -Wno-invalid-offsetof
 LOCAL_EXPORT_CPPFLAGS := -D__STDC_LIMIT_MACROS=1 -Wno-invalid-offsetof
 include $(PREBUILT_STATIC_LIBRARY)
+endif
