@@ -1,0 +1,3 @@
+[submodule "lua/luajit/src"]
+	path = lua/luajit/src
+	url = http://repo.or.cz/luajit-2.0.git
