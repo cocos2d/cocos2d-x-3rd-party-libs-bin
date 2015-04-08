@@ -4,7 +4,7 @@
 /*                                                                         */
 /*    FreeType Multiple Master font interface (specification).             */
 /*                                                                         */
-/*  Copyright 1996-2001, 2003, 2004, 2006, 2009 by                         */
+/*  Copyright 1996-2001, 2003, 2004, 2006, 2009, 2013 by                   */
 /*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */
 /*                                                                         */
 /*  This file is part of the FreeType project, and may only be used,       */
@@ -196,7 +196,7 @@ FT_BEGIN_HEADER
   /*                       number of designs).                             */
   /*                                                                       */
   /*    num_namedstyles :: The number of named styles; only meaningful for */
-  /*                       GX which allows certain design coordinates to   */
+  /*                       GX that allows certain design coordinates to    */
   /*                       have a string ID (in the `name' table)          */
   /*                       associated with them.  The font can tell the    */
   /*                       user that, for example, Weight=1.5 is `Bold'.   */
@@ -216,9 +216,6 @@ FT_BEGIN_HEADER
     FT_Var_Named_Style*  namedstyle;
 
   } FT_MM_Var;
-
-
-  /* */
 
 
   /*************************************************************************/
@@ -258,8 +255,7 @@ FT_BEGIN_HEADER
   /*                                                                       */
   /* <Output>                                                              */
   /*    amaster :: The Multiple Masters/GX var descriptor.                 */
-  /*               Allocates a data structure, which the user must free    */
-  /*               (a single call to FT_FREE will do it).                  */
+  /*               Allocates a data structure, which the user must free.   */
   /*                                                                       */
   /* <Return>                                                              */
   /*    FreeType error code.  0~means success.                             */
@@ -365,7 +361,6 @@ FT_BEGIN_HEADER
   FT_Set_Var_Blend_Coordinates( FT_Face    face,
                                 FT_UInt    num_coords,
                                 FT_Fixed*  coords );
-
 
   /* */
 

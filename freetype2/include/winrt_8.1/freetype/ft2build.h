@@ -1,11 +1,11 @@
 /***************************************************************************/
 /*                                                                         */
-/*  ftpic.h                                                                */
+/*  ft2build.h                                                             */
 /*                                                                         */
-/*    The FreeType position independent code services (declaration).       */
+/*    FreeType 2 build and setup macros.                                   */
 /*                                                                         */
-/*  Copyright 2009, 2012 by                                                */
-/*  Oran Agra and Mickey Gabel.                                            */
+/*  Copyright 1996-2001, 2006, 2013 by                                     */
+/*  David Turner, Robert Wilhelm, and Werner Lemberg.                      */
 /*                                                                         */
 /*  This file is part of the FreeType project, and may only be used,       */
 /*  modified, and distributed under the terms of the FreeType project      */
@@ -15,57 +15,28 @@
 /*                                                                         */
 /***************************************************************************/
 
+
   /*************************************************************************/
   /*                                                                       */
-  /*  Modules that ordinarily have const global data that need address     */
-  /*  can instead define pointers here.                                    */
+  /* This is the `entry point' for FreeType header file inclusions.  It is */
+  /* the only header file which should be included directly; all other     */
+  /* FreeType header files should be accessed with macro names (after      */
+  /* including `ft2build.h').                                              */
+  /*                                                                       */
+  /* A typical example is                                                  */
+  /*                                                                       */
+  /*   #include <ft2build.h>                                               */
+  /*   #include FT_FREETYPE_H                                              */
   /*                                                                       */
   /*************************************************************************/
 
 
-#ifndef __FTPIC_H__
-#define __FTPIC_H__
+#ifndef __FT2BUILD_H__
+#define __FT2BUILD_H__
 
+#include <config/ftheader.h>
 
-FT_BEGIN_HEADER
-
-#ifdef FT_CONFIG_OPTION_PIC
-
-  typedef struct  FT_PIC_Container_
-  {
-    /* pic containers for base */
-    void*  base;
-
-    /* pic containers for modules */
-    void*  autofit;
-    void*  cff;
-    void*  pshinter;
-    void*  psnames;
-    void*  raster;
-    void*  sfnt;
-    void*  smooth;
-    void*  truetype;
-
-  } FT_PIC_Container;
-
-
-  /* Initialize the various function tables, structs, etc. */
-  /* stored in the container.                              */
-  FT_BASE( FT_Error )
-  ft_pic_container_init( FT_Library  library );
-
-
-  /* Destroy the contents of the container. */
-  FT_BASE( void )
-  ft_pic_container_destroy( FT_Library  library );
-
-#endif /* FT_CONFIG_OPTION_PIC */
-
- /* */
-
-FT_END_HEADER
-
-#endif /* __FTPIC_H__ */
+#endif /* __FT2BUILD_H__ */
 
 
 /* END */
