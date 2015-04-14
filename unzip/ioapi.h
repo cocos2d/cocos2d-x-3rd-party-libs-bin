@@ -23,7 +23,7 @@
 
 #include "platform/CCPlatformConfig.h"
 
-#if (!defined(_WIN32)) && (!defined(WIN32))
+#if (!defined(_WIN32)) && (!defined(WIN32)) && (!defined(TIZEN))
 
   // Linux needs this to support file operation on files larger then 4+GB
   // But might need better if/def to select just the platforms that needs them.
