@@ -140,6 +140,75 @@ FT_BEGIN_HEADER
   /*************************************************************************/
   /*                                                                       */
   /* <Struct>                                                              */
+  /*    WOFF_HeaderRec                                                     */
+  /*                                                                       */
+  /* <Description>                                                         */
+  /*    WOFF file format header.                                           */
+  /*                                                                       */
+  /* <Fields>                                                              */
+  /*    See                                                                */
+  /*                                                                       */
+  /*      http://www.w3.org/TR/WOFF/#WOFFHeader                            */
+  /*                                                                       */
+  typedef struct  WOFF_HeaderRec_
+  {
+    FT_ULong   signature;
+    FT_ULong   flavor;
+    FT_ULong   length;
+    FT_UShort  num_tables;
+    FT_UShort  reserved;
+    FT_ULong   totalSfntSize;
+    FT_UShort  majorVersion;
+    FT_UShort  minorVersion;
+    FT_ULong   metaOffset;
+    FT_ULong   metaLength;
+    FT_ULong   metaOrigLength;
+    FT_ULong   privOffset;
+    FT_ULong   privLength;
+
+  } WOFF_HeaderRec, *WOFF_Header;
+
+
+  /*************************************************************************/
+  /*                                                                       */
+  /* <Struct>                                                              */
+  /*    WOFF_TableRec                                                      */
+  /*                                                                       */
+  /* <Description>                                                         */
+  /*    This structure describes a given table of a WOFF font.             */
+  /*                                                                       */
+  /* <Fields>                                                              */
+  /*    Tag        :: A four-bytes tag describing the table.               */
+  /*                                                                       */
+  /*    Offset     :: The offset of the table from the start of the WOFF   */
+  /*                  font in its resource.                                */
+  /*                                                                       */
+  /*    CompLength :: Compressed table length (in bytes).                  */
+  /*                                                                       */
+  /*    OrigLength :: Unompressed table length (in bytes).                 */
+  /*                                                                       */
+  /*    CheckSum   :: The table checksum.  This value can be ignored.      */
+  /*                                                                       */
+  /*    OrigOffset :: The uncompressed table file offset.  This value gets */
+  /*                  computed while constructing the (uncompressed) SFNT  */
+  /*                  header.  It is not contained in the WOFF file.       */
+  /*                                                                       */
+  typedef struct  WOFF_TableRec_
+  {
+    FT_ULong  Tag;           /* table ID                  */
+    FT_ULong  Offset;        /* table file offset         */
+    FT_ULong  CompLength;    /* compressed table length   */
+    FT_ULong  OrigLength;    /* uncompressed table length */
+    FT_ULong  CheckSum;      /* uncompressed checksum     */
+
+    FT_ULong  OrigOffset;    /* uncompressed table file offset */
+                             /* (not in the WOFF file)         */
+  } WOFF_TableRec, *WOFF_Table;
+
+
+  /*************************************************************************/
+  /*                                                                       */
+  /* <Struct>                                                              */
   /*    TT_LongMetricsRec                                                  */
   /*                                                                       */
   /* <Description>                                                         */
@@ -353,16 +422,16 @@ FT_BEGIN_HEADER
   /*                                                                       */
   typedef struct  TT_SBit_MetricsRec_
   {
-    FT_Byte  height;
-    FT_Byte  width;
+    FT_UShort  height;
+    FT_UShort  width;
 
-    FT_Char  horiBearingX;
-    FT_Char  horiBearingY;
-    FT_Byte  horiAdvance;
+    FT_Short   horiBearingX;
+    FT_Short   horiBearingY;
+    FT_UShort  horiAdvance;
 
-    FT_Char  vertBearingX;
-    FT_Char  vertBearingY;
-    FT_Byte  vertAdvance;
+    FT_Short   vertBearingX;
+    FT_Short   vertBearingY;
+    FT_UShort  vertAdvance;
 
   } TT_SBit_MetricsRec, *TT_SBit_Metrics;
 
@@ -979,6 +1048,20 @@ FT_BEGIN_HEADER
   (*TT_Loader_EndGlyphFunc)( TT_Loader  loader );
 
 
+  typedef enum TT_SbitTableType_
+  {
+    TT_SBIT_TABLE_TYPE_NONE = 0,
+    TT_SBIT_TABLE_TYPE_EBLC, /* `EBLC' (Microsoft), */
+                             /* `bloc' (Apple)      */
+    TT_SBIT_TABLE_TYPE_CBLC, /* `CBLC' (Google)     */
+    TT_SBIT_TABLE_TYPE_SBIX, /* `sbix' (Apple)      */
+
+    /* do not remove */
+    TT_SBIT_TABLE_TYPE_MAX
+
+  } TT_SbitTableType;
+
+
   /*************************************************************************/
   /*                                                                       */
   /*                         TrueType Face Type                            */
@@ -1089,13 +1172,6 @@ FT_BEGIN_HEADER
   /*                            TrueType/OpenType fonts.                   */
   /*                                                                       */
   /*    pclt                 :: The `pclt' SFNT table.                     */
-  /*                                                                       */
-  /*    num_sbit_strikes     :: The number of sbit strikes, i.e., bitmap   */
-  /*                            sizes, embedded in this font.              */
-  /*                                                                       */
-  /*    sbit_strikes         :: An array of sbit strikes embedded in this  */
-  /*                            font.  This table is optional in a         */
-  /*                            TrueType/OpenType font.                    */
   /*                                                                       */
   /*    num_sbit_scales      :: The number of sbit scales for this font.   */
   /*                                                                       */
@@ -1302,6 +1378,7 @@ FT_BEGIN_HEADER
 
     FT_Byte*              sbit_table;
     FT_ULong              sbit_table_size;
+    TT_SbitTableType      sbit_table_type;
     FT_UInt               sbit_num_strikes;
 
     FT_Byte*              kern_table;
@@ -1402,7 +1479,6 @@ FT_BEGIN_HEADER
     FT_Int           advance;
     FT_Int           linear;
     FT_Bool          linear_def;
-    FT_Bool          preserve_pps;
     FT_Vector        pp1;
     FT_Vector        pp2;
 
