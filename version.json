@@ -1,10 +1,11 @@
 {
-    "prebuilt_libs_version":"v3-deps-42",
+    "prebuilt_libs_version":"v3-deps-45",
     "freetype":"2.5.0",
     "curl":"7.39.0",
     "jpeg":"9.0",
     "png":"1.6.2",
     "tiff":"4.0.3",
     "webp":"0.2.1",
-    "websockets":"v1.23-chrome32-firefox24"
+    "websockets":"v1.23-chrome32-firefox24",
+    "spidermonkey":"33"
 }
