@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -13,8 +13,6 @@
   <ItemGroup>
     <ClCompile Include="..\DebugUtils\DebugDraw.cpp" />
     <ClCompile Include="..\DebugUtils\DetourDebugDraw.cpp" />
-    <ClCompile Include="..\DebugUtils\RecastDebugDraw.cpp" />
-    <ClCompile Include="..\DebugUtils\RecastDump.cpp" />
     <ClCompile Include="..\DetourCrowd\DetourCrowd.cpp" />
     <ClCompile Include="..\DetourCrowd\DetourLocalBoundary.cpp" />
     <ClCompile Include="..\DetourCrowd\DetourObstacleAvoidance.cpp" />
@@ -29,22 +27,10 @@
     <ClCompile Include="..\Detour\DetourNavMeshBuilder.cpp" />
     <ClCompile Include="..\Detour\DetourNavMeshQuery.cpp" />
     <ClCompile Include="..\Detour\DetourNode.cpp" />
-    <ClCompile Include="..\Recast\Recast.cpp" />
-    <ClCompile Include="..\Recast\RecastAlloc.cpp" />
-    <ClCompile Include="..\Recast\RecastArea.cpp" />
-    <ClCompile Include="..\Recast\RecastContour.cpp" />
-    <ClCompile Include="..\Recast\RecastFilter.cpp" />
-    <ClCompile Include="..\Recast\RecastLayers.cpp" />
-    <ClCompile Include="..\Recast\RecastMesh.cpp" />
-    <ClCompile Include="..\Recast\RecastMeshDetail.cpp" />
-    <ClCompile Include="..\Recast\RecastRasterization.cpp" />
-    <ClCompile Include="..\Recast\RecastRegion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\DebugUtils\DebugDraw.h" />
     <ClInclude Include="..\DebugUtils\DetourDebugDraw.h" />
-    <ClInclude Include="..\DebugUtils\RecastDebugDraw.h" />
-    <ClInclude Include="..\DebugUtils\RecastDump.h" />
     <ClInclude Include="..\DetourCrowd\DetourCrowd.h" />
     <ClInclude Include="..\DetourCrowd\DetourLocalBoundary.h" />
     <ClInclude Include="..\DetourCrowd\DetourObstacleAvoidance.h" />
@@ -62,9 +48,6 @@
     <ClInclude Include="..\Detour\DetourNavMeshQuery.h" />
     <ClInclude Include="..\Detour\DetourNode.h" />
     <ClInclude Include="..\Detour\DetourStatus.h" />
-    <ClInclude Include="..\Recast\Recast.h" />
-    <ClInclude Include="..\Recast\RecastAlloc.h" />
-    <ClInclude Include="..\Recast\RecastAssert.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{41E34993-647E-4282-8384-4AB1AE31A452}</ProjectGuid>
@@ -75,13 +58,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>

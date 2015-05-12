@@ -1,8 +1,6 @@
 set(RECAST_SRC
 DebugUtils/DebugDraw.cpp
 DebugUtils/DetourDebugDraw.cpp
-DebugUtils/RecastDebugDraw.cpp
-DebugUtils/RecastDump.cpp
 Detour/DetourAlloc.cpp
 Detour/DetourCommon.cpp
 Detour/DetourNavMesh.cpp
@@ -14,19 +12,8 @@ DetourCrowd/DetourLocalBoundary.cpp
 DetourCrowd/DetourObstacleAvoidance.cpp
 DetourCrowd/DetourPathCorridor.cpp
 DetourCrowd/DetourPathQueue.cpp
-DetourCrowd/DetourProximityGrid.cpp
 DetourTileCache/DetourTileCache.cpp
 DetourTileCache/DetourTileCacheBuilder.cpp
-Recast/Recast.cpp
-Recast/RecastAlloc.cpp
-Recast/RecastArea.cpp
-Recast/RecastContour.cpp
-Recast/RecastFilter.cpp
-Recast/RecastLayers.cpp
-Recast/RecastMesh.cpp
-Recast/RecastMeshDetail.cpp
-Recast/RecastRasterization.cpp
-Recast/RecastRegion.cpp
 )
 
 include_directories(

@@ -8,13 +8,10 @@
       <UniqueIdentifier>{0bb8e4f7-4a37-48b6-8fc8-b2ae500329a1}</UniqueIdentifier>
     </Filter>
     <Filter Include="DetourCrowd">
-      <UniqueIdentifier>{56ac435d-63ed-4cf1-8021-17828ad09aba}</UniqueIdentifier>
+      <UniqueIdentifier>{b8f0ec71-f58c-4544-9525-4e9f9c15aa42}</UniqueIdentifier>
     </Filter>
     <Filter Include="DetourTileCache">
-      <UniqueIdentifier>{3801d61c-5696-4c52-a072-d2b20962f579}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Recast">
-      <UniqueIdentifier>{dd6424d7-f194-4eaa-83a1-d46352a31204}</UniqueIdentifier>
+      <UniqueIdentifier>{967cc456-81ac-4764-ae7c-4aab608b9fa9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -22,12 +19,6 @@
       <Filter>DebugUtils</Filter>
     </ClCompile>
     <ClCompile Include="..\DebugUtils\DetourDebugDraw.cpp">
-      <Filter>DebugUtils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\DebugUtils\RecastDebugDraw.cpp">
-      <Filter>DebugUtils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\DebugUtils\RecastDump.cpp">
       <Filter>DebugUtils</Filter>
     </ClCompile>
     <ClCompile Include="..\Detour\DetourAlloc.cpp">
@@ -72,48 +63,12 @@
     <ClCompile Include="..\DetourTileCache\DetourTileCacheBuilder.cpp">
       <Filter>DetourTileCache</Filter>
     </ClCompile>
-    <ClCompile Include="..\Recast\Recast.cpp">
-      <Filter>Recast</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Recast\RecastAlloc.cpp">
-      <Filter>Recast</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Recast\RecastArea.cpp">
-      <Filter>Recast</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Recast\RecastContour.cpp">
-      <Filter>Recast</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Recast\RecastFilter.cpp">
-      <Filter>Recast</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Recast\RecastLayers.cpp">
-      <Filter>Recast</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Recast\RecastMesh.cpp">
-      <Filter>Recast</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Recast\RecastMeshDetail.cpp">
-      <Filter>Recast</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Recast\RecastRasterization.cpp">
-      <Filter>Recast</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Recast\RecastRegion.cpp">
-      <Filter>Recast</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\DebugUtils\DebugDraw.h">
       <Filter>DebugUtils</Filter>
     </ClInclude>
     <ClInclude Include="..\DebugUtils\DetourDebugDraw.h">
-      <Filter>DebugUtils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\DebugUtils\RecastDebugDraw.h">
-      <Filter>DebugUtils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\DebugUtils\RecastDump.h">
       <Filter>DebugUtils</Filter>
     </ClInclude>
     <ClInclude Include="..\Detour\DetourAlloc.h">
@@ -166,15 +121,6 @@
     </ClInclude>
     <ClInclude Include="..\DetourTileCache\DetourTileCacheBuilder.h">
       <Filter>DetourTileCache</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Recast\Recast.h">
-      <Filter>Recast</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Recast\RecastAlloc.h">
-      <Filter>Recast</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Recast\RecastAssert.h">
-      <Filter>Recast</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
