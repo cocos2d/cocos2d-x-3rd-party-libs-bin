@@ -12,6 +12,7 @@ DetourCrowd/DetourLocalBoundary.cpp
 DetourCrowd/DetourObstacleAvoidance.cpp
 DetourCrowd/DetourPathCorridor.cpp
 DetourCrowd/DetourPathQueue.cpp
+DetourCrowd/DetourProximityGrid.cpp
 DetourTileCache/DetourTileCache.cpp
 DetourTileCache/DetourTileCacheBuilder.cpp
 )
