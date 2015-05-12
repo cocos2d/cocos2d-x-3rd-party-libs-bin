@@ -14,7 +14,14 @@ Detour/DetourCommon.cpp \
 Detour/DetourNavMesh.cpp \
 Detour/DetourNavMeshBuilder.cpp \
 Detour/DetourNavMeshQuery.cpp \
-Detour/DetourNode.cpp
+Detour/DetourNode.cpp \
+DetourCrowd/DetourCrowd.cpp \
+DetourCrowd/DetourLocalBoundary.cpp \
+DetourCrowd/DetourObstacleAvoidance.cpp \
+DetourCrowd/DetourPathCorridor.cpp \
+DetourCrowd/DetourPathQueue.cpp \
+DetourTileCache/DetourTileCache.cpp \
+DetourTileCache/DetourTileCacheBuilder.cpp
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/..
 

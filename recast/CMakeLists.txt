@@ -7,6 +7,13 @@ Detour/DetourNavMesh.cpp
 Detour/DetourNavMeshBuilder.cpp
 Detour/DetourNavMeshQuery.cpp
 Detour/DetourNode.cpp
+DetourCrowd/DetourCrowd.cpp
+DetourCrowd/DetourLocalBoundary.cpp
+DetourCrowd/DetourObstacleAvoidance.cpp
+DetourCrowd/DetourPathCorridor.cpp
+DetourCrowd/DetourPathQueue.cpp
+DetourTileCache/DetourTileCache.cpp
+DetourTileCache/DetourTileCacheBuilder.cpp
 )
 
 include_directories(
