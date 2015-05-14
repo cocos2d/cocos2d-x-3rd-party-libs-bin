@@ -20,8 +20,10 @@ DetourCrowd/DetourLocalBoundary.cpp \
 DetourCrowd/DetourObstacleAvoidance.cpp \
 DetourCrowd/DetourPathCorridor.cpp \
 DetourCrowd/DetourPathQueue.cpp \
+DetourCrowd/DetourProximityGrid.cpp \
 DetourTileCache/DetourTileCache.cpp \
-DetourTileCache/DetourTileCacheBuilder.cpp
+DetourTileCache/DetourTileCacheBuilder.cpp \
+fastlz/fastlz.c
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/..
 
