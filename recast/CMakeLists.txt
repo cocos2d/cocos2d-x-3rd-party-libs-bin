@@ -15,6 +15,7 @@ DetourCrowd/DetourPathQueue.cpp
 DetourCrowd/DetourProximityGrid.cpp
 DetourTileCache/DetourTileCache.cpp
 DetourTileCache/DetourTileCacheBuilder.cpp
+fastlz/fastlz.c
 )
 
 include_directories(

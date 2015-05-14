@@ -27,6 +27,7 @@
     <ClCompile Include="..\Detour\DetourNavMeshBuilder.cpp" />
     <ClCompile Include="..\Detour\DetourNavMeshQuery.cpp" />
     <ClCompile Include="..\Detour\DetourNode.cpp" />
+    <ClCompile Include="..\fastlz\fastlz.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\DebugUtils\DebugDraw.h" />
@@ -48,6 +49,7 @@
     <ClInclude Include="..\Detour\DetourNavMeshQuery.h" />
     <ClInclude Include="..\Detour\DetourNode.h" />
     <ClInclude Include="..\Detour\DetourStatus.h" />
+    <ClInclude Include="..\fastlz\fastlz.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{41E34993-647E-4282-8384-4AB1AE31A452}</ProjectGuid>

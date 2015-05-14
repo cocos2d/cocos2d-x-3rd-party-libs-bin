@@ -13,6 +13,9 @@
     <Filter Include="DetourTileCache">
       <UniqueIdentifier>{967cc456-81ac-4764-ae7c-4aab608b9fa9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="fastlz">
+      <UniqueIdentifier>{e8a98c42-4758-4a82-86ef-20a75ee7927b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\DebugUtils\DebugDraw.cpp">
@@ -62,6 +65,9 @@
     </ClCompile>
     <ClCompile Include="..\DetourTileCache\DetourTileCacheBuilder.cpp">
       <Filter>DetourTileCache</Filter>
+    </ClCompile>
+    <ClCompile Include="..\fastlz\fastlz.c">
+      <Filter>fastlz</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="..\DetourTileCache\DetourTileCacheBuilder.h">
       <Filter>DetourTileCache</Filter>
+    </ClInclude>
+    <ClInclude Include="..\fastlz\fastlz.h">
+      <Filter>fastlz</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
