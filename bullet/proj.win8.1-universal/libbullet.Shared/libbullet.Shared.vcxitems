@@ -262,7 +262,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\BulletCollision\BroadphaseCollision\btAxisSweep3.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\BulletCollision\BroadphaseCollision\btBroadphaseProxy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\BulletCollision\BroadphaseCollision\btCollisionAlgorithm.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\BulletCollision\BroadphaseCollision\btDbvt.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\BulletCollision\BroadphaseCollision\btDbvtBroadphase.cpp" />

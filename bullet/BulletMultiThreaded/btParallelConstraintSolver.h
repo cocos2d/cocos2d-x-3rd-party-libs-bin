@@ -251,6 +251,28 @@ ATTRIBUTE_ALIGNED16(struct) btConstraintSolverIO {
 	uint32_t barrierAddr2;
 	uint32_t criticalsectionAddr2;
 	uint32_t maxTasks1;
+
+#ifdef WINRT
+    void* operator new(size_t i)
+    {
+        return _aligned_malloc(i, 16);
+    }
+
+    void operator delete(void* p)
+    {
+        _aligned_free(p);
+    }
+
+    void* operator new[](size_t i)
+    {
+        return _aligned_malloc(i, 16);
+    }
+
+    void operator delete[](void* p)
+    {
+        _aligned_free(p);
+    }
+#endif
 };
 
 

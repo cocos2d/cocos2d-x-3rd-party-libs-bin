@@ -785,9 +785,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\BulletCollision\BroadphaseCollision\btAxisSweep3.cpp">
       <Filter>BulletCollision\BroadphaseCollision</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\BulletCollision\BroadphaseCollision\btBroadphaseProxy.cpp">
-      <Filter>BulletCollision\BroadphaseCollision</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\BulletCollision\BroadphaseCollision\btCollisionAlgorithm.cpp">
       <Filter>BulletCollision\BroadphaseCollision</Filter>
     </ClCompile>
