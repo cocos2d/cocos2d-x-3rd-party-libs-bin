@@ -201,7 +201,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\BulletMultiThreaded\btThreadSupportInterface.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\BulletMultiThreaded\HeapManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\BulletMultiThreaded\PlatformDefinitions.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\..\BulletMultiThreaded\PosixThreadSupport.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\BulletMultiThreaded\PpuAddressSpace.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\BulletMultiThreaded\SequentialThreadSupport.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\..\BulletMultiThreaded\SpuCollisionObjectWrapper.h" />
@@ -389,7 +388,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\BulletMultiThreaded\btGpu3DGridBroadphase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\BulletMultiThreaded\btParallelConstraintSolver.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\BulletMultiThreaded\btThreadSupportInterface.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\BulletMultiThreaded\PosixThreadSupport.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\BulletMultiThreaded\SequentialThreadSupport.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\BulletMultiThreaded\SpuCollisionObjectWrapper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\..\BulletMultiThreaded\SpuCollisionTaskProcess.cpp" />
