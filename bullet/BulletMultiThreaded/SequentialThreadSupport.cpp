@@ -116,7 +116,11 @@ public:
 	virtual int  getMaxCount() {return 1;}
 };
 
+#ifdef WINRT
+__declspec(align(16)) class btDummyCriticalSection : public btCriticalSection
+#else
 class btDummyCriticalSection : public btCriticalSection
+#endif
 {
 	
 public:
@@ -128,6 +132,18 @@ public:
 	{
 	}
 	
+#ifdef WINRT
+    void* operator new(size_t i)
+    {
+        return _aligned_malloc(i, 16);
+    }
+
+    void operator delete(void* p)
+    {
+        _aligned_free(p);
+    }
+#endif
+
 	unsigned int getSharedParam(int i)
 	{
 		btAssert(i>=0&&i<31);

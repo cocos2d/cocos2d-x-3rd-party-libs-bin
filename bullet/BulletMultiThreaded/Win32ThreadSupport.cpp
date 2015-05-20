@@ -23,7 +23,12 @@ subject to the following restrictions:
 
 #include "SpuNarrowPhaseCollisionTask/SpuGatheringCollisionTask.h"
 
-
+#ifdef WINRT
+#include <atlstr.h>
+#define InitializeCriticalSection(arg0) InitializeCriticalSectionEx(arg0, 0, 0)
+#define WaitForSingleObject(arg0, arg1) WaitForSingleObjectEx(arg0, arg1, false);
+#define WaitForMultipleObjects(arg0, arg1, arg2, arg3) WaitForMultipleObjectsEx(arg0, arg1, arg2, arg3, false);
+#endif
 
 ///The number of threads should be equal to the number of available cores
 ///@todo: each worker should be linked to a single core, using SetThreadIdealProcessor.
@@ -223,7 +228,6 @@ bool Win32ThreadSupport::isTaskCompleted(unsigned int *puiArgument0, unsigned in
 	return false;
 }
 
-
 void Win32ThreadSupport::startThreads(const Win32ThreadConstructionInfo& threadConstructionInfo)
 {
 
@@ -248,10 +252,18 @@ void Win32ThreadSupport::startThreads(const Win32ThreadConstructionInfo& threadC
 		spuStatus.m_userPtr=0;
 
 		sprintf(spuStatus.m_eventStartHandleName,"eventStart%s%d",threadConstructionInfo.m_uniqueName,i);
+#ifdef WINRT
+        spuStatus.m_eventStartHandle = CreateEventEx(NULL, CString(spuStatus.m_eventStartHandleName), 0, EVENT_ALL_ACCESS);
+#else
 		spuStatus.m_eventStartHandle = CreateEventA (0,false,false,spuStatus.m_eventStartHandleName);
+#endif
 
 		sprintf(spuStatus.m_eventCompletetHandleName,"eventComplete%s%d",threadConstructionInfo.m_uniqueName,i);
-		spuStatus.m_eventCompletetHandle = CreateEventA (0,false,false,spuStatus.m_eventCompletetHandleName);
+#ifdef WINRT
+        spuStatus.m_eventCompletetHandle = CreateEventEx(NULL, CString(spuStatus.m_eventStartHandleName), 0, EVENT_ALL_ACCESS);
+#else
+        spuStatus.m_eventCompletetHandle = CreateEventA (0,false,false,spuStatus.m_eventCompletetHandleName);
+#endif
 
 		m_completeHandles[i] = spuStatus.m_eventCompletetHandle;
 
@@ -259,8 +271,9 @@ void Win32ThreadSupport::startThreads(const Win32ThreadConstructionInfo& threadC
 		SetThreadPriority(handle,THREAD_PRIORITY_HIGHEST);
 		//SetThreadPriority(handle,THREAD_PRIORITY_TIME_CRITICAL);
 
-		SetThreadAffinityMask(handle, 1<<i);
-
+#ifndef WINRT
+        SetThreadAffinityMask(handle, 1<<i);
+#endif
 		spuStatus.m_taskId = i;
 		spuStatus.m_commandId = 0;
 		spuStatus.m_status = 0;
@@ -326,8 +339,13 @@ public:
 		mEnableCounter = 0;
 		InitializeCriticalSection(&mExternalCriticalSection);
 		InitializeCriticalSection(&mLocalCriticalSection);
-		mRunEvent = CreateEvent(NULL,TRUE,FALSE,NULL);
-		mNotifyEvent = CreateEvent(NULL,TRUE,FALSE,NULL);
+#ifdef WINRT
+        mRunEvent = CreateEventEx(NULL, NULL, CREATE_EVENT_MANUAL_RESET, EVENT_ALL_ACCESS);
+        mNotifyEvent = CreateEventEx(NULL, NULL, CREATE_EVENT_MANUAL_RESET, EVENT_ALL_ACCESS);
+#else
+        mRunEvent = CreateEvent(NULL,TRUE,FALSE,NULL);
+        mNotifyEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+#endif
 	}
 
 	virtual ~btWin32Barrier()
