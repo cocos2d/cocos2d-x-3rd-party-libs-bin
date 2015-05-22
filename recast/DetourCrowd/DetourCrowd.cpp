@@ -498,6 +498,14 @@ dtCrowdAgent* dtCrowd::getEditableAgent(const int idx)
 	return &m_agents[idx];
 }
 
+
+dtCrowdAgentAnimation* dtCrowd::getEditableAgentAnim(const int idx)
+{
+	if (idx < 0 || idx >= m_maxAgents)
+		return 0;
+	return &m_agentAnims[idx];
+}
+
 void dtCrowd::updateAgentParameters(const int idx, const dtCrowdAgentParams* params)
 {
 	if (idx < 0 || idx >= m_maxAgents)
