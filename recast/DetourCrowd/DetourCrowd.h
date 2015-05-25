@@ -269,6 +269,11 @@ public:
 	/// @return The requested agent.
 	dtCrowdAgent* getEditableAgent(const int idx);
 
+	/// Gets the specified agentAnim from the pool.
+	///	 @param[in]		idx		The agent index. [Limits: 0 <= value < #getAgentCount()]
+	/// @return The requested agentAnim.
+	dtCrowdAgentAnimation* getEditableAgentAnim(const int idx);
+
 	/// The maximum number of agents that can be managed by the object.
 	/// @return The maximum number of agents.
 	int getAgentCount() const;
