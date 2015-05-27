@@ -29,11 +29,26 @@ subject to the following restrictions:
 
 #define MAX_NUM_BODIES 8192
 
+#ifdef WINRT
+__declspec(align(16)) struct SampleTask_LocalStoreMemory
+#else
 struct SampleTask_LocalStoreMemory
+#endif
 {
 	ATTRIBUTE_ALIGNED16(char gLocalRigidBody [sizeof(btRigidBody)+16]);
 	ATTRIBUTE_ALIGNED16(void* gPointerArray[MAX_NUM_BODIES]);
 
+#ifdef WINRT
+    void* operator new(size_t i)
+    {
+        return _aligned_malloc(i, 16);
+    }
+
+    void operator delete(void* p)
+    {
+        _aligned_free(p);
+    }
+#endif
 };
 
 
