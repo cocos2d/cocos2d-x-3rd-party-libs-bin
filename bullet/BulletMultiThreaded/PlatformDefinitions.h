@@ -40,6 +40,8 @@ typedef union
 #ifndef __BT_SKIP_UINT64_H
 #if defined(_WIN64) && defined(_MSC_VER)
 		typedef unsigned __int64 uint64_t;
+#elif defined(_M_ARM)
+        typedef unsigned __int64 uint64_t;
 #else
 		typedef unsigned long int uint64_t;
 #endif
