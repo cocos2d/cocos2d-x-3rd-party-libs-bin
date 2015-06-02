@@ -4,7 +4,13 @@ set(UNZIP_SRC
   ioapi_mem.cpp
 )
 
-add_library(unzip STATIC
+if(BUILD_SHARED_LIBS)
+    set (SHARED_OR_STATIC SHARED)
+else()
+    set (SHARED_OR_STATIC STATIC)
+endif()
+
+add_library(unzip ${SHARED_OR_STATIC}
   ${UNZIP_SRC}
 )
 
