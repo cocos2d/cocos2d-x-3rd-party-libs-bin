@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|ARM">
       <Configuration>Debug</Configuration>
@@ -26,52 +26,101 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\DebugUtils\DebugDraw.cpp" />
+    <ClCompile Include="..\DebugUtils\DetourDebugDraw.cpp" />
+    <ClCompile Include="..\DebugUtils\RecastDebugDraw.cpp" />
+    <ClCompile Include="..\DebugUtils\RecastDump.cpp" />
+    <ClCompile Include="..\DetourCrowd\DetourCrowd.cpp" />
+    <ClCompile Include="..\DetourCrowd\DetourLocalBoundary.cpp" />
+    <ClCompile Include="..\DetourCrowd\DetourObstacleAvoidance.cpp" />
+    <ClCompile Include="..\DetourCrowd\DetourPathCorridor.cpp" />
+    <ClCompile Include="..\DetourCrowd\DetourPathQueue.cpp" />
+    <ClCompile Include="..\DetourCrowd\DetourProximityGrid.cpp" />
+    <ClCompile Include="..\DetourTileCache\DetourTileCache.cpp" />
+    <ClCompile Include="..\DetourTileCache\DetourTileCacheBuilder.cpp" />
+    <ClCompile Include="..\Detour\DetourAlloc.cpp" />
+    <ClCompile Include="..\Detour\DetourCommon.cpp" />
+    <ClCompile Include="..\Detour\DetourNavMesh.cpp" />
+    <ClCompile Include="..\Detour\DetourNavMeshBuilder.cpp" />
+    <ClCompile Include="..\Detour\DetourNavMeshQuery.cpp" />
+    <ClCompile Include="..\Detour\DetourNode.cpp" />
+    <ClCompile Include="..\fastlz\fastlz.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\DebugUtils\DebugDraw.h" />
+    <ClInclude Include="..\DebugUtils\DetourDebugDraw.h" />
+    <ClInclude Include="..\DebugUtils\RecastDebugDraw.h" />
+    <ClInclude Include="..\DebugUtils\RecastDump.h" />
+    <ClInclude Include="..\DetourCrowd\DetourCrowd.h" />
+    <ClInclude Include="..\DetourCrowd\DetourLocalBoundary.h" />
+    <ClInclude Include="..\DetourCrowd\DetourObstacleAvoidance.h" />
+    <ClInclude Include="..\DetourCrowd\DetourPathCorridor.h" />
+    <ClInclude Include="..\DetourCrowd\DetourPathQueue.h" />
+    <ClInclude Include="..\DetourCrowd\DetourProximityGrid.h" />
+    <ClInclude Include="..\DetourTileCache\DetourTileCache.h" />
+    <ClInclude Include="..\DetourTileCache\DetourTileCacheBuilder.h" />
+    <ClInclude Include="..\Detour\DetourAlloc.h" />
+    <ClInclude Include="..\Detour\DetourAssert.h" />
+    <ClInclude Include="..\Detour\DetourCommon.h" />
+    <ClInclude Include="..\Detour\DetourMath.h" />
+    <ClInclude Include="..\Detour\DetourNavMesh.h" />
+    <ClInclude Include="..\Detour\DetourNavMeshBuilder.h" />
+    <ClInclude Include="..\Detour\DetourNavMeshQuery.h" />
+    <ClInclude Include="..\Detour\DetourNode.h" />
+    <ClInclude Include="..\Detour\DetourStatus.h" />
+    <ClInclude Include="..\fastlz\fastlz.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{ec2b1292-2d8c-4feb-a84b-2550b32c1ae7}</ProjectGuid>
-    <RootNamespace>libbullet</RootNamespace>
+    <ProjectGuid>{f551524d-8a70-4b2f-a7c2-28ae61150022}</ProjectGuid>
+    <Keyword>StaticLibrary</Keyword>
+    <ProjectName>librecast</ProjectName>
+    <RootNamespace>librecast</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
-    <ApplicationTypeRevision>8.1</ApplicationTypeRevision>
-    <ConvergedProjectType>CodeSharingStaticLibrary</ConvergedProjectType>
+    <ApplicationTypeRevision>8.2</ApplicationTypeRevision>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <Import Project="..\libbullet.Shared\libbullet.Shared.vcxitems" Label="Shared" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -91,6 +140,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
@@ -114,9 +164,9 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WINRT;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;BT_HAS_ALIGNED_ALLOCATOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/bigobj /Zm200 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,11 +179,9 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WINRT;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;BT_HAS_ALIGNED_ALLOCATOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <DebugInformationFormat>OldStyle</DebugInformationFormat>
-      <AdditionalOptions>/bigobj /Zm200 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,9 +197,8 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WINRT;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;BT_HAS_ALIGNED_ALLOCATOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/bigobj /Zm200 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -164,11 +211,9 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WINRT;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;BT_HAS_ALIGNED_ALLOCATOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <DebugInformationFormat>OldStyle</DebugInformationFormat>
-      <AdditionalOptions>/bigobj /Zm200 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -184,9 +229,9 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WINRT;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;BT_HAS_ALIGNED_ALLOCATOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalOptions>/bigobj /Zm200 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -199,11 +244,9 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <CompileAsWinRT>false</CompileAsWinRT>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WINRT;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;BT_HAS_ALIGNED_ALLOCATOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <DebugInformationFormat>OldStyle</DebugInformationFormat>
-      <AdditionalOptions>/bigobj /Zm200 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
