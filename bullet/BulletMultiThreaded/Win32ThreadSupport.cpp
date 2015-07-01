@@ -24,7 +24,6 @@ subject to the following restrictions:
 #include "SpuNarrowPhaseCollisionTask/SpuGatheringCollisionTask.h"
 
 #ifdef WINRT
-#include <atlstr.h>
 #define InitializeCriticalSection(arg0) InitializeCriticalSectionEx(arg0, 0, 0)
 #define WaitForSingleObject(arg0, arg1) WaitForSingleObjectEx(arg0, arg1, false);
 #define WaitForMultipleObjects(arg0, arg1, arg2, arg3) WaitForMultipleObjectsEx(arg0, arg1, arg2, arg3, false);
@@ -253,14 +252,17 @@ void Win32ThreadSupport::startThreads(const Win32ThreadConstructionInfo& threadC
 
 		sprintf(spuStatus.m_eventStartHandleName,"eventStart%s%d",threadConstructionInfo.m_uniqueName,i);
 #ifdef WINRT
-        spuStatus.m_eventStartHandle = CreateEventEx(NULL, CString(spuStatus.m_eventStartHandleName), 0, EVENT_ALL_ACCESS);
+        WCHAR wszBuf[MAX_PATH] = { 0 };
+        MultiByteToWideChar(CP_UTF8, 0, spuStatus.m_eventStartHandleName, -1, wszBuf, sizeof(wszBuf));
+        spuStatus.m_eventStartHandle = CreateEventEx(NULL, wszBuf, 0, EVENT_ALL_ACCESS);
 #else
 		spuStatus.m_eventStartHandle = CreateEventA (0,false,false,spuStatus.m_eventStartHandleName);
 #endif
 
 		sprintf(spuStatus.m_eventCompletetHandleName,"eventComplete%s%d",threadConstructionInfo.m_uniqueName,i);
 #ifdef WINRT
-        spuStatus.m_eventCompletetHandle = CreateEventEx(NULL, CString(spuStatus.m_eventStartHandleName), 0, EVENT_ALL_ACCESS);
+        MultiByteToWideChar(CP_UTF8, 0, spuStatus.m_eventCompletetHandleName, -1, wszBuf, sizeof(wszBuf));
+        spuStatus.m_eventCompletetHandle = CreateEventEx(NULL, wszBuf, 0, EVENT_ALL_ACCESS);
 #else
         spuStatus.m_eventCompletetHandle = CreateEventA (0,false,false,spuStatus.m_eventCompletetHandleName);
 #endif
