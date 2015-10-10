@@ -661,6 +661,10 @@ TOLUA_API void tolua_cclass (lua_State* L, const char* lname, const char* name, 
     lua_newtable(L);                    // stack: module lname table
     luaL_getmetatable(L,name);          // stack: module lname table mt
     lua_setmetatable(L, -2);            // stack: module lname table
+    // class_table[".name"] = name
+    lua_pushliteral(L, ".name");        // stack: module lname table ".name"
+    lua_pushstring(L, name);            // stack: module lname table ".name" name
+    lua_rawset(L, -3);                  // stack: module lname table
     //Use a key named ".isclass" to be a flag of class_table
     lua_pushliteral(L, ".isclass");
     lua_pushboolean(L, 1);
