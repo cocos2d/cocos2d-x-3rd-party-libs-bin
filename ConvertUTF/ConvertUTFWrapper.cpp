@@ -99,11 +99,12 @@ inline uint16_t SwapByteOrder_16(uint16_t value) {
 }
 
 bool convertUTF16ToUTF8String(const std::u16string& utf16, std::string &Out) {
-  assert(Out.empty());
-
   // Avoid OOB by returning early on empty input.
   if (utf16.empty())
+  {
+    Out.clear();
     return true;
+  }
 
   const UTF16 *Src = reinterpret_cast<const UTF16 *>(utf16.data());
   const UTF16 *SrcEnd = reinterpret_cast<const UTF16 *>(utf16.data() + utf16.length());
