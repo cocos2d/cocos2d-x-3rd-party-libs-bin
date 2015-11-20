@@ -142,7 +142,6 @@ BulletMultiThreaded/SpuFakeDma.cpp \
 BulletMultiThreaded/SpuGatheringCollisionDispatcher.cpp \
 BulletMultiThreaded/SpuLibspe2Support.cpp \
 BulletMultiThreaded/SpuSampleTaskProcess.cpp \
-BulletMultiThreaded/SpuLibspe2Support.cpp \
 BulletMultiThreaded/SpuNarrowPhaseCollisionTask/boxBoxDistance.cpp \
 BulletMultiThreaded/SpuNarrowPhaseCollisionTask/SpuCollisionShapes.cpp \
 BulletMultiThreaded/SpuNarrowPhaseCollisionTask/SpuContactResult.cpp \
