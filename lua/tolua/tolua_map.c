@@ -493,7 +493,11 @@ TOLUA_API int tolua_register_gc (lua_State* L, int lo)
 TOLUA_API void tolua_usertype (lua_State* L, const char* type)
 {
     char ctype[128] = "const ";
-    strncat(ctype,type,120);
+#if (WINAPI_FAMILY > 0 && WINAPI_FAMILY_APP > 0) && (WINAPI_FAMILY == WINAPI_FAMILY_APP)
+	strcat_s(ctype, 120, type);
+#else
+	strncat(ctype, type, 120);
+#endif
 
     /* create both metatables */
     if (tolua_newmetatable(L,ctype) && tolua_newmetatable(L,type))
@@ -637,8 +641,13 @@ TOLUA_API void tolua_cclass (lua_State* L, const char* lname, const char* name, 
 {
     char cname[128] = "const ";
     char cbase[128] = "const ";
-    strncat(cname,name,120);
-    strncat(cbase,base,120);
+#if (WINAPI_FAMILY > 0 && WINAPI_FAMILY_APP > 0) && (WINAPI_FAMILY == WINAPI_FAMILY_APP)
+	strcat_s(cname, 120, name);
+	strcat_s(cbase, 120, base);
+#else
+	strncat(cname, name, 120);
+	strncat(cbase, base, 120);
+#endif
 
     mapinheritance(L,name,base);
     mapinheritance(L,cname,name);
@@ -690,8 +699,13 @@ TOLUA_API void tolua_addbase(lua_State* L, char* name, char* base) {
 
     char cname[128] = "const ";
     char cbase[128] = "const ";
-    strncat(cname,name,120);
-    strncat(cbase,base,120);
+#if (WINAPI_FAMILY > 0 && WINAPI_FAMILY_APP > 0) && (WINAPI_FAMILY == WINAPI_FAMILY_APP)
+	strcat_s(cname, 120, name);
+	strcat_s(cbase, 120, base);
+#else
+	strncat(cname, name, 120);
+	strncat(cbase, base, 120);
+#endif
 
     mapsuper(L,cname,cbase);
     mapsuper(L,name,base);
