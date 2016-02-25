@@ -94,6 +94,16 @@ extern "C" {
 #include <stdarg.h>
 #endif
 
+#if _MSC_VER >= 1900
+#pragma comment(lib,"legacy_stdio_definitions.lib")
+
+FILE * __cdecl __iob_func(void)
+{
+	FILE __libwebsocket_std_redef_arr[] = { stdin, stdout, stderr };
+	return &(__libwebsocket_std_redef_arr[0]);
+}
+#endif
+
 #ifdef MBED_OPERATORS
 #define LWS_POSIX 0
 #else
