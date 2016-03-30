@@ -695,9 +695,6 @@ struct cpSpace {
 void cpSpaceSetStaticBody(cpSpace *space, cpBody *body);
 
 extern cpCollisionHandler cpCollisionHandlerDoNothing;
-#if defined(_WINDOWS) && (defined(_WIN32) || defined(WIN32))
-CP_EXPORT cpCollisionHandler * get_cpCollisionHandlerDoNothing();
-#endif
 
 void cpSpaceProcessComponents(cpSpace *space, cpFloat dt);
 
