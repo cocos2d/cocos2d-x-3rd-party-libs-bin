@@ -24,7 +24,7 @@
 #define LWS_LIBRARY_VERSION_NUMBER (LWS_LIBRARY_VERSION_MAJOR*1000000)+(LWS_LIBRARY_VERSION_MINOR*1000)+LWS_LIBRARY_VERSION_PATCH
 
 /* The current git commit hash that we're building from */
-/* #undef LWS_BUILD_HASH */
+#define LWS_BUILD_HASH "0db326a"
 
 /* Build with OpenSSL support */
 /* #undef LWS_OPENSSL_SUPPORT */
@@ -54,7 +54,7 @@
 #define LWS_NO_DAEMONIZE
 
 /* Build without server support */
-#define LWS_NO_SERVER
+/* #undef LWS_NO_SERVER */
 
 /* Build without client support */
 /* #undef LWS_NO_CLIENT */

@@ -40,13 +40,25 @@
 #endif
 
 #if defined(WIN32) || defined(_WIN32)
-//#if (WINVER < 0x0501)
-//#undef WINVER
-//#undef _WIN32_WINNT
-//#define WINVER 0x0501
-//#define _WIN32_WINNT WINVER
-//#endif
-#define inline __inline
+
+#if defined(WINAPI_FAMILY) && (WINAPI_FAMILY != WINAPI_FAMILY_DESKTOP_APP)
+    #ifndef WINVER
+        #define WINVER 0x0602
+        #define _WIN32_WINNT WINVER
+    #endif
+
+    #define getenv(x) NULL
+    #define _WINSOCK_DEPRECATED_NO_WARNINGS
+#else
+
+#if (WINVER < 0x0501)
+    #undef WINVER
+    #undef _WIN32_WINNT
+    #define WINVER 0x0501
+    #define _WIN32_WINNT WINVER
+    #endif
+#endif
+
 #define LWS_NO_DAEMONIZE
 #define LWS_ERRNO WSAGetLastError()
 #define LWS_EAGAIN WSAEWOULDBLOCK
@@ -63,8 +75,6 @@
 #define SOL_TCP IPPROTO_TCP
 
 #define compatible_close(fd) closesocket(fd)
-#define _WINSOCK_DEPRECATED_NO_WARNINGS
-
 #define lws_set_blocking_send(wsi) wsi->sock_send_blocking = 1
 #define lws_socket_is_valid(x) (!!x)
 #define LWS_SOCK_INVALID 0
@@ -75,18 +85,21 @@
 #ifdef LWS_HAVE_IN6ADDR_H
 #include <in6addr.h>
 #endif
-//#include <mstcpip.h>
 
-#ifndef __func__
-#define __func__ __FUNCTION__
-#endif
-
+#if defined(WINAPI_FAMILY) && (WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP)
 struct tcp_keepalive {
     ULONG onoff;
     ULONG keepalivetime;
     ULONG keepaliveinterval;
 };
-#define SIO_KEEPALIVE_VALS  _WSAIOW(IOC_VENDOR, 4)
+#define SIO_KEEPALIVE_VALS  _WSAIOW(IOC_VENDOR,4)
+#else
+#include <mstcpip.h>
+#endif
+
+#ifndef __func__
+#define __func__ __FUNCTION__
+#endif
 
 #ifdef _WIN32_WCE
 #define vsnprintf _vsnprintf
