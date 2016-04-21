@@ -231,14 +231,14 @@ struct WebPMemoryWriter {
 // The following must be called first before any use.
 WEBP_EXTERN(void) WebPMemoryWriterInit(WebPMemoryWriter* writer);
 
-#if WEBP_ENCODER_ABI_VERSION > 0x0202
+#if WEBP_ENCODER_ABI_VERSION > 0x0203
 // The following must be called to deallocate writer->mem memory. The 'writer'
 // object itself is not deallocated.
 WEBP_EXTERN(void) WebPMemoryWriterClear(WebPMemoryWriter* writer);
 #endif
 // The custom writer to be used with WebPMemoryWriter as custom_ptr. Upon
 // completion, writer.mem and writer.size will hold the coded data.
-#if WEBP_ENCODER_ABI_VERSION > 0x0202
+#if WEBP_ENCODER_ABI_VERSION > 0x0203
 // writer.mem must be freed by calling WebPMemoryWriterClear.
 #else
 // writer.mem must be freed by calling 'free(writer.mem)'.
@@ -419,7 +419,9 @@ WEBP_EXTERN(int) WebPPictureView(const WebPPicture* src,
 WEBP_EXTERN(int) WebPPictureIsView(const WebPPicture* picture);
 
 // Rescale a picture to new dimension width x height.
-// Now gamma correction is applied.
+// If either 'width' or 'height' (but not both) is 0 the corresponding
+// dimension will be calculated preserving the aspect ratio.
+// No gamma correction is applied.
 // Returns false in case of error (invalid parameter or insufficient memory).
 WEBP_EXTERN(int) WebPPictureRescale(WebPPicture* pic, int width, int height);
 
@@ -446,13 +448,14 @@ WEBP_EXTERN(int) WebPPictureImportBGRA(
 WEBP_EXTERN(int) WebPPictureImportBGRX(
     WebPPicture* picture, const uint8_t* bgrx, int bgrx_stride);
 
-// Converts picture->argb data to the YUVA format specified by 'colorspace'.
+// Converts picture->argb data to the YUV420A format. The 'colorspace'
+// parameter is deprecated and should be equal to WEBP_YUV420.
 // Upon return, picture->use_argb is set to false. The presence of real
 // non-opaque transparent values is detected, and 'colorspace' will be
 // adjusted accordingly. Note that this method is lossy.
 // Returns false in case of error.
 WEBP_EXTERN(int) WebPPictureARGBToYUVA(WebPPicture* picture,
-                                       WebPEncCSP colorspace);
+                                       WebPEncCSP /*colorspace = WEBP_YUV420*/);
 
 // Same as WebPPictureARGBToYUVA(), but the conversion is done using
 // pseudo-random dithering with a strength 'dithering' between
@@ -460,6 +463,15 @@ WEBP_EXTERN(int) WebPPictureARGBToYUVA(WebPPicture* picture,
 // for photographic picture.
 WEBP_EXTERN(int) WebPPictureARGBToYUVADithered(
     WebPPicture* picture, WebPEncCSP colorspace, float dithering);
+
+#if WEBP_ENCODER_ABI_VERSION > 0x0204
+// Performs 'smart' RGBA->YUVA420 downsampling and colorspace conversion.
+// Downsampling is handled with extra care in case of color clipping. This
+// method is roughly 2x slower than WebPPictureARGBToYUVA() but produces better
+// YUV representation.
+// Returns false in case of error.
+WEBP_EXTERN(int) WebPPictureSmartARGBToYUVA(WebPPicture* picture);
+#endif
 
 // Converts picture->yuv to picture->argb and sets picture->use_argb to true.
 // The input format must be YUV_420 or YUV_420A.
