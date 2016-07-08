@@ -6,6 +6,8 @@ LOCAL_MODULE := bullet_static
 
 LOCAL_MODULE_FILENAME := libbullet
 
+LOCAL_ARM_MODE := arm
+
 LOCAL_SRC_FILES := \
 BulletCollision/BroadphaseCollision/btAxisSweep3.cpp \
 BulletCollision/BroadphaseCollision/btBroadphaseProxy.cpp \

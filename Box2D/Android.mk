@@ -6,6 +6,8 @@ LOCAL_MODULE := box2d_static
 
 LOCAL_MODULE_FILENAME := libbox2d
 
+LOCAL_ARM_MODE := arm
+
 LOCAL_SRC_FILES := \
 Collision/b2BroadPhase.cpp \
 Collision/b2CollideCircle.cpp \
