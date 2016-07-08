@@ -6,6 +6,8 @@ LOCAL_MODULE := cocos_flatbuffers_static
 
 LOCAL_MODULE_FILENAME := flatbuffers
 
+LOCAL_ARM_MODE := arm
+
 LOCAL_SRC_FILES := \
 flatc.cpp \
 idl_gen_cpp.cpp \
