@@ -39,6 +39,12 @@ static int tolua_newmetatable (lua_State* L, const char* name)
 
     if (r)
         tolua_classevents(L); /* set meta events */
+    
+    // metatable[".classname"] = name
+    lua_pushliteral(L, ".classname");   // stack: metatable ".classname"
+    lua_pushstring(L, name);            // stack: metatable ".classname" name
+    lua_rawset(L, -3);                  // stack: metatable
+    
     lua_pop(L,1);
     return r;
 }
