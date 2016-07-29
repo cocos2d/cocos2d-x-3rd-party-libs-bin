@@ -24,7 +24,7 @@
 #define LWS_LIBRARY_VERSION_NUMBER (LWS_LIBRARY_VERSION_MAJOR*1000000)+(LWS_LIBRARY_VERSION_MINOR*1000)+LWS_LIBRARY_VERSION_PATCH
 
 /* The current git commit hash that we're building from */
-#define LWS_BUILD_HASH "83d3470"
+#define LWS_BUILD_HASH "6241f1f"
 
 /* Build with OpenSSL support */
 /* #undef LWS_OPENSSL_SUPPORT */
@@ -42,7 +42,7 @@
 /* #undef LWS_USE_LIBEV */
 
 /* Build with support for ipv6 */
-#define LWS_USE_IPV6
+/* #undef LWS_USE_IPV6 */
 
 /* Build with support for HTTP2 */
 /* #undef LWS_USE_HTTP2 */
