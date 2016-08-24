@@ -24,41 +24,6 @@ namespace rapidxml
 {
     const int parse_normal = parse_no_data_nodes;
 
-    /*class tok_string
-    {
-    public:
-        tok_string() : value_(nullstring()), length_(0) {}
-        tok_string(char* v) : value_(v), length_(0) {}
-        tok_string(char* v, size_t l) : value_(v), length_(l) {}
-
-        char*   value() const { return value_; }
-        void    value(char* v) { value_ = v; }
-
-        size_t  length() const { return length_; }
-        void    length(size_t l) { length_ = l; }
-        void    length(char* end) { length_ = end - value_; }
-
-        char& operator[](size_t index)
-        {
-            return value_[index];
-        }
-
-        void write_null_terminator()
-        {
-            value_[length_] = '\0';
-        }
-    private:
-        static char *nullstring()
-        {
-            static char zero = ('\0');
-            return &zero;
-        }
-
-    private:
-        char*       value_;
-        size_t      length_;
-    };*/
-
     typedef std::pair<char*, size_t> tok_string;
     typedef std::pair<const char*, size_t> const_tok_string;
 
@@ -144,7 +109,7 @@ namespace rapidxml
         {
             xmlSAX2Text(s, len);
         }
-
+    private:
         tok_string elementName;
         std::vector<const char*> elementAttrs;
     };
