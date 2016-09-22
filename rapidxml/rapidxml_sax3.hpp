@@ -131,7 +131,6 @@ namespace rapidxml
         xml_sax3_parser(xml_sax3_handler* handler)
         {
             handler_ = handler;
-            endptr_ = nullptr;
         }
 
         Ch *endptr_;
