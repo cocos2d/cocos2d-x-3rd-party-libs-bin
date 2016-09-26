@@ -1435,7 +1435,7 @@ namespace rapidxml
                     RAPIDXML_PARSE_ERROR("expected <", text);
                 goto _L_Loop;
             }
-        _L_end:;
+        _L_end:
             // check parse result.
             if (parse_result_ == parse_result::ok) {
                 if (endch == '<') {
