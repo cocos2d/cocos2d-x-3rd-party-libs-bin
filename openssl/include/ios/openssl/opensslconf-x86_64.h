@@ -22,8 +22,8 @@ extern "C" {
  * OpenSSL was configured with the following options:
  */
 
-#ifndef OPENSSL_SYS_MACOSX
-# define OPENSSL_SYS_MACOSX 1
+#ifndef OPENSSL_SYS_iOS
+# define OPENSSL_SYS_iOS 1
 #endif
 #ifndef OPENSSL_NO_MD2
 # define OPENSSL_NO_MD2
