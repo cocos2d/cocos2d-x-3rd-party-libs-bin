@@ -37,7 +37,9 @@
 
 FT_BEGIN_HEADER
 
-
+#if defined(WINAPI_FAMILY) && (WINAPI_FAMILY != WINAPI_FAMILY_DESKTOP_APP)
+#define generic GenericFromFreeTypeLibrary
+#endif
 
   /*************************************************************************/
   /*                                                                       */
@@ -1738,6 +1740,10 @@ FT_BEGIN_HEADER
     FT_Slot_Internal  internal;
 
   } FT_GlyphSlotRec;
+
+#if defined(WINAPI_FAMILY) && (WINAPI_FAMILY != WINAPI_FAMILY_DESKTOP_APP)
+#undef generic
+#endif
 
 
   /*************************************************************************/
