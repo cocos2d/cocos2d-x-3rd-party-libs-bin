@@ -10,7 +10,7 @@ LOCAL_ARM_MODE := arm
 
 LOCAL_SRC_FILES := \
 flatc.cpp \
-flathash.cp \
+flathash.cpp \
 idl_gen_cpp.cpp \
 idl_gen_fbs.cpp \
 idl_gen_general.cpp \
