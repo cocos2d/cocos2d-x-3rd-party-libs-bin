@@ -37,8 +37,6 @@ LOCAL_CFLAGS+= -O2
 LOCAL_C_INCLUDES:= \
 	$(LOCAL_PATH)/Tremolo
 
-LOCAL_SHARED_LIBRARIES := liblog
-
 LOCAL_ARM_MODE := arm
 
 LOCAL_MODULE := libvorbisidec
