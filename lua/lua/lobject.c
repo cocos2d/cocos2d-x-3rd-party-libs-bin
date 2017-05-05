@@ -203,7 +203,11 @@ void luaO_chunkid (char *out, const char *source, size_t bufflen) {
       if (len > bufflen) len = bufflen;
       strcpy(out, "[string \"");
       if (source[len] != '\0') {  /* must truncate? */
+#if (WINAPI_FAMILY > 0 && WINAPI_FAMILY_APP > 0) && (WINAPI_FAMILY == WINAPI_FAMILY_APP)
+		strcat_s(out, len, source);
+#else
         strncat(out, source, len);
+#endif
         strcat(out, "...");
       }
       else

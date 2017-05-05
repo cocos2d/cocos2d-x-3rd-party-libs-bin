@@ -94,7 +94,7 @@ static lua_CFunction ll_sym (lua_State *L, void *lib, const char *sym) {
 
 #undef setprogdir
 
-static void setprogdir (lua_State *L) {
+static void setprogdir(lua_State *L){
   char buff[MAX_PATH + 1];
   char *lb;
   DWORD nsize = sizeof(buff)/sizeof(char);
@@ -125,7 +125,11 @@ static void ll_unloadlib (void *lib) {
 
 
 static void *ll_load (lua_State *L, const char *path) {
+#if (WINAPI_FAMILY > 0 && WINAPI_FAMILY_APP > 0) && (WINAPI_FAMILY == WINAPI_FAMILY_APP)
+	HMODULE lib = LoadPackagedLibrary(path, 0);
+#else // WINAPI_FAMILY == WINAPI_FAMILY_APP
   HINSTANCE lib = LoadLibraryA(path);
+#endif
   if (lib == NULL) pusherror(L);
   return lib;
 }
