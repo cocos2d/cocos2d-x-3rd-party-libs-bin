@@ -159,6 +159,7 @@ static int class_table_get_index (lua_State* L)
             }
             lua_pop(L, 2);
         }
+        lua_settop(L,3);
     }
     lua_pushnil(L);
     return 1;
