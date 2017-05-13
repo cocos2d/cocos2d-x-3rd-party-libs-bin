@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{c2731cd0-bd38-4c69-8cc0-ecb0080c92d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\NewFilter4">
+      <UniqueIdentifier>{a9db89a5-af1b-4b62-ae85-035e6a2ad414}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\dsp">
+      <UniqueIdentifier>{95fcefef-81d9-4b4f-ad2d-2eb50e5d9dd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{a78ce6ba-8002-47c4-a22f-adc0fa8da38a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\dec">
+      <UniqueIdentifier>{417750fc-807a-4acd-af6a-356c5a108041}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\dsp\cpu.c">
+      <Filter>src\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\dec.c">
+      <Filter>src\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\dec_neon.c">
+      <Filter>src\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\dec_sse2.c">
+      <Filter>src\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\enc.c">
+      <Filter>src\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\enc_neon.c">
+      <Filter>src\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\enc_sse2.c">
+      <Filter>src\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\lossless.c">
+      <Filter>src\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\upsampling.c">
+      <Filter>src\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\upsampling_neon.c">
+      <Filter>src\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\upsampling_sse2.c">
+      <Filter>src\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\yuv.c">
+      <Filter>src\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\alpha_processing.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\bit_reader.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\bit_writer.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\color_cache.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\filters.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\huffman.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\huffman_encode.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\quant_levels.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\quant_levels_dec.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\random.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\rescaler.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\thread.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\utils.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dec\alpha.c">
+      <Filter>src\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dec\buffer.c">
+      <Filter>src\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dec\frame.c">
+      <Filter>src\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dec\idec.c">
+      <Filter>src\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dec\io.c">
+      <Filter>src\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dec\layer.c">
+      <Filter>src\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dec\quant.c">
+      <Filter>src\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dec\tree.c">
+      <Filter>src\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dec\vp8.c">
+      <Filter>src\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dec\vp8l.c">
+      <Filter>src\dec</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dec\webp.c">
+      <Filter>src\dec</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\dsp\dsp.h">
+      <Filter>src\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dsp\lossless.h">
+      <Filter>src\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dsp\yuv.h">
+      <Filter>src\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\alpha_processing.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\bit_reader.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\bit_writer.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\color_cache.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\filters.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\huffman.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\huffman_encode.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\quant_levels.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\quant_levels_dec.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\random.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\rescaler.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\thread.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\utils.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dec\alphai.h">
+      <Filter>src\dec</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dec\decode_vp8.h">
+      <Filter>src\dec</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dec\vp8i.h">
+      <Filter>src\dec</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dec\vp8li.h">
+      <Filter>src\dec</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dec\webpi.h">
+      <Filter>src\dec</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
