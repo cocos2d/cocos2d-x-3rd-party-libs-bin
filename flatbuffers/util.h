@@ -21,7 +21,6 @@
 #include <iomanip>
 #include <string>
 #include <sstream>
-#include <stdint.h>
 #include <stdlib.h>
 #include <assert.h>
 #ifdef _WIN32
@@ -35,19 +34,18 @@
 #include <winbase.h>
 #include <direct.h>
 #else
+#include <sys/stat.h>
 #include <limits.h>
 #endif
-#include <sys/types.h>
-#include <sys/stat.h>
-
-#include "flatbuffers/flatbuffers.h"
 
 namespace flatbuffers {
 
 // Convert an integer or floating point value to a string.
 // In contrast to std::stringstream, "char" values are
-// converted to a string of digits, and we don't use scientific notation.
+// converted to a string of digits.
 template<typename T> std::string NumToString(T t) {
+  // to_string() prints different numbers of digits for floats depending on
+  // platform and isn't available on Android, so we use stringstream
   std::stringstream ss;
   ss << t;
   return ss.str();
@@ -58,27 +56,6 @@ template<> inline std::string NumToString<signed char>(signed char t) {
 }
 template<> inline std::string NumToString<unsigned char>(unsigned char t) {
   return NumToString(static_cast<int>(t));
-}
-
-// Special versions for floats/doubles.
-template<> inline std::string NumToString<double>(double t) {
-  // to_string() prints different numbers of digits for floats depending on
-  // platform and isn't available on Android, so we use stringstream
-  std::stringstream ss;
-  // Use std::fixed to surpress scientific notation.
-  ss << std::fixed << t;
-  auto s = ss.str();
-  // Sadly, std::fixed turns "1" into "1.00000", so here we undo that.
-  auto p = s.find_last_not_of('0');
-  if (p != std::string::npos) {
-    s.resize(p + 1);  // Strip trailing zeroes.
-    if (s[s.size() - 1] == '.')
-      s.erase(s.size() - 1, 1);  // Strip '.' if a whole number.
-  }
-  return s;
-}
-template<> inline std::string NumToString<float>(float t) {
-  return NumToString(static_cast<double>(t));
 }
 
 // Convert an integer value to a hexadecimal string.
@@ -94,45 +71,26 @@ inline std::string IntToStringHex(int i, int xdigits) {
   return ss.str();
 }
 
-// Portable implementation of strtoll().
-inline int64_t StringToInt(const char *str, char **endptr = nullptr, int base = 10) {
-  #ifdef _MSC_VER
-    return _strtoi64(str, endptr, base);
-  #else
-    return strtoll(str, endptr, base);
-  #endif
-}
-
 // Portable implementation of strtoull().
-inline int64_t StringToUInt(const char *str, char **endptr = nullptr, int base = 10) {
+inline int64_t StringToInt(const char *str, int base = 10) {
   #ifdef _MSC_VER
-    return _strtoui64(str, endptr, base);
+    return _strtoui64(str, nullptr, base);
   #else
-    return strtoull(str, endptr, base);
+    return strtoull(str, nullptr, base);
   #endif
 }
-
-typedef bool (*LoadFileFunction)(const char *filename, bool binary,
-                                 std::string *dest);
-typedef bool (*FileExistsFunction)(const char *filename);
-
-LoadFileFunction SetLoadFileFunction(LoadFileFunction load_file_function);
-
-FileExistsFunction SetFileExistsFunction(FileExistsFunction
-                                         file_exists_function);
-
-
-// Check if file "name" exists.
-bool FileExists(const char *name);
-
-// Check if "name" exists and it is also a directory.
-bool DirExists(const char *name);
 
 // Load file "name" into "buf" returning true if successful
 // false otherwise.  If "binary" is false data is read
 // using ifstream's text mode, otherwise data is read with
 // no transcoding.
-bool LoadFile(const char *name, bool binary, std::string *buf);
+inline bool LoadFile(const char *name, bool binary, std::string *buf) {
+  std::ifstream ifs(name, binary ? std::ifstream::binary : std::ifstream::in);
+  if (!ifs.is_open()) return false;
+  *buf = std::string(std::istreambuf_iterator<char>(ifs),
+                    std::istreambuf_iterator<char>());
+  return !ifs.bad();
+}
 
 // Save data "buf" of length "len" bytes into a file
 // "name" returning true if successful, false otherwise.
@@ -172,12 +130,6 @@ inline std::string StripExtension(const std::string &filepath) {
   return i != std::string::npos ? filepath.substr(0, i) : filepath;
 }
 
-// Returns the extension, if any.
-inline std::string GetExtension(const std::string &filepath) {
-  size_t i = filepath.find_last_of(".");
-  return i != std::string::npos ? filepath.substr(i + 1) : "";
-}
-
 // Return the last component of the path, after the last separator.
 inline std::string StripPath(const std::string &filepath) {
   size_t i = filepath.find_last_of(PathSeparatorSet);
@@ -195,8 +147,8 @@ inline std::string StripFileName(const std::string &filepath) {
 inline std::string ConCatPathFileName(const std::string &path,
                                       const std::string &filename) {
   std::string filepath = path;
-  if (path.length() && path[path.size() - 1] != kPathSeparator &&
-                       path[path.size() - 1] != kPosixPathSeparator)
+  if (path.length() && path.back() != kPathSeparator &&
+                       path.back() != kPosixPathSeparator)
     filepath += kPathSeparator;
   filepath += filename;
   return filepath;
@@ -208,7 +160,7 @@ inline void EnsureDirExists(const std::string &filepath) {
   auto parent = StripFileName(filepath);
   if (parent.length()) EnsureDirExists(parent);
   #ifdef _WIN32
-    (void)_mkdir(filepath.c_str());
+    _mkdir(filepath.c_str());
   #else
     mkdir(filepath.c_str(), S_IRWXU|S_IRGRP|S_IXGRP);
   #endif
@@ -217,23 +169,19 @@ inline void EnsureDirExists(const std::string &filepath) {
 // Obtains the absolute path from any other path.
 // Returns the input path if the absolute path couldn't be resolved.
 inline std::string AbsolutePath(const std::string &filepath) {
-  #ifdef FLATBUFFERS_NO_ABSOLUTE_PATH_RESOLUTION
-    return filepath;
+  #ifdef _WIN32
+    char abs_path[MAX_PATH]; 
+    #if defined(WP8) || defined(WINRT)
+    return 0
+	#else
+		return GetFullPathNameA(filepath.c_str(), MAX_PATH, abs_path, nullptr)
+	#endif
   #else
-    #ifdef _WIN32
-      char abs_path[MAX_PATH];
-#if defined(WINAPI_FAMILY) && (WINAPI_FAMILY != WINAPI_FAMILY_DESKTOP_APP)
-      return _fullpath(abs_path, filepath.c_str(), MAX_PATH)
-#else
-      return GetFullPathNameA(filepath.c_str(), MAX_PATH, abs_path, nullptr)
-#endif
-    #else
-      char abs_path[PATH_MAX];
-      return realpath(filepath.c_str(), abs_path)
-    #endif
-      ? abs_path
-      : filepath;
-  #endif // FLATBUFFERS_NO_ABSOLUTE_PATH_RESOLUTION
+    char abs_path[PATH_MAX];
+    return realpath(filepath.c_str(), abs_path)
+  #endif
+    ? abs_path
+    : filepath;
 }
 
 // To and from UTF-8 unicode conversion functions
@@ -280,10 +228,6 @@ inline int FromUTF8(const char **in) {
   }
   if ((**in << len) & 0x80) return -1;  // Bit after leading 1's must be 0.
   if (!len) return *(*in)++;
-  // UTF-8 encoded values with a length are between 2 and 4 bytes.
-  if (len < 2 || len > 4) {
-    return -1;
-  }
   // Grab initial bits of the code.
   int ucc = *(*in)++ & ((1 << (7 - len)) - 1);
   for (int i = 0; i < len - 1; i++) {
@@ -291,60 +235,7 @@ inline int FromUTF8(const char **in) {
     ucc <<= 6;
     ucc |= *(*in)++ & 0x3F;  // Grab 6 more bits of the code.
   }
-  // UTF-8 cannot encode values between 0xD800 and 0xDFFF (reserved for
-  // UTF-16 surrogate pairs).
-  if (ucc >= 0xD800 && ucc <= 0xDFFF) {
-    return -1;
-  }
-  // UTF-8 must represent code points in their shortest possible encoding.
-  switch (len) {
-    case 2:
-      // Two bytes of UTF-8 can represent code points from U+0080 to U+07FF.
-      if (ucc < 0x0080 || ucc > 0x07FF) {
-        return -1;
-      }
-      break;
-    case 3:
-      // Three bytes of UTF-8 can represent code points from U+0800 to U+FFFF.
-      if (ucc < 0x0800 || ucc > 0xFFFF) {
-        return -1;
-      }
-      break;
-    case 4:
-      // Four bytes of UTF-8 can represent code points from U+10000 to U+10FFFF.
-      if (ucc < 0x10000 || ucc > 0x10FFFF) {
-        return -1;
-      }
-      break;
-  }
   return ucc;
-}
-
-// Wraps a string to a maximum length, inserting new lines where necessary. Any
-// existing whitespace will be collapsed down to a single space. A prefix or
-// suffix can be provided, which will be inserted before or after a wrapped
-// line, respectively.
-inline std::string WordWrap(const std::string in, size_t max_length,
-                            const std::string wrapped_line_prefix,
-                            const std::string wrapped_line_suffix) {
-  std::istringstream in_stream(in);
-  std::string wrapped, line, word;
-
-  in_stream >> word;
-  line = word;
-
-  while (in_stream >> word) {
-    if ((line.length() + 1 + word.length() + wrapped_line_suffix.length()) <
-        max_length) {
-      line += " " + word;
-    } else {
-      wrapped += line + wrapped_line_suffix + "\n";
-      line = wrapped_line_prefix + word;
-    }
-  }
-  wrapped += line;
-
-  return wrapped;
 }
 
 }  // namespace flatbuffers
