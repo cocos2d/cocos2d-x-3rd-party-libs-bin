@@ -745,8 +745,8 @@ void Parser::ParseEnum(bool is_union) {
   Expect('{');
   if (is_union) enum_def.vals.Add("NONE", new EnumVal("NONE", 0));
   do {
-    std::string name = attribute_;
-    std::vector<std::string> dc = doc_comment_;
+    name = attribute_;
+    dc = doc_comment_;
     Expect(kTokenIdentifier);
     auto prevsize = enum_def.vals.vec.size();
     auto value = enum_def.vals.vec.size()
@@ -1105,10 +1105,10 @@ bool Parser::Parse(const char *source, const char **include_paths,
     for (auto it = enums_.vec.begin(); it != enums_.vec.end(); ++it) {
       auto &enum_def = **it;
       if (enum_def.is_union) {
-        for (auto it = enum_def.vals.vec.begin();
-             it != enum_def.vals.vec.end();
-             ++it) {
-          auto &val = **it;
+        for (auto it2 = enum_def.vals.vec.begin();
+             it2 != enum_def.vals.vec.end();
+             ++it2) {
+          auto &val = **it2;
           if (val.struct_def && val.struct_def->fixed)
             Error("only tables can be union elements: " + val.name);
         }
