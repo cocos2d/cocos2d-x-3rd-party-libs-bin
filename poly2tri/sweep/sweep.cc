@@ -49,13 +49,12 @@ void Sweep::Triangulate(SweepContext& tcx)
 
 void Sweep::SweepPoints(SweepContext& tcx)
 {
-  for (size_t i = 1; i < tcx.point_count(); i++) {
-    Point& point = *tcx.GetPoint(i);
-    Node* node = &PointEvent(tcx, point);
-    for (unsigned int i = 0; i < point.edge_list.size(); i++) {
-      EdgeEvent(tcx, point.edge_list[i], node);
+    for (size_t i = 1; i < tcx.point_count(); i++) {
+        Point& point = *tcx.GetPoint(i);
+        Node* node = &PointEvent(tcx, point);
+        for (auto&& edge : point.edge_list)
+            EdgeEvent(tcx, edge, node);
     }
-  }
 }
 
 void Sweep::FinalizationPolygon(SweepContext& tcx)
