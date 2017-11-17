@@ -19,7 +19,7 @@
 #ifndef B2_MOUSE_JOINT_H
 #define B2_MOUSE_JOINT_H
 
-#include <Box2D/Dynamics/Joints/b2Joint.h>
+#include "Box2D/Dynamics/Joints/b2Joint.h"
 
 /// Mouse joint definition. This requires a world target point,
 /// tuning parameters, and the time step.
@@ -62,16 +62,16 @@ class b2MouseJoint : public b2Joint
 public:
 
 	/// Implements b2Joint.
-	b2Vec2 GetAnchorA() const;
+	b2Vec2 GetAnchorA() const override;
 
 	/// Implements b2Joint.
-	b2Vec2 GetAnchorB() const;
+	b2Vec2 GetAnchorB() const override;
 
 	/// Implements b2Joint.
-	b2Vec2 GetReactionForce(float32 inv_dt) const;
+	b2Vec2 GetReactionForce(float32 inv_dt) const override;
 
 	/// Implements b2Joint.
-	float32 GetReactionTorque(float32 inv_dt) const;
+	float32 GetReactionTorque(float32 inv_dt) const override;
 
 	/// Use this to update the target point.
 	void SetTarget(const b2Vec2& target);
@@ -90,19 +90,19 @@ public:
 	float32 GetDampingRatio() const;
 
 	/// The mouse joint does not support dumping.
-	void Dump() { b2Log("Mouse joint dumping is not supported.\n"); }
+	void Dump() override { b2Log("Mouse joint dumping is not supported.\n"); }
 
 	/// Implement b2Joint::ShiftOrigin
-	void ShiftOrigin(const b2Vec2& newOrigin);
+	void ShiftOrigin(const b2Vec2& newOrigin) override;
 
 protected:
 	friend class b2Joint;
 
 	b2MouseJoint(const b2MouseJointDef* def);
 
-	void InitVelocityConstraints(const b2SolverData& data);
-	void SolveVelocityConstraints(const b2SolverData& data);
-	bool SolvePositionConstraints(const b2SolverData& data);
+	void InitVelocityConstraints(const b2SolverData& data) override;
+	void SolveVelocityConstraints(const b2SolverData& data) override;
+	bool SolvePositionConstraints(const b2SolverData& data) override;
 
 	b2Vec2 m_localAnchorB;
 	b2Vec2 m_targetA;

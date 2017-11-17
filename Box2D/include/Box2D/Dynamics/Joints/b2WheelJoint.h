@@ -19,7 +19,7 @@
 #ifndef B2_WHEEL_JOINT_H
 #define B2_WHEEL_JOINT_H
 
-#include <Box2D/Dynamics/Joints/b2Joint.h>
+#include "Box2D/Dynamics/Joints/b2Joint.h"
 
 /// Wheel joint definition. This requires defining a line of
 /// motion using an axis and an anchor point. The definition uses local
@@ -72,18 +72,17 @@ struct b2WheelJointDef : public b2JointDef
 };
 
 /// A wheel joint. This joint provides two degrees of freedom: translation
-/// along an axis fixed in bodyA and rotation in the plane. You can use a
-/// joint limit to restrict the range of motion and a joint motor to drive
-/// the rotation or to model rotational friction.
+/// along an axis fixed in bodyA and rotation in the plane. In other words, it is a point to
+/// line constraint with a rotational motor and a linear spring/damper.
 /// This joint is designed for vehicle suspensions.
 class b2WheelJoint : public b2Joint
 {
 public:
-	b2Vec2 GetAnchorA() const;
-	b2Vec2 GetAnchorB() const;
+	b2Vec2 GetAnchorA() const override;
+	b2Vec2 GetAnchorB() const override;
 
-	b2Vec2 GetReactionForce(float32 inv_dt) const;
-	float32 GetReactionTorque(float32 inv_dt) const;
+	b2Vec2 GetReactionForce(float32 inv_dt) const override;
+	float32 GetReactionTorque(float32 inv_dt) const override;
 
 	/// The local anchor point relative to bodyA's origin.
 	const b2Vec2& GetLocalAnchorA() const { return m_localAnchorA; }
@@ -97,8 +96,14 @@ public:
 	/// Get the current joint translation, usually in meters.
 	float32 GetJointTranslation() const;
 
-	/// Get the current joint translation speed, usually in meters per second.
-	float32 GetJointSpeed() const;
+	/// Get the current joint linear speed, usually in meters per second.
+	float32 GetJointLinearSpeed() const;
+
+	/// Get the current joint angle in radians.
+	float32 GetJointAngle() const;
+
+	/// Get the current joint angular speed in radians per second.
+	float32 GetJointAngularSpeed() const;
 
 	/// Is the joint motor enabled?
 	bool IsMotorEnabled() const;
@@ -128,16 +133,16 @@ public:
 	float32 GetSpringDampingRatio() const;
 
 	/// Dump to b2Log
-	void Dump();
+	void Dump() override;
 
 protected:
 
 	friend class b2Joint;
 	b2WheelJoint(const b2WheelJointDef* def);
 
-	void InitVelocityConstraints(const b2SolverData& data);
-	void SolveVelocityConstraints(const b2SolverData& data);
-	bool SolvePositionConstraints(const b2SolverData& data);
+	void InitVelocityConstraints(const b2SolverData& data) override;
+	void SolveVelocityConstraints(const b2SolverData& data) override;
+	bool SolvePositionConstraints(const b2SolverData& data) override;
 
 	float32 m_frequencyHz;
 	float32 m_dampingRatio;

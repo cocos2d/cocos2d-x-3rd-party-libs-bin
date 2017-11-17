@@ -19,9 +19,9 @@
 #ifndef B2_BROAD_PHASE_H
 #define B2_BROAD_PHASE_H
 
-#include <Box2D/Common/b2Settings.h>
-#include <Box2D/Collision/b2Collision.h>
-#include <Box2D/Collision/b2DynamicTree.h>
+#include "Box2D/Common/b2Settings.h"
+#include "Box2D/Collision/b2Collision.h"
+#include "Box2D/Collision/b2DynamicTree.h"
 #include <algorithm>
 
 struct b2Pair
@@ -62,7 +62,7 @@ public:
 	/// Get the fat AABB for a proxy.
 	const b2AABB& GetFatAABB(int32 proxyId) const;
 
-	/// Get user data from a proxy. Returns NULL if the id is invalid.
+	/// Get user data from a proxy. Returns nullptr if the id is invalid.
 	void* GetUserData(int32 proxyId) const;
 
 	/// Test overlap of fat AABBs.

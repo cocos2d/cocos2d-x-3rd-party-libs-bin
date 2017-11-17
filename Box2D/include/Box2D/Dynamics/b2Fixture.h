@@ -19,9 +19,9 @@
 #ifndef B2_FIXTURE_H
 #define B2_FIXTURE_H
 
-#include <Box2D/Dynamics/b2Body.h>
-#include <Box2D/Collision/b2Collision.h>
-#include <Box2D/Collision/Shapes/b2Shape.h>
+#include "Box2D/Dynamics/b2Body.h"
+#include "Box2D/Collision/b2Collision.h"
+#include "Box2D/Collision/Shapes/b2Shape.h"
 
 class b2BlockAllocator;
 class b2Body;
@@ -58,8 +58,8 @@ struct b2FixtureDef
 	/// The constructor sets the default fixture definition values.
 	b2FixtureDef()
 	{
-		shape = NULL;
-		userData = NULL;
+		shape = nullptr;
+		userData = nullptr;
 		friction = 0.2f;
 		restitution = 0.0f;
 		density = 0.0f;
@@ -135,7 +135,7 @@ public:
 	/// Call this if you want to establish collision that was previously disabled by b2ContactFilter::ShouldCollide.
 	void Refilter();
 
-	/// Get the parent body of this fixture. This is NULL if the fixture is not attached.
+	/// Get the parent body of this fixture. This is nullptr if the fixture is not attached.
 	/// @return the parent body.
 	b2Body* GetBody();
 	const b2Body* GetBody() const;

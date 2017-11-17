@@ -20,7 +20,7 @@
 #ifndef B2_DISTANCE_H
 #define B2_DISTANCE_H
 
-#include <Box2D/Common/b2Math.h>
+#include "Box2D/Common/b2Math.h"
 
 class b2Shape;
 
@@ -28,7 +28,7 @@ class b2Shape;
 /// It encapsulates any shape.
 struct b2DistanceProxy
 {
-	b2DistanceProxy() : m_vertices(NULL), m_count(0), m_radius(0.0f) {}
+	b2DistanceProxy() : m_vertices(nullptr), m_count(0), m_radius(0.0f) {}
 
 	/// Initialize the proxy using the given shape. The shape
 	/// must remain in scope while the proxy is in use.
