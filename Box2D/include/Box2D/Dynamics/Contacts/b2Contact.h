@@ -19,10 +19,10 @@
 #ifndef B2_CONTACT_H
 #define B2_CONTACT_H
 
-#include <Box2D/Common/b2Math.h>
-#include <Box2D/Collision/b2Collision.h>
-#include <Box2D/Collision/Shapes/b2Shape.h>
-#include <Box2D/Dynamics/b2Fixture.h>
+#include "Box2D/Common/b2Math.h"
+#include "Box2D/Collision/b2Collision.h"
+#include "Box2D/Collision/Shapes/b2Shape.h"
+#include "Box2D/Dynamics/b2Fixture.h"
 
 class b2Body;
 class b2Contact;
@@ -32,7 +32,7 @@ class b2BlockAllocator;
 class b2StackAllocator;
 class b2ContactListener;
 
-/// Friction mixing law. The idea is to allow either fixture to drive the restitution to zero.
+/// Friction mixing law. The idea is to allow either fixture to drive the friction to zero.
 /// For example, anything slides on ice.
 inline float32 b2MixFriction(float32 friction1, float32 friction2)
 {
@@ -157,7 +157,7 @@ protected:
 		// Used when crawling contact graph when forming islands.
 		e_islandFlag		= 0x0001,
 
-        // Set when the shapes are touching.
+		// Set when the shapes are touching.
 		e_touchingFlag		= 0x0002,
 
 		// This contact can be disabled (by user)
@@ -183,7 +183,7 @@ protected:
 	static void Destroy(b2Contact* contact, b2Shape::Type typeA, b2Shape::Type typeB, b2BlockAllocator* allocator);
 	static void Destroy(b2Contact* contact, b2BlockAllocator* allocator);
 
-	b2Contact() : m_fixtureA(NULL), m_fixtureB(NULL) {}
+	b2Contact() : m_fixtureA(nullptr), m_fixtureB(nullptr) {}
 	b2Contact(b2Fixture* fixtureA, int32 indexA, b2Fixture* fixtureB, int32 indexB);
 	virtual ~b2Contact() {}
 

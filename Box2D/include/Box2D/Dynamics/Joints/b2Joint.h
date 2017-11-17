@@ -19,7 +19,7 @@
 #ifndef B2_JOINT_H
 #define B2_JOINT_H
 
-#include <Box2D/Common/b2Math.h>
+#include "Box2D/Common/b2Math.h"
 
 class b2Body;
 class b2Joint;
@@ -76,9 +76,9 @@ struct b2JointDef
 	b2JointDef()
 	{
 		type = e_unknownJoint;
-		userData = NULL;
-		bodyA = NULL;
-		bodyB = NULL;
+		userData = nullptr;
+		bodyA = nullptr;
+		bodyB = nullptr;
 		collideConnected = false;
 	}
 

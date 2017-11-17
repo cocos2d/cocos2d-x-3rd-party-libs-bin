@@ -19,7 +19,7 @@
 #ifndef B2_CHAIN_AND_CIRCLE_CONTACT_H
 #define B2_CHAIN_AND_CIRCLE_CONTACT_H
 
-#include <Box2D/Dynamics/Contacts/b2Contact.h>
+#include "Box2D/Dynamics/Contacts/b2Contact.h"
 
 class b2BlockAllocator;
 
@@ -33,7 +33,7 @@ public:
 	b2ChainAndCircleContact(b2Fixture* fixtureA, int32 indexA, b2Fixture* fixtureB, int32 indexB);
 	~b2ChainAndCircleContact() {}
 
-	void Evaluate(b2Manifold* manifold, const b2Transform& xfA, const b2Transform& xfB);
+	void Evaluate(b2Manifold* manifold, const b2Transform& xfA, const b2Transform& xfB) override;
 };
 
 #endif

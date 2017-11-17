@@ -19,7 +19,7 @@
 #ifndef B2_ROPE_H
 #define B2_ROPE_H
 
-#include <Box2D/Common/b2Math.h>
+#include "Box2D/Common/b2Math.h"
 
 class b2Draw;
 
@@ -28,9 +28,9 @@ struct b2RopeDef
 {
 	b2RopeDef()
 	{
-		vertices = NULL;
+		vertices = nullptr;
 		count = 0;
-		masses = NULL;
+		masses = nullptr;
 		gravity.SetZero();
 		damping = 0.1f;
 		k2 = 0.9f;
