@@ -91,6 +91,7 @@ namespace cocos2d {
 
 #ifndef local
 #  define local static
+#  define local_defined
 #endif
 /* compile with -Dlocal if your debugger can't find static symbols */
 
@@ -2169,3 +2170,8 @@ int ZEXPORT unzSetOffset (unzFile file, uLong pos)
 }
 
 } // end of namespace cocos2d
+
+#ifdef local_defined
+#undef local
+#undef local_defined
+#endif
