@@ -1,4 +1,4 @@
-*** AudioEngine dependencies at android platform(Use android ndk standalone toolchain)
+*** AudioEngine dependencies at android platform(Use android ndk standalone toolchain)  
 #create standalone toolchain  
 export PATH=$PATH:/opt/arm-standalone-toolchain/bin  
 
