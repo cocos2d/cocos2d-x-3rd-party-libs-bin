@@ -1,9 +1,12 @@
 *** AudioEngine dependencies at android platform(Use android ndk standalone toolchain)
+#create standalone toolchain  
+export PATH=$PATH:/opt/arm-standalone-toolchain/bin  
 
 #openal-soft-1.18.2
 https://github.com/kcat/openal-soft  
 cd build  
-cmake .. -DCMAKE_TOOLCHAIN_FILE=../XCompile-Android.txt -DCMAKE_C_FLAGS="-mfpu=neon -mfloat-abi=softfp"
+export CMAKE_FIND_ROOT_PATH=/opt/arm-standalone-toolchain  
+cmake .. -DCMAKE_TOOLCHAIN_FILE=../XCompile-Android.txt -DHOST=arm-linux-androideabi -DCMAKE_C_FLAGS="-mfloat-abi=softfp -mfpu=neon"
 make -j4
 
 #mpg123-1.25.10
