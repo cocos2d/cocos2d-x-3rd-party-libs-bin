@@ -53,7 +53,7 @@
 /* #undef LWS_WITH_LIBEV */
 
 /* Enable libuv io loop */
-/* #undef LWS_WITH_LIBUV */
+#define LWS_WITH_LIBUV
 
 /* Enable libevent io loop */
 /* #undef LWS_WITH_LIBEVENT */
@@ -91,8 +91,8 @@
 /* SSL server using ECDH certificate */
 /* #undef LWS_SSL_SERVER_WITH_ECDH_CERT */
 /* #undef LWS_HAVE_SSL_CTX_set1_param */
-/* #undef LWS_HAVE_X509_VERIFY_PARAM_set1_host */
-/* #undef LWS_HAVE_RSA_SET0_KEY */
+#define LWS_HAVE_X509_VERIFY_PARAM_set1_host
+#define LWS_HAVE_RSA_SET0_KEY
 
 /* #undef LWS_HAVE_UV_VERSION_H */
 
@@ -133,7 +133,7 @@
 
 /* #undef LWS_AVOID_SIGPIPE_IGN */
 
-/* #undef LWS_FALLBACK_GETHOSTBYNAME */
+#define LWS_FALLBACK_GETHOSTBYNAME
 
 /* #undef LWS_WITH_STATS */
 /* #undef LWS_WITH_SOCKS5 */
@@ -147,9 +147,9 @@
 
 /* OpenSSL various APIs */
 
-/* #undef LWS_HAVE_TLS_CLIENT_METHOD */
-/* #undef LWS_HAVE_TLSV1_2_CLIENT_METHOD */
-/* #undef LWS_HAVE_SSL_SET_INFO_CALLBACK */
+#define LWS_HAVE_TLS_CLIENT_METHOD
+#define LWS_HAVE_TLSV1_2_CLIENT_METHOD
+#define LWS_HAVE_SSL_SET_INFO_CALLBACK
 
 #define LWS_HAS_INTPTR_T
 

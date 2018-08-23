@@ -6,7 +6,7 @@
 	#endif
 #endif
 
-#define LWS_INSTALL_DATADIR "C:/Program Files (x86)/libwebsockets/share"
+#define LWS_INSTALL_DATADIR "C:/Program Files/libwebsockets/share"
 
 /* Define to 1 to use wolfSSL/CyaSSL as a replacement for OpenSSL.
  * LWS_OPENSSL_SUPPORT needs to be set also for this to work. */
@@ -53,7 +53,7 @@
 /* #undef LWS_WITH_LIBEV */
 
 /* Enable libuv io loop */
-/* #undef LWS_WITH_LIBUV */
+#define LWS_WITH_LIBUV
 
 /* Enable libevent io loop */
 /* #undef LWS_WITH_LIBEVENT */
@@ -133,7 +133,7 @@
 
 /* #undef LWS_AVOID_SIGPIPE_IGN */
 
-/* #undef LWS_FALLBACK_GETHOSTBYNAME */
+#define LWS_FALLBACK_GETHOSTBYNAME
 
 /* #undef LWS_WITH_STATS */
 /* #undef LWS_WITH_SOCKS5 */
