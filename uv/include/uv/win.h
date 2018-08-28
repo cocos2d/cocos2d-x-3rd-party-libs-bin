@@ -23,7 +23,7 @@
 # define _WIN32_WINNT   0x0600
 #endif
 
-#if !defined(_SSIZE_T_) && !defined(_SSIZE_T_DEFINED)
+#if !defined(_SSIZE_T_) && !defined(_SSIZE_T_DEFINED) && !defined(__SSIZE_T)
 typedef intptr_t ssize_t;
 # define _SSIZE_T_
 # define _SSIZE_T_DEFINED
