@@ -42,6 +42,6 @@ LOCAL_EXPORT_C_INCLUDES := \
 
 LOCAL_ARM_MODE := arm
 
-LOCAL_MODULE := libvorbisidec
+LOCAL_MODULE := ext_vorbisidec
 
 include $(BUILD_STATIC_LIBRARY)

@@ -1,7 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE    := spidermonkey_static
+LOCAL_MODULE    := ext_spidermonkey
 LOCAL_MODULE_FILENAME := js_static
 LOCAL_SRC_FILES := $(TARGET_ARCH_ABI)/libjs_static.a
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../../include/android
