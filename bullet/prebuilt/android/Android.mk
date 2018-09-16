@@ -3,7 +3,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE    := ext_bullet
-LOCAL_MODULE_FILENAME := ext_bullet
+LOCAL_MODULE_FILENAME := bullet
 LOCAL_SRC_FILES := $(TARGET_ARCH_ABI)/libLinearMath.a
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../../include
 LOCAL_EXPORT_C_INCLUDES += $(LOCAL_PATH)/../../include/bullet
