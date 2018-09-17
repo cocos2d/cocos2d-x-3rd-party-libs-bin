@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := cocos_flatbuffers_static
+LOCAL_MODULE := ext_flatbuffers
 
 LOCAL_MODULE_FILENAME := flatbuffers
 
