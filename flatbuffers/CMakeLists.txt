@@ -14,7 +14,13 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-add_library(flatbuffers STATIC
+if(BUILD_SHARED_LIBS)
+    set (SHARED_OR_STATIC SHARED)
+else()
+    set (SHARED_OR_STATIC STATIC)
+endif()
+
+add_library(flatbuffers ${SHARED_OR_STATIC}
   ${FLATBUFFERS_SRC}
 )
 

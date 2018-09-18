@@ -2,7 +2,13 @@ set(XXHASH
   xxhash.c
 )
 
-add_library(xxhash STATIC
+if(BUILD_SHARED_LIBS)
+    set (SHARED_OR_STATIC SHARED)
+else()
+    set (SHARED_OR_STATIC STATIC)
+endif()
+
+add_library(xxhash ${SHARED_OR_STATIC}
   ${XXHASH}
 )
 
