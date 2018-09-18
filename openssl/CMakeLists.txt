@@ -10,7 +10,7 @@ include(../cmake/CocosExternalConfig.cmake)
 macro(set_openssl_sub_target sub_lib_name)
   
   set(sub_target_name ext_${sub_lib_name})
-  add_library(${sub_target_name} STATIC IMPORTED)
+  add_library(${sub_target_name} STATIC IMPORTED GLOBAL)
 
   set_target_properties(${sub_target_name} PROPERTIES
     INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include/${platform_name}"

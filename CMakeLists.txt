@@ -25,6 +25,13 @@ add_subdirectory(tiff)
 add_subdirectory(uv)
 add_subdirectory(webp)
 add_subdirectory(websockets)
+add_subdirectory(tinyxml2)
+add_subdirectory(unzip)
+add_subdirectory(xxhash)
+add_subdirectory(xxtea)
+add_subdirectory(clipper)
+add_subdirectory(edtaa3func)
+add_subdirectory(ConvertUTF)
 
 add_library(external empty.cpp)
 
@@ -43,10 +50,18 @@ target_link_libraries(external
     ext_lua
     ext_luajit
     ext_tolua
-    ext_openssl
+    ext_ssl
+    ext_crypto
     ext_png
     ext_tiff
     ext_websockets
+    ext_tinyxml2
+    ext_unzip
+    ext_xxhash
+    ext_xxtea
+    ext_clipper
+    ext_edtaa3func
+    ext_convertUTF
 )
 
 if(ANDROID)
