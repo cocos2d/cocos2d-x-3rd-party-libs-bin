@@ -1,4 +1,11 @@
-set(LUA_SRC
+cmake_minimum_required(VERSION 3.6)
+
+set(lib_name lua)
+set(target_name ext_${lib_name})
+
+project(${lib_name})
+
+set(${target_name}_src
   lapi.c
   lauxlib.c
   lbaselib.c
@@ -31,13 +38,15 @@ set(LUA_SRC
   print.c
 )
 
-add_library(lua STATIC
-  ${LUA_SRC}
+add_library(${target_name} STATIC
+  ${${target_name}_src}
 )
 
-set_target_properties(lua
+set_target_properties(${target_name}
     PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
     FOLDER "External"
 )
+
+# TODO CHECK "lua/prebuilt/ios/liblua.a" IS NECESSARY?

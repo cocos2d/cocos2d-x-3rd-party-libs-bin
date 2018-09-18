@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.6)
 
-set(lib_name tiff)
+set(lib_name websockets)
 set(target_name ext_${lib_name})
 
 project(${lib_name})
@@ -9,12 +9,18 @@ include(../cmake/CocosExternalConfig.cmake)
 
 add_library(${target_name} STATIC IMPORTED)
 
+# include libs depended
+add_subdirectory(../openssl ${CMAKE_BINARY_DIR}/websockets/openssl)
+add_subdirectory(../uv ${CMAKE_BINARY_DIR}/websockets/uv)
+
 set_target_properties(${target_name} PROPERTIES
+  INTERFACE_LINK_LIBRARIES ext_sll ext_crypto ext_uv
   INTERFACE_INCLUDE_DIRECTORIES "include/${platform_name}"
 )
 if(WINDOWS)
   set_target_properties(${target_name} PROPERTIES
-    IMPORTED_LOCATION "${platform_spec_path}/lib{lib_name}.lib"
+    IMPORTED_LOCATION "${platform_spec_path}/${lib_name}.dll"
+    IMPORTED_IMPLIB "${platform_spec_path}/${lib_name}.lib"
   )
 else()
   set_target_properties(${target_name} PROPERTIES

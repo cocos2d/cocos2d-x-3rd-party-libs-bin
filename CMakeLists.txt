@@ -1,0 +1,56 @@
+cmake_minimum_required(VERSION 3.6)
+project(external)
+
+if(ANDROID)
+    add_subdirectory(android-specific/cpufeatures)
+    add_subdirectory(android-specific/pvmp3dec)
+    add_subdirectory(android-specific/tremolo)
+endif()
+
+add_subdirectory(Box2D)
+add_subdirectory(chipmunk)
+add_subdirectory(freetype2)
+add_subdirectory(recast)
+add_subdirectory(zlib)
+add_subdirectory(bullet)
+add_subdirectory(curl)
+# add_subdirectory(glfw)
+add_subdirectory(jpeg)
+add_subdirectory(lua/lua)
+add_subdirectory(lua/luajit)
+add_subdirectory(lua/tolua)
+add_subdirectory(openssl)
+add_subdirectory(png)
+# add_subdirectory(rapidjson)
+add_subdirectory(tiff)
+add_subdirectory(uv)
+add_subdirectory(webp)
+add_subdirectory(websockets)
+
+add_library(external empty.cpp)
+
+target_link_libraries(external
+    ext_box2d
+    ext_chipmunk
+    ext_freetype
+    ext_recast
+    ext_zlib
+    ext_jpeg
+    ext_uv_a
+    ext_webp
+    ext_bullet
+    ext_curl
+    # ext_glfw
+    ext_lua
+    ext_luajit
+    ext_tolua
+    ext_openssl
+    ext_ext_png
+    # ext_rapidjson
+    ext_tiff
+    ext_websockets
+)
+
+if(ANDROID)
+    target_link_libraries(external ext_pvmp3dec ext_tremolo)
+endif()
