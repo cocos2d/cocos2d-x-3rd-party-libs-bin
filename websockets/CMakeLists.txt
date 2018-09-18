@@ -7,15 +7,15 @@ project(${lib_name})
 
 include(../cmake/CocosExternalConfig.cmake)
 
-add_library(${target_name} STATIC IMPORTED)
+add_library(${target_name} STATIC IMPORTED GLOBAL)
 
 # include libs depended
-add_subdirectory(../openssl ${CMAKE_BINARY_DIR}/websockets/openssl)
-add_subdirectory(../uv ${CMAKE_BINARY_DIR}/websockets/uv)
+# add_subdirectory(../openssl ${CMAKE_BINARY_DIR}/websockets/openssl)
+# add_subdirectory(../uv ${CMAKE_BINARY_DIR}/websockets/uv)
 
 set_target_properties(${target_name} PROPERTIES
   INTERFACE_LINK_LIBRARIES ext_sll ext_crypto ext_uv
-  INTERFACE_INCLUDE_DIRECTORIES "include/${platform_name}"
+  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include/${platform_name}"
 )
 if(WINDOWS)
   set_target_properties(${target_name} PROPERTIES

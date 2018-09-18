@@ -8,6 +8,35 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
     set(build_type_folder "debug")
 endif()
 
+ #Please use them everywhere
+ #WINDOWS   =   Windows Desktop
+ #ANDROID    =  Android
+ #IOS    =  iOS
+ #MACOSX    =  MacOS X
+ #LINUX      =   Linux
+ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+     set(WINDOWS TRUE)
+     set(SYSTEM_STRING "Windows Desktop")
+ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Android")
+     set(SYSTEM_STRING "Android")
+ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+     if(ANDROID)
+         set(SYSTEM_STRING "Android")
+     else()
+         set(LINUX TRUE)
+         set(SYSTEM_STRING "Linux")
+     endif()
+ elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+     if(IOS)
+         set(APPLE TRUE)
+         set(SYSTEM_STRING "IOS")
+     else()
+         set(APPLE TRUE)
+         set(MACOSX TRUE)
+         set(SYSTEM_STRING "Mac OSX")
+     endif()
+ endif()
+
 # set platform specific path
 if(IOS)
     set(platform_name ios)
@@ -25,6 +54,9 @@ elseif(WINDOWS)
     else()
         set(platform_spec_path win32)
     endif()
+elseif(MACOSX)
+    set(platform_name mac)
+    set(platform_spec_path mac)
 elseif(LINUX)
     set(platform_name linux)
     set(platform_spec_path linux/64-bit)

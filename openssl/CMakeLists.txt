@@ -13,7 +13,7 @@ macro(set_openssl_sub_target sub_lib_name)
   add_library(${sub_target_name} STATIC IMPORTED)
 
   set_target_properties(${sub_target_name} PROPERTIES
-    INTERFACE_INCLUDE_DIRECTORIES "include/${platform_name}"
+    INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include/${platform_name}"
   )
   if(WINDOWS)
     set_target_properties(${sub_target_name} PROPERTIES

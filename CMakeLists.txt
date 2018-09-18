@@ -36,7 +36,7 @@ target_link_libraries(external
     ext_recast
     ext_zlib
     ext_jpeg
-    ext_uv_a
+    ext_uv
     ext_webp
     ext_bullet
     ext_curl
@@ -45,11 +45,17 @@ target_link_libraries(external
     ext_luajit
     ext_tolua
     ext_openssl
-    ext_ext_png
+    ext_png
     # ext_rapidjson
     ext_tiff
     ext_websockets
 )
+get_target_property(tmp_include ext_box2d INTERFACE_INCLUDE_DIRECTORIES)
+message("EXTERNAL box2d include dir: ${tmp_include}")
+# file(GENERATE 
+#     OUTPUT "includes_external.txt" 
+#     CONTENT "$<TARGET_PROPERTY:ext_box2d,INTERFACE_INCLUDE_DIRECTORIES>\n"
+# )
 
 if(ANDROID)
     target_link_libraries(external ext_pvmp3dec ext_tremolo)
