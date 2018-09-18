@@ -14,14 +14,13 @@ add_subdirectory(recast)
 add_subdirectory(zlib)
 add_subdirectory(bullet)
 add_subdirectory(curl)
-# add_subdirectory(glfw)
+add_subdirectory(glfw3)
 add_subdirectory(jpeg)
 add_subdirectory(lua/lua)
 add_subdirectory(lua/luajit)
 add_subdirectory(lua/tolua)
 add_subdirectory(openssl)
 add_subdirectory(png)
-# add_subdirectory(rapidjson)
 add_subdirectory(tiff)
 add_subdirectory(uv)
 add_subdirectory(webp)
@@ -40,23 +39,16 @@ target_link_libraries(external
     ext_webp
     ext_bullet
     ext_curl
-    # ext_glfw
+    ext_glfw3
     ext_lua
     ext_luajit
     ext_tolua
     ext_openssl
     ext_png
-    # ext_rapidjson
     ext_tiff
     ext_websockets
 )
-get_target_property(tmp_include ext_box2d INTERFACE_INCLUDE_DIRECTORIES)
-message("EXTERNAL box2d include dir: ${tmp_include}")
-# file(GENERATE 
-#     OUTPUT "includes_external.txt" 
-#     CONTENT "$<TARGET_PROPERTY:ext_box2d,INTERFACE_INCLUDE_DIRECTORIES>\n"
-# )
 
 if(ANDROID)
-    target_link_libraries(external ext_pvmp3dec ext_tremolo)
+    target_link_libraries(external cpufeatures ext_pvmp3dec ext_tremolo)
 endif()
