@@ -32,6 +32,8 @@ add_subdirectory(xxtea)
 add_subdirectory(clipper)
 add_subdirectory(edtaa3func)
 add_subdirectory(ConvertUTF)
+add_subdirectory(poly2tri)
+add_subdirectory(md5)
 
 add_library(external empty.cpp)
 
@@ -62,6 +64,8 @@ target_link_libraries(external
     ext_clipper
     ext_edtaa3func
     ext_convertUTF
+    ext_poly2tri
+    ext_md5
 )
 
 if(ANDROID)

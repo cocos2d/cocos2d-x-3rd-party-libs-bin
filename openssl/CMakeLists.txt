@@ -17,12 +17,12 @@ macro(set_openssl_sub_target sub_lib_name)
   )
   if(WINDOWS)
     set_target_properties(${sub_target_name} PROPERTIES
-      IMPORTED_LOCATION "${platform_spec_path}/lib{sub_lib_name}-1_1.dll"
-      IMPORTED_IMPLIB "${platform_spec_path}/lib{sub_lib_name}.lib"
+      IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/${platform_spec_path}/lib{sub_lib_name}-1_1.dll"
+      IMPORTED_IMPLIB "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/${platform_spec_path}/lib{sub_lib_name}.lib"
     )
   else()
     set_target_properties(${sub_target_name} PROPERTIES
-      IMPORTED_LOCATION "${platform_spec_path}/lib${sub_lib_name}.a"
+      IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/${platform_spec_path}/lib${sub_lib_name}.a"
     )
   endif()
 endmacro()

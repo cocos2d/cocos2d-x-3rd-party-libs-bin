@@ -18,29 +18,29 @@ set_property(TARGET ${target_name} APPEND PROPERTY
 
 if(WINDOWS)
   set_target_properties(${target_name} PROPERTIES
-    IMPORTED_LOCATION "${platform_spec_path}/lib{lib_name}.lib"
+    IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/${platform_spec_path}/lib{lib_name}.lib"
   )
 else()
   set_target_properties(${target_name} PROPERTIES
-    IMPORTED_LOCATION "${platform_spec_path}/libLinearMath.a"
+    IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/${platform_spec_path}/libLinearMath.a"
   )
 
   # multi libs
   add_library(bulletcollision STATIC IMPORTED)
   set_target_properties(bulletcollision PROPERTIES
-    IMPORTED_LOCATION "${platform_spec_path}/libBulletCollision.a"
+    IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/${platform_spec_path}/libBulletCollision.a"
   )
   add_library(bulletdynamics STATIC IMPORTED)
   set_target_properties(bulletdynamics PROPERTIES
-    IMPORTED_LOCATION "${platform_spec_path}/libBulletDynamics.a"
+    IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/${platform_spec_path}/libBulletDynamics.a"
   )
   add_library(bulletmultithreaded STATIC IMPORTED)
   set_target_properties(bulletmultithreaded PROPERTIES
-    IMPORTED_LOCATION "${platform_spec_path}/libBulletMultiThreaded.a"
+    IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/${platform_spec_path}/libBulletMultiThreaded.a"
   )
   add_library(minicl STATIC IMPORTED)
   set_target_properties(minicl PROPERTIES
-    IMPORTED_LOCATION "${platform_spec_path}/libMiniCL.a"
+    IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/${platform_spec_path}/libMiniCL.a"
   )
 
   # mark multi libs link into single one: "${target_name}"

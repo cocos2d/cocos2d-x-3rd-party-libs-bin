@@ -15,10 +15,11 @@ set_target_properties(${target_name} PROPERTIES
 
 if(WINDOWS)
   set_target_properties(${target_name} PROPERTIES
-    IMPORTED_LOCATION "${platform_spec_path}/lib{lib_name}.lib"
+    # need use absolutely path
+    IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/${platform_spec_path}/lib{lib_name}.lib"
   )
 else()
   set_target_properties(${target_name} PROPERTIES
-    IMPORTED_LOCATION "${platform_spec_path}/lib${lib_name}.a"
+    IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/${platform_spec_path}/lib${lib_name}.a"
   )
 endif()
