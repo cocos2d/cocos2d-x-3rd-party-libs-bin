@@ -78,7 +78,7 @@ if(ANDROID)
     add_subdirectory(android-specific/pvmp3dec)
     add_subdirectory(android-specific/tremolo)
     target_link_libraries(external 
-        cpufeatures 
+        ext_cpufeatures 
         ext_pvmp3dec 
         ext_tremolo
     )
@@ -97,12 +97,11 @@ if(WINDOWS OR MACOSX OR LINUX)
     target_link_libraries(external 
         ext_glfw3
     )
+endif()
 
 if(MACOSX OR ANDROID)
     add_subdirectory(zlib)
     target_link_libraries(external 
         ext_zlib
     )
-endif()
-
 endif()

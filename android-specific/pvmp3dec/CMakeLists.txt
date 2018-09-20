@@ -42,7 +42,7 @@ add_library(${target_name} STATIC
 )
 
 target_include_directories(${target_name} PUBLIC include)
-target_include_directories(${target_name} PRIVATE src)
+target_include_directories(${target_name} PUBLIC src)
 set_target_properties(${target_name}
     PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
