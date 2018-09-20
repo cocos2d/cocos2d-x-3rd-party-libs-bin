@@ -7,10 +7,8 @@ add_subdirectory(Box2D)
 add_subdirectory(chipmunk)
 add_subdirectory(freetype2)
 add_subdirectory(recast)
-add_subdirectory(zlib)
 add_subdirectory(bullet)
 add_subdirectory(curl)
-add_subdirectory(glfw3)
 add_subdirectory(jpeg)
 add_subdirectory(openssl)
 add_subdirectory(png)
@@ -33,13 +31,11 @@ target_link_libraries(external
     ext_chipmunk
     ext_freetype
     ext_recast
-    ext_zlib
     ext_jpeg
     ext_uv
     ext_webp
     ext_bullet
     ext_curl
-    ext_glfw3
     ext_ssl
     ext_crypto
     ext_png
@@ -94,4 +90,19 @@ if(WINDOWS)
     target_link_libraries(external 
         ext_sqlite3
     )
+endif()
+
+if(WINDOWS OR MACOSX OR LINUX)
+    add_subdirectory(glfw3)
+    target_link_libraries(external 
+        ext_glfw3
+    )
+
+if(MACOSX OR ANDROID)
+    add_subdirectory(zlib)
+    target_link_libraries(external 
+        ext_zlib
+    )
+endif()
+
 endif()

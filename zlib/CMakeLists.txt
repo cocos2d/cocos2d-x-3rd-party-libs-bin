@@ -12,13 +12,9 @@ add_library(${target_name} STATIC IMPORTED GLOBAL)
 set_target_properties(${target_name} PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
-if(WINDOWS)
-  # TOCHECK, no windows prebuilt libs?
-  # set_target_properties(${target_name} PROPERTIES
-  #   IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/${platform_spec_path}/lib{lib_name}.lib"
-  # )
-else()
-  set_target_properties(${target_name} PROPERTIES
-    IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/${platform_spec_path}/libz.a"
-  )
-endif()
+
+# MACOSX OR ANDROID
+set_target_properties(${target_name} PROPERTIES
+  IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/${platform_spec_path}/libz.a"
+)
+

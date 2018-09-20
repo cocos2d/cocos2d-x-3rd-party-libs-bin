@@ -43,7 +43,7 @@ if(IOS)
     set(platform_spec_path ios)
 elseif(ANDROID)
     set(platform_name android)
-    set(platform_spec_path android/${TARGET_ARCH_ABI})
+    set(platform_spec_path android/${ANDROID_ABI})
 elseif(WINDOWS)
     set(platform_name win32)
     # win32/, win32/debug, win32/debug-lib 
