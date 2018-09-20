@@ -2,18 +2,12 @@
 set(CMAKE_BUILD_TYPE DEBUG)
 
 # some libs existed debug and release both type
-string(TOLOWER ${CMAKE_BUILD_TYPE} build_type_folder)
+string(TOLOWER ${CMAKE_BUILD_TYPE} _type_folder)
 # RelWithDebInfo is one of Visual Studio 2017 default build type
 if(${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
-    set(build_type_folder "debug")
+    set(_type_folder "debug")
 endif()
 
- #Please use them everywhere
- #WINDOWS   =   Windows Desktop
- #ANDROID    =  Android
- #IOS    =  iOS
- #MACOSX    =  MacOS X
- #LINUX      =   Linux
  if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
      set(WINDOWS TRUE)
      set(SYSTEM_STRING "Windows Desktop")
@@ -38,6 +32,7 @@ endif()
  endif()
 
 # set platform specific path
+set(_path_prefix ${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/)
 if(IOS)
     set(platform_name ios)
     set(platform_spec_path ios)
@@ -47,10 +42,10 @@ elseif(ANDROID)
 elseif(WINDOWS)
     set(platform_name win32)
     # win32/, win32/debug, win32/debug-lib 
-    if(EXISTS win32/${build_type}-lib)
-        set(platform_spec_path win32/${build_type}-lib)
-    elseif(EXISTS win32/${build_type})
-        set(platform_spec_path win32/${build_type})
+    if(EXISTS ${_path_prefix}/win32/${_type_folder}-lib)
+        set(platform_spec_path win32/${_type_folder}-lib)
+    elseif(EXISTS ${_path_prefix}win32/${_type_folder})
+        set(platform_spec_path win32/${_type_folder})
     else()
         set(platform_spec_path win32)
     endif()
@@ -62,3 +57,4 @@ elseif(LINUX)
     set(platform_spec_path linux/64-bit)
 endif()
 
+set(platform_spec_path "${_path_prefix}${platform_spec_path}")

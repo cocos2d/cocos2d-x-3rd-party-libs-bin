@@ -87,8 +87,18 @@ endif()
 if(WINDOWS)
     # sqlite3 prebuilt only existed at windows
     add_subdirectory(sqlite3)
+    add_subdirectory(win32-specific/gles)
+    add_subdirectory(win32-specific/icon)
+    add_subdirectory(win32-specific/MP3Decoder)
+    add_subdirectory(win32-specific/OggDecoder)
+    add_subdirectory(win32-specific/OpenalSoft)
     target_link_libraries(external 
         ext_sqlite3
+        ext_gles
+        ext_icon
+        ext_MP3Decoder
+        ext_OggDecoder
+        ext_OpenalSoft
     )
 endif()
 
@@ -99,7 +109,7 @@ if(WINDOWS OR MACOSX OR LINUX)
     )
 endif()
 
-if(MACOSX OR ANDROID)
+if(MACOSX OR ANDROID OR WINDOWS)
     add_subdirectory(zlib)
     target_link_libraries(external 
         ext_zlib

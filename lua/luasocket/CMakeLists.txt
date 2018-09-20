@@ -7,15 +7,12 @@ project(${lib_name})
 
 set(${target_name}_src
   buffer.c
-  serial.c
   io.c
   timeout.c
   select.c
-  unix.c
   udp.c
   mime.c
   tcp.c
-  usocket.c
   auxiliar.c
   inet.c
   luasocket.c
@@ -25,8 +22,14 @@ set(${target_name}_src
 )
 
 if(WINDOWS)
-  list(${target_name}_src APPEND
+  list(APPEND ${target_name}_src 
     wsocket.c
+  )
+else()
+  list(APPEND ${target_name}_src 
+    unix.c
+    usocket.c
+    serial.c
   )
 endif()
 

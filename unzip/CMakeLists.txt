@@ -15,6 +15,8 @@ add_library(${target_name} STATIC
   ${${target_name}_src}
 )
 
+target_link_libraries(${target_name} ext_zlib)
+
 target_include_directories(${target_name} PUBLIC .)
 
 set_target_properties(${target_name}

@@ -9,6 +9,6 @@ add_library(${target_name} SHARED IMPORTED)
 
 set_target_properties(${target_name} PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include"
-  IMPORTED_LOCATION "prebuilt/64-bit/lib{lib_name}.so"
+  IMPORTED_LOCATION "prebuilt/64-bit/lib${lib_name}.so"
 )
 
