@@ -14,9 +14,12 @@ add_library(${target_name} STATIC IMPORTED GLOBAL)
 # add_subdirectory(../uv ${CMAKE_BINARY_DIR}/websockets/uv)
 
 set_target_properties(${target_name} PROPERTIES
-  INTERFACE_LINK_LIBRARIES ext_ssl ext_crypto ext_uv
   INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include/${platform_name}"
 )
+set_property(TARGET ${target_name} APPEND PROPERTY INTERFACE_LINK_LIBRARIES "ext_ssl")
+set_property(TARGET ${target_name} APPEND PROPERTY INTERFACE_LINK_LIBRARIES "ext_crypto")
+set_property(TARGET ${target_name} APPEND PROPERTY INTERFACE_LINK_LIBRARIES "ext_uv")
+
 if(WINDOWS)
   set_target_properties(${target_name} PROPERTIES
     IMPORTED_LOCATION "${platform_spec_path}/${lib_name}.dll"
