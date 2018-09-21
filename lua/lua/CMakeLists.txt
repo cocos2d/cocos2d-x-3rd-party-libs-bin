@@ -51,6 +51,8 @@ else()
     ${${target_name}_src}
   )
 
+  target_include_directories(${target_name} INTERFACE .)
+
   set_target_properties(${target_name}
       PROPERTIES
       ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
