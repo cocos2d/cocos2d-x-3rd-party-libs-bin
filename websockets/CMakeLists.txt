@@ -22,8 +22,7 @@ set_property(TARGET ${target_name} APPEND PROPERTY INTERFACE_LINK_LIBRARIES "ext
 
 if(WINDOWS)
   set_target_properties(${target_name} PROPERTIES
-    # IMPORTED_LOCATION "${platform_spec_path}/${lib_name}.dll"
-    # IMPORTED_IMPLIB "${platform_spec_path}/${lib_name}.lib"
+    CC_DEPEND_DLLS "${platform_spec_path}/${lib_name}.dll"
     IMPORTED_LOCATION "${platform_spec_path}/${lib_name}.lib"
   )
 else()

@@ -117,3 +117,12 @@ endif()
 # unzip depend on zlib
 add_subdirectory(unzip)
 target_link_libraries(external ext_unzip)
+
+# put "external" into External folder, too
+set_target_properties(external
+    PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+    FOLDER "External"
+)
+

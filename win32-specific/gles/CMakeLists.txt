@@ -14,7 +14,6 @@ set_target_properties(${target_name} PROPERTIES
 )
 
 set_target_properties(${target_name} PROPERTIES
-  #  IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/glew32.dll"
-  #  IMPORTED_IMPLIB "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/glew32.dll"
+  CC_DEPEND_DLLS "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/glew32.dll"
   IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/glew32.lib"
 )
