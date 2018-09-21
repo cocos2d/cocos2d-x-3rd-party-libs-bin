@@ -17,7 +17,6 @@ add_subdirectory(uv)
 add_subdirectory(webp)
 add_subdirectory(websockets)
 add_subdirectory(tinyxml2)
-add_subdirectory(unzip)
 add_subdirectory(xxhash)
 add_subdirectory(xxtea)
 add_subdirectory(clipper)
@@ -42,7 +41,6 @@ target_link_libraries(external
     ext_tiff
     ext_websockets
     ext_tinyxml2
-    ext_unzip
     ext_xxhash
     ext_xxtea
     ext_clipper
@@ -115,3 +113,7 @@ if(MACOSX OR ANDROID OR WINDOWS)
         ext_zlib
     )
 endif()
+
+# unzip depend on zlib
+add_subdirectory(unzip)
+target_link_libraries(external ext_unzip)
