@@ -21,8 +21,9 @@ elseif(WINDOWS)
     INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/../win32-specific/zlib/include"
   )
   set_target_properties(${target_name} PROPERTIES
-    IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/../win32-specific/zlib/prebuilt/zlib1.dll"
-    IMPORTED_IMPLIB "${CMAKE_CURRENT_SOURCE_DIR}/../win32-specific/zlib/prebuilt/libzlib.lib"
+    # IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/../win32-specific/zlib/prebuilt/zlib1.dll"
+    # IMPORTED_IMPLIB "${CMAKE_CURRENT_SOURCE_DIR}/../win32-specific/zlib/prebuilt/libzlib.lib"
+    IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/../win32-specific/zlib/prebuilt/libzlib.lib"
   )
 endif()
 

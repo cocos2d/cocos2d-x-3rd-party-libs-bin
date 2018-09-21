@@ -14,8 +14,9 @@ set_target_properties(${target_name} PROPERTIES
 )
 if(WINDOWS)
   set_target_properties(${target_name} PROPERTIES
-    IMPORTED_LOCATION "${platform_spec_path}/mozjs-33.dll"
-    IMPORTED_IMPLIB "${platform_spec_path}/mozjs-33.lib"
+    # IMPORTED_LOCATION "${platform_spec_path}/mozjs-33.dll"
+    # IMPORTED_IMPLIB "${platform_spec_path}/mozjs-33.lib"
+    IMPORTED_LOCATION "${platform_spec_path}/mozjs-33.lib"
   )
 else()
   set_target_properties(${target_name} PROPERTIES
