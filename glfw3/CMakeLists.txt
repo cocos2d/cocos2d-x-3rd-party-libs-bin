@@ -12,7 +12,11 @@ add_library(${target_name} STATIC IMPORTED GLOBAL)
 set_target_properties(${target_name} PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include/${platform_name}"
 )
-if(WINDOWS)
+if(LINUX)
+  set_target_properties(${target_name} PROPERTIES
+    IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/linux/lib${lib_name}.a"
+  )
+elseif(WINDOWS)
   set_target_properties(${target_name} PROPERTIES
     IMPORTED_LOCATION "${platform_spec_path}/${lib_name}.lib"
   )

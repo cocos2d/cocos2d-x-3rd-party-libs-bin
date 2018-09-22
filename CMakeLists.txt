@@ -71,7 +71,13 @@ if(NOT LINUX)
         ext_png
     )
 endif(NOT LINUX)
-
+    
+if(LINUX)
+    add_subdirectory(linux-specific/fmod)
+    target_link_libraries(external 
+        ext_fmod
+    )
+endif()
 
 if(ANDROID)
     add_subdirectory(android-specific/cpufeatures)
