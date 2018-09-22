@@ -50,23 +50,20 @@ target_link_libraries(external
     ext_md5
 )
 
+# use lua/js specific libs by property to prevent conflict
+if(BUILD_JS_LIBS)
+    add_subdirectory(spidermonkey)
+    set_property(TARGET external APPEND PROPERTY
+        CC_JS_DEPEND ext_spidermonkey
+    )
+endif()
 if(BUILD_LUA_LIBS)
     add_subdirectory(lua/lua)
     add_subdirectory(lua/luajit)
     add_subdirectory(lua/tolua)
     add_subdirectory(lua/luasocket)
-    target_link_libraries(external
-        ext_lua
-        ext_luajit
-        ext_tolua
-        ext_luasocket
-    )
-endif()
-
-if(BUILD_JS_LIBS)
-    add_subdirectory(spidermonkey)
-    target_link_libraries(external
-        ext_spidermonkey
+    set_property(TARGET external APPEND PROPERTY 
+        CC_LUA_DEPEND ext_lua ext_luajit ext_tolua ext_luasocket
     )
 endif()
 
