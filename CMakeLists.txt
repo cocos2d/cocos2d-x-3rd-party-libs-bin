@@ -8,10 +8,8 @@ add_subdirectory(chipmunk)
 add_subdirectory(freetype2)
 add_subdirectory(recast)
 add_subdirectory(bullet)
-add_subdirectory(curl)
 add_subdirectory(jpeg)
 add_subdirectory(openssl)
-add_subdirectory(png)
 add_subdirectory(tiff)
 add_subdirectory(uv)
 add_subdirectory(webp)
@@ -34,10 +32,8 @@ target_link_libraries(external
     ext_uv
     ext_webp
     ext_bullet
-    ext_curl
     ext_ssl
     ext_crypto
-    ext_png
     ext_tiff
     ext_websockets
     ext_tinyxml2
@@ -66,6 +62,15 @@ if(BUILD_LUA_LIBS)
         CC_LUA_DEPEND ext_lua ext_luajit ext_tolua ext_luasocket
     )
 endif()
+
+if(NOT LINUX)
+    add_subdirectory(curl)
+    add_subdirectory(png)
+    target_link_libraries(external 
+        ext_curl
+        ext_png
+    )
+endif(NOT LINUX)
 
 
 if(ANDROID)
