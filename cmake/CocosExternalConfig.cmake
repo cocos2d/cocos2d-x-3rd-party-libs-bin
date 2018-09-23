@@ -1,13 +1,5 @@
-# tmp test
-set(CMAKE_BUILD_TYPE DEBUG)
 
-# some libs existed debug and release both type
-string(TOLOWER ${CMAKE_BUILD_TYPE} _type_folder)
-# RelWithDebInfo is one of Visual Studio 2017 default build type
-if(${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
-    set(_type_folder "debug")
-endif()
-
+# set friendly platform define
  if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
      set(WINDOWS TRUE)
      set(SYSTEM_STRING "Windows Desktop")
@@ -30,6 +22,15 @@ endif()
          set(SYSTEM_STRING "Mac OSX")
      endif()
  endif()
+
+# part libs existed debug and release both type
+string(TOLOWER ${CMAKE_BUILD_TYPE} _type_folder)
+# Visual Studio 2017 default build type include "Debug Release MinSizRel RelWithDebInfo"
+if(${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
+    set(_type_folder "debug")
+elseif(${CMAKE_BUILD_TYPE} STREQUAL "MinSizRel")
+    set(_type_folder "release")
+endif()
 
 # set platform specific path
 set(_path_prefix ${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/)
