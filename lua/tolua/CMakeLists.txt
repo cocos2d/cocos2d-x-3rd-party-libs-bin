@@ -1,4 +1,11 @@
-set(TOLUA_SRC
+cmake_minimum_required(VERSION 3.6)
+
+set(lib_name tolua)
+set(target_name ext_${lib_name})
+
+project(${lib_name})
+
+set(${target_name}_src
   tolua_event.c
   tolua_is.c
   tolua_map.c
@@ -6,16 +13,14 @@ set(TOLUA_SRC
   tolua_to.c
 )
 
-include_directories(
-  ../lua
+add_library(${target_name} STATIC
+  ${${target_name}_src}
 )
 
+target_include_directories(${target_name} PRIVATE ../lua)
+target_include_directories(${target_name} PUBLIC .)
 
-add_library(tolua STATIC
-  ${TOLUA_SRC}
-)
-
-set_target_properties(tolua
+set_target_properties(${target_name}
     PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"

@@ -1,13 +1,23 @@
-set(SOURCE CCModuleWEBP.cpp)
+cmake_minimum_required(VERSION 3.6)
 
-add_library(cocoswebp STATIC ${SOURCE})
+set(lib_name webp)
+set(target_name ext_${lib_name})
 
-target_link_libraries(cocoswebp webp cocos2d)
+project(${lib_name})
 
-set_target_properties(cocoswebp
-    PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-    FOLDER "External"
+include(../cmake/CocosExternalConfig.cmake)
+
+add_library(${target_name} STATIC IMPORTED GLOBAL)
+
+set_target_properties(${target_name} PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include/${platform_name}"
 )
-
+if(WINDOWS)
+  set_target_properties(${target_name} PROPERTIES
+    IMPORTED_LOCATION "${platform_spec_path}/lib${lib_name}.lib"
+  )
+else()
+  set_target_properties(${target_name} PROPERTIES
+    IMPORTED_LOCATION "${platform_spec_path}/lib${lib_name}.a"
+  )
+endif()

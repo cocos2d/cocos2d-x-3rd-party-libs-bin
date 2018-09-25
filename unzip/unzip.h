@@ -43,7 +43,8 @@
 #ifndef _unz64_H
 #define _unz64_H
 
-#include "platform/CCPlatformDefine.h"
+// #include "platform/CCPlatformDefine.h"
+#define CC_DLL
 
 #ifndef _ZLIB_H
 #include "zlib.h"
