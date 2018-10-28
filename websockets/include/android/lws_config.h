@@ -6,7 +6,7 @@
 	#endif
 #endif
 
-#define LWS_INSTALL_DATADIR "/Users/cocos/Github/cocos2d-x-3rd-party-libs-src/contrib/install-android/arm64/share"
+#define LWS_INSTALL_DATADIR "/Users/cocos/Github/cocos2d-x-3rd-party-libs-src/contrib/install-android/x86/share"
 
 /* Define to 1 to use wolfSSL/CyaSSL as a replacement for OpenSSL.
  * LWS_OPENSSL_SUPPORT needs to be set also for this to work. */
@@ -35,7 +35,7 @@
 #define LWS_LIBRARY_VERSION_NUMBER (LWS_LIBRARY_VERSION_MAJOR*1000000)+(LWS_LIBRARY_VERSION_MINOR*1000)+LWS_LIBRARY_VERSION_PATCH
 
 /* The current git commit hash that we're building from */
-#define LWS_BUILD_HASH "cocos@cocoss-MacBook-Pro.local-v3.4-182-g408ba56"
+#define LWS_BUILD_HASH "cocos@cocoss-MacBook-Pro.local-v3.4-178-gca5a4a0"
 
 /* Build with OpenSSL support */
 #define LWS_OPENSSL_SUPPORT
