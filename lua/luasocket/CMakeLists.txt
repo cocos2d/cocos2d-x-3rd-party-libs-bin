@@ -38,6 +38,10 @@ add_library(${target_name} STATIC
   ${${target_name}_src}
 )
 
+if(LINUX)
+  target_compile_definitions(${target_name} PRIVATE _GNU_SOURCE)
+endif()
+
 target_include_directories(${target_name} 
   INTERFACE ..
   PRIVATE ../lua
