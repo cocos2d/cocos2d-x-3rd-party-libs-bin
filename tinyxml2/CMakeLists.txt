@@ -21,5 +21,3 @@ set_target_properties(${target_name}
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
     FOLDER "External"
 )
-
-# TOCHECK, "tinyxml2.h" depend on cocos platform headers ""platform/CCPlatformMacros.h"", why?
