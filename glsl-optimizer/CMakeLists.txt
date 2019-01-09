@@ -16,14 +16,12 @@ set_target_properties(${target_name} PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
 
-if(NOT WINDOWS AND NOT ANDROID)
-  set_target_properties(ext_glcpp_library PROPERTIES
-    IMPORTED_LOCATION "${platform_spec_path}/libglcpp-library.a"
-  )
-  set_target_properties(ext_glsl_optimizer PROPERTIES
-    IMPORTED_LOCATION "${platform_spec_path}/libglsl_optimizer.a"
-  )
-  set_target_properties(ext_libmesa PROPERTIES
-    IMPORTED_LOCATION "${platform_spec_path}/libmesa.a"
-  )
-endif()
+set_target_properties(ext_glcpp_library PROPERTIES
+  IMPORTED_LOCATION "${platform_spec_path}/libglcpp-library.a"
+)
+set_target_properties(ext_glsl_optimizer PROPERTIES
+  IMPORTED_LOCATION "${platform_spec_path}/libglsl_optimizer.a"
+)
+set_target_properties(ext_libmesa PROPERTIES
+  IMPORTED_LOCATION "${platform_spec_path}/libmesa.a"
+)
