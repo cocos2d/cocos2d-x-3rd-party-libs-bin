@@ -143,7 +143,7 @@ static long ZCALLBACK ftell_file_func (voidpf opaque, voidpf stream)
 static ZPOS64_T ZCALLBACK ftell64_file_func (voidpf opaque, voidpf stream)
 {
     ZPOS64_T ret;
-    ret = ftello((FILE *)stream);
+    ret = ftell((FILE *)stream);
     return ret;
 }
 
@@ -186,7 +186,7 @@ static long ZCALLBACK fseek64_file_func (voidpf  opaque, voidpf stream, ZPOS64_T
         break;
     default: return -1;
     }
-    if(fseeko((FILE *)stream, offset, fseek_origin) != 0)
+    if(fseek((FILE *)stream, offset, fseek_origin) != 0)
         return -1;
     return 0;
 }
