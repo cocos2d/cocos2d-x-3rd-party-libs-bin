@@ -10,15 +10,19 @@ include(../cmake/CocosExternalConfig.cmake)
 macro(set_openssl_sub_target sub_lib_name)
   
   set(sub_target_name ext_${sub_lib_name})
-  add_library(${sub_target_name} STATIC IMPORTED GLOBAL)
+  if(WINDOWS)
+    add_library(${sub_target_name} SHARED IMPORTED GLOBAL)
+  else()
+    add_library(${sub_target_name} STATIC IMPORTED GLOBAL)
+  endif()
 
   set_target_properties(${sub_target_name} PROPERTIES
     INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include/${platform_name}"
   )
   if(WINDOWS)
     set_target_properties(${sub_target_name} PROPERTIES
-      CC_DEPEND_DLLS "${platform_spec_path}/lib${sub_lib_name}-1_1.dll"
-      IMPORTED_LOCATION "${platform_spec_path}/lib${sub_lib_name}.lib"
+      IMPORTED_LOCATION "${platform_spec_path}/lib${sub_lib_name}-1_1.dll"
+      IMPORTED_IMPLIB "${platform_spec_path}/lib${sub_lib_name}.lib"
     )
   else()
     set_target_properties(${sub_target_name} PROPERTIES
