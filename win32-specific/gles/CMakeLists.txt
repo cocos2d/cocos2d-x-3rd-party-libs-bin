@@ -7,13 +7,13 @@ project(${lib_name})
 
 include(../../cmake/CocosExternalConfig.cmake)
 
-add_library(${target_name} STATIC IMPORTED GLOBAL)
+add_library(${target_name} SHARED IMPORTED GLOBAL)
 
 set_target_properties(${target_name} PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/include/OGLES
 )
 
 set_target_properties(${target_name} PROPERTIES
-  CC_DEPEND_DLLS "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/glew32.dll"
-  IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/glew32.lib"
+  IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/glew32.dll"
+  IMPORTED_IMPLIB "${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/glew32.lib"
 )
