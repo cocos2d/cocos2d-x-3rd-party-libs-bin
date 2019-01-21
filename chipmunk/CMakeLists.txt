@@ -14,7 +14,8 @@ set_target_properties(${target_name} PROPERTIES
 )
 if(WINDOWS)
   set_target_properties(${target_name} PROPERTIES
-    IMPORTED_LOCATION "${platform_spec_path}/lib${lib_name}.lib"
+    IMPORTED_LOCATION_DEBUG "${platform_spec_path}/debug-lib/lib${lib_name}.lib"
+    IMPORTED_LOCATION_RELEASE "${platform_spec_path}/release-lib/lib${lib_name}.lib"
   )
 else()
   set_target_properties(${target_name} PROPERTIES
