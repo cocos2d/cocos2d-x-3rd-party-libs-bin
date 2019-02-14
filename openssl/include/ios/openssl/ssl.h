@@ -42,23 +42,23 @@
 #ifndef HEADER_SSL_H
 # define HEADER_SSL_H
 
-# include <openssl/e_os2.h>
-# include <openssl/opensslconf.h>
-# include <openssl/comp.h>
-# include <openssl/bio.h>
+# include "openssl/e_os2.h"
+# include "openssl/opensslconf.h"
+# include "openssl/comp.h"
+# include "openssl/bio.h"
 # if OPENSSL_API_COMPAT < 0x10100000L
-#  include <openssl/x509.h>
-#  include <openssl/crypto.h>
-#  include <openssl/lhash.h>
-#  include <openssl/buffer.h>
+#  include "openssl/x509.h"
+#  include "openssl/crypto.h"
+#  include "openssl/lhash.h"
+#  include "openssl/buffer.h"
 # endif
-# include <openssl/pem.h>
-# include <openssl/hmac.h>
-# include <openssl/async.h>
+# include "openssl/pem.h"
+# include "openssl/hmac.h"
+# include "openssl/async.h"
 
-# include <openssl/safestack.h>
-# include <openssl/symhacks.h>
-# include <openssl/ct.h>
+# include "openssl/safestack.h"
+# include "openssl/symhacks.h"
+# include "openssl/ct.h"
 
 #ifdef  __cplusplus
 extern "C" {
@@ -804,11 +804,11 @@ __owur int SSL_extension_supported(unsigned int ext_type);
 }
 #endif
 
-# include <openssl/ssl2.h>
-# include <openssl/ssl3.h>
-# include <openssl/tls1.h>      /* This is mostly sslv3 with a few tweaks */
-# include <openssl/dtls1.h>     /* Datagram TLS */
-# include <openssl/srtp.h>      /* Support for the use_srtp extension */
+# include "openssl/ssl2.h"
+# include "openssl/ssl3.h"
+# include "openssl/tls1.h"     /* This is mostly sslv3 with a few tweaks */
+# include "openssl/dtls1.h"    /* Datagram TLS */
+# include "openssl/srtp.h"      /* Support for the use_srtp extension */
 
 #ifdef  __cplusplus
 extern "C" {

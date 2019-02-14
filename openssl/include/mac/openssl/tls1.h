@@ -50,8 +50,8 @@
 #ifndef HEADER_TLS1_H
 # define HEADER_TLS1_H
 
-# include <openssl/buffer.h>
-# include <openssl/x509.h>
+# include "openssl/buffer.h"
+# include "openssl/x509.h"
 
 #ifdef  __cplusplus
 extern "C" {

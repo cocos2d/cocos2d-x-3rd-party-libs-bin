@@ -10,15 +10,15 @@
 #ifndef HEADER_UI_H
 # define HEADER_UI_H
 
-# include <openssl/opensslconf.h>
+# include "openssl/opensslconf.h"
 
 # ifndef OPENSSL_NO_UI
 
 #  if OPENSSL_API_COMPAT < 0x10100000L
-#   include <openssl/crypto.h>
+#   include "openssl/crypto.h"
 #  endif
-#  include <openssl/safestack.h>
-#  include <openssl/ossl_typ.h>
+#  include "openssl/safestack.h"
+#  include "openssl/ossl_typ.h"
 
 #ifdef  __cplusplus
 extern "C" {

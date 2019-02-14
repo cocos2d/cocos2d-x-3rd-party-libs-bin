@@ -10,10 +10,10 @@
 #ifndef HEADER_COMP_H
 # define HEADER_COMP_H
 
-# include <openssl/opensslconf.h>
+# include "openssl/opensslconf.h"
 
 # ifndef OPENSSL_NO_COMP
-# include <openssl/crypto.h>
+# include "openssl/crypto.h"
 # ifdef  __cplusplus
 extern "C" {
 # endif

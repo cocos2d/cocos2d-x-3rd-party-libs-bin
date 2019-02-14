@@ -10,9 +10,9 @@
 #ifndef HEADER_HMAC_H
 # define HEADER_HMAC_H
 
-# include <openssl/opensslconf.h>
+# include "openssl/opensslconf.h"
 
-# include <openssl/evp.h>
+# include "openssl/evp.h"
 
 # define HMAC_MAX_MD_CBLOCK      128/* largest known is SHA512 */
 

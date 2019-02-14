@@ -16,24 +16,24 @@
 #ifndef HEADER_X509_H
 # define HEADER_X509_H
 
-# include <openssl/e_os2.h>
-# include <openssl/ossl_typ.h>
-# include <openssl/symhacks.h>
-# include <openssl/buffer.h>
-# include <openssl/evp.h>
-# include <openssl/bio.h>
-# include <openssl/stack.h>
-# include <openssl/asn1.h>
-# include <openssl/safestack.h>
-# include <openssl/ec.h>
+# include "openssl/e_os2.h"
+# include "openssl/ossl_typ.h"
+# include "openssl/symhacks.h"
+# include "openssl/buffer.h"
+# include "openssl/evp.h"
+# include "openssl/bio.h"
+# include "openssl/stack.h"
+# include "openssl/asn1.h"
+# include "openssl/safestack.h"
+# include "openssl/ec.h"
 
 # if OPENSSL_API_COMPAT < 0x10100000L
-#  include <openssl/rsa.h>
-#  include <openssl/dsa.h>
-#  include <openssl/dh.h>
+#  include "openssl/rsa.h"
+#  include "openssl/dsa.h"
+#  include "openssl/dh.h"
 # endif
 
-# include <openssl/sha.h>
+# include "openssl/sha.h"
 
 #ifdef  __cplusplus
 extern "C" {
@@ -306,8 +306,8 @@ typedef struct PBKDF2PARAM_st {
 }
 #endif
 
-# include <openssl/x509_vfy.h>
-# include <openssl/pkcs7.h>
+# include "openssl/x509_vfy.h"
+# include "openssl/pkcs7.h"
 
 #ifdef  __cplusplus
 extern "C" {
