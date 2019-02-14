@@ -10,11 +10,11 @@
 #ifndef HEADER_CMS_H
 # define HEADER_CMS_H
 
-# include <openssl/opensslconf.h>
+# include "openssl/opensslconf.h"
 
 # ifndef OPENSSL_NO_CMS
-# include <openssl/x509.h>
-# include <openssl/x509v3.h>
+# include "openssl/x509.h"
+# include "openssl/x509v3.h"
 # ifdef __cplusplus
 extern "C" {
 # endif

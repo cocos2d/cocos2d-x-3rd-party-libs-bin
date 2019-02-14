@@ -170,7 +170,7 @@ typedef unsigned long long lws_intptr_t;
 #include <ev.h>
 #endif /* LWS_WITH_LIBEV */
 #ifdef LWS_WITH_LIBUV
-#include <uv.h>
+#include "uv.h"
 #ifdef LWS_HAVE_UV_VERSION_H
 #include <uv-version.h>
 #endif
@@ -211,9 +211,9 @@ typedef unsigned long long lws_intptr_t;
 #endif
 #include <mbedtls/ssl.h>
 #endif
-#include <openssl/ssl.h>
+#include "openssl/ssl.h"
 #if !defined(LWS_WITH_MBEDTLS)
-#include <openssl/err.h>
+#include "openssl/err.h"
 #endif
 #endif /* not USE_WOLFSSL */
 #endif

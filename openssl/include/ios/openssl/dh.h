@@ -10,15 +10,15 @@
 #ifndef HEADER_DH_H
 # define HEADER_DH_H
 
-# include <openssl/opensslconf.h>
+# include "openssl/opensslconf.h"
 
 # ifndef OPENSSL_NO_DH
-# include <openssl/e_os2.h>
-# include <openssl/bio.h>
-# include <openssl/asn1.h>
-# include <openssl/ossl_typ.h>
+# include "openssl/e_os2.h"
+# include "openssl/bio.h"
+# include "openssl/asn1.h"
+# include "openssl/ossl_typ.h"
 # if OPENSSL_API_COMPAT < 0x10100000L
-#  include <openssl/bn.h>
+#  include "openssl/bn.h"
 # endif
 
 # ifdef  __cplusplus

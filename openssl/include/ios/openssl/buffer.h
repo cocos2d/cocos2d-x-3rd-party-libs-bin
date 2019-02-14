@@ -10,9 +10,9 @@
 #ifndef HEADER_BUFFER_H
 # define HEADER_BUFFER_H
 
-# include <openssl/ossl_typ.h>
+# include "openssl/ossl_typ.h"
 # ifndef HEADER_CRYPTO_H
-#  include <openssl/crypto.h>
+#  include "openssl/crypto.h"
 # endif
 
 

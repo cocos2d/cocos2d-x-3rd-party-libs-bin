@@ -10,10 +10,10 @@
 #ifndef HEADER_RIPEMD_H
 # define HEADER_RIPEMD_H
 
-# include <openssl/opensslconf.h>
+# include "openssl/opensslconf.h"
 
 #ifndef OPENSSL_NO_RMD160
-# include <openssl/e_os2.h>
+# include "openssl/e_os2.h"
 # include <stddef.h>
 # ifdef  __cplusplus
 extern "C" {
