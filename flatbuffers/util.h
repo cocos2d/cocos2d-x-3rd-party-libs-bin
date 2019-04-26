@@ -121,12 +121,12 @@ static const char kPathSeparator = '\\';
 static const char *PathSeparatorSet = "\\/";  // Intentionally no ':'
 #else
 static const char kPathSeparator = kPosixPathSeparator;
-static const char *PathSeparatorSet = "/";
+static const char PathSeparatorSet = '/';
 #endif // _WIN32
 
 // Returns the path with the extension, if any, removed.
 inline std::string StripExtension(const std::string &filepath) {
-  size_t i = filepath.find_last_of(".");
+  size_t i = filepath.find_last_of('.');
   return i != std::string::npos ? filepath.substr(0, i) : filepath;
 }
 
