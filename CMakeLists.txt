@@ -49,12 +49,6 @@ target_link_libraries(external
 
 
 # use lua/js specific libs by property to prevent conflict
-if(BUILD_JS_LIBS)
-    add_subdirectory(spidermonkey)
-    set_property(TARGET external APPEND PROPERTY
-        CC_JS_DEPEND ext_spidermonkey
-    )
-endif()
 if(BUILD_LUA_LIBS)
     add_subdirectory(lua/luajit)
     add_subdirectory(lua/tolua)
@@ -92,15 +86,12 @@ if(ANDROID)
 endif()
 
 if(WINDOWS)
-    # sqlite3 prebuilt only existed at windows
-    add_subdirectory(sqlite3)
     add_subdirectory(win32-specific/gles)
     add_subdirectory(win32-specific/icon)
     add_subdirectory(win32-specific/MP3Decoder)
     add_subdirectory(win32-specific/OggDecoder)
     add_subdirectory(win32-specific/OpenalSoft)
     target_link_libraries(external 
-        ext_sqlite3
         ext_gles
         ext_icon
         ext_MP3Decoder
