@@ -22,6 +22,7 @@ option(BUILD_EXT_POLY2TRI "Build with internal poly2tri support" ON)
 option(BUILD_EXT_MD5 "Build with internal md5 support" ON)
 option(BUILD_EXT_ZLIB "Build with internal zlib support" ON)
 option(BUILD_EXT_CURL "Build with internal curl support" ON)
+option(BUILD_EXT_UNZIP "Build with internal unzip support" ON)
 
 add_library(external empty.cpp)
 
