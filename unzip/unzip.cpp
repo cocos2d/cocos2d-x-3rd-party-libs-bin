@@ -534,14 +534,6 @@ extern unzFile ZEXPORT unzOpen64(const void *path)
     return unzOpenInternal(path, NULL);
 }
 
-extern unzFile ZEXPORT unzOpenBuffer(const void* buffer, uLong size)
-{
-	zlib_filefunc_def memory_file = { 0 };
-	ourmemory_s oms = { (char*)const_cast<void*>(buffer), static_cast<uint32_t>(size), 0, 0, 0};
-	fill_memory_filefunc(&memory_file, &oms);
-	return unzOpen2(nullptr, &memory_file);
-}
-
 extern int ZEXPORT unzClose(unzFile file)
 {
     unz64_internal *s;
