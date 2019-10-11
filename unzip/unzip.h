@@ -119,7 +119,6 @@ typedef struct unz_file_info_s
 
 extern unzFile ZEXPORT unzOpen(const char *path);
 extern unzFile ZEXPORT unzOpen64(const void *path);
-extern unzFile ZEXPORT unzOpenBuffer(const  void* buffer, uLong size);
 /* Open a Zip file.
 
    path should contain the full path (by example, on a Windows XP computer 
