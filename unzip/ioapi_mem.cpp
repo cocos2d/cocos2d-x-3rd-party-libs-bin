@@ -56,7 +56,14 @@ voidpf ZCALLBACK fopen_mem_func(voidpf opaque, ZIP_UNUSED const char *filename, 
 
     mem->cur_offset = 0;
 
-    return mem;
+    /* pitfall: The builtin memfs management's behavior is not same with official minizip 1.2.0 */
+    ourmemory_t* memfs = (ourmemory_t*)malloc(sizeof(ourmemory_t));
+    if (memfs != nullptr) {
+        memcpy(memfs, mem, sizeof(ourmemory_t));
+
+        return memfs;
+    }
+    return nullptr;
 }
 
 voidpf ZCALLBACK fopendisk_mem_func(ZIP_UNUSED voidpf opaque, ZIP_UNUSED voidpf stream, ZIP_UNUSED uint32_t number_disk, ZIP_UNUSED int mode)
@@ -144,6 +151,10 @@ long ZCALLBACK fseek_mem_func(ZIP_UNUSED voidpf opaque, voidpf stream, uint32_t 
 int ZCALLBACK fclose_mem_func(ZIP_UNUSED voidpf opaque, ZIP_UNUSED voidpf stream)
 {
     /* Even with grow = 1, caller must always free() memory */
+
+    /* pitfall: The builtin memfs management's behavior is not same with official minizip 1.2.0 */
+    ourmemory_t* mem = (ourmemory_t*)stream;
+    free(mem);
     return 0;
 }
 
