@@ -80,7 +80,11 @@ FT_BEGIN_HEADER
 #ifdef FT_USE_AUTOCONF_SIZEOF_TYPES
 
 #define SIZEOF_INT 4
-#define SIZEOF_LONG 4
+#if __x86_64__
+  #define SIZEOF_LONG 8
+#else
+  #define SIZEOF_LONG 4
+#endif
 #define FT_SIZEOF_INT  SIZEOF_INT
 #define FT_SIZEOF_LONG SIZEOF_LONG
 
