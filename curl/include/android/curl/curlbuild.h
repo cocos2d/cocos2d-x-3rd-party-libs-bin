@@ -4,6 +4,8 @@
 #include "curlbuild-arm32.h"
 #elif __i386__
 #include "curlbuild-x86.h"
+#elif __x86_64__
+#include "curlbuild-x86_64.h"
 #else
 #error "Unsupported architecture!"
 #endif
