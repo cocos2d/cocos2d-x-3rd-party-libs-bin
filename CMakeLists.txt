@@ -121,13 +121,6 @@ if(NOT LINUX)
         ext_png
     )
 endif(NOT LINUX)
-    
-if(LINUX)
-    add_subdirectory(linux-specific/fmod)
-    target_link_libraries(external 
-        ext_fmod
-    )
-endif()
 
 if(ANDROID)
     add_subdirectory(android-specific/cpufeatures)
@@ -143,12 +136,17 @@ endif()
 if(WINDOWS)
     add_subdirectory(win32-specific/gles)
     add_subdirectory(win32-specific/icon)
-    add_subdirectory(win32-specific/MP3Decoder)
-    add_subdirectory(win32-specific/OggDecoder)
-    add_subdirectory(win32-specific/OpenalSoft)
     target_link_libraries(external 
         ext_gles
         ext_icon
+    )
+endif()
+
+if(WINDOWS OR LINUX)
+    add_subdirectory(MP3Decoder)
+    add_subdirectory(OggDecoder)
+    add_subdirectory(OpenalSoft)
+    target_link_libraries(external
         ext_MP3Decoder
         ext_OggDecoder
         ext_OpenalSoft
