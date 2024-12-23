@@ -1,0 +1,69 @@
+if(OHOS)
+	cmake_minimum_required(VERSION 3.6)
+
+	set(lib_name bullet)
+	set(target_name ${lib_name})
+
+	project(${lib_name})
+
+	set(platform_name ohos)
+	# set platform specific path
+	set(_path_prefix ${CMAKE_CURRENT_SOURCE_DIR}/prebuilt/)
+	set(platform_spec_path ohos)   # TBD ohos need ABI?
+
+	set(platform_spec_path "${_path_prefix}${platform_spec_path}")
+
+	add_library(${target_name} STATIC IMPORTED GLOBAL)
+
+	set_property(TARGET ${target_name} APPEND PROPERTY
+	  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include"
+	)
+	set_property(TARGET ${target_name} APPEND PROPERTY
+	  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include/bullet"
+	)
+
+	  set_target_properties(${target_name} PROPERTIES
+	    IMPORTED_LOCATION "${platform_spec_path}/libLinearMath.a"
+	  )
+
+	# multi libs
+	add_library(bulletcollision STATIC IMPORTED)
+	set_target_properties(bulletcollision PROPERTIES
+	  IMPORTED_LOCATION "${platform_spec_path}/libBulletCollision.a"
+	)
+	add_library(bulletdynamics STATIC IMPORTED)
+	set_target_properties(bulletdynamics PROPERTIES
+	  IMPORTED_LOCATION "${platform_spec_path}/libBulletDynamics.a"
+	)
+	add_library(bulletmultithreaded STATIC IMPORTED)
+	set_target_properties(bulletmultithreaded PROPERTIES
+	  IMPORTED_LOCATION "${platform_spec_path}/libBulletMultiThreaded.a"
+	)
+	add_library(minicl STATIC IMPORTED)
+	set_target_properties(minicl PROPERTIES
+	  IMPORTED_LOCATION "${platform_spec_path}/libMiniCL.a"
+	)
+	add_library(linearmath STATIC IMPORTED)
+	set_target_properties(linearmath PROPERTIES
+	  IMPORTED_LOCATION "${platform_spec_path}/libLinearMath.a"
+	)
+
+	# internal link depend
+	set_property(TARGET bulletcollision APPEND PROPERTY INTERFACE_LINK_LIBRARIES "linearmath")
+	set_property(TARGET bulletdynamics APPEND PROPERTY INTERFACE_LINK_LIBRARIES "bulletcollision")
+
+	# mark multi libs link into single one: "${target_name}"
+	set_property(TARGET ${target_name} APPEND PROPERTY
+	  INTERFACE_LINK_LIBRARIES "bulletcollision"
+	)
+	set_property(TARGET ${target_name} APPEND PROPERTY
+	  INTERFACE_LINK_LIBRARIES "bulletdynamics"
+	)
+	set_property(TARGET ${target_name} APPEND PROPERTY
+	  INTERFACE_LINK_LIBRARIES "bulletmultithreaded"
+	)
+	set_property(TARGET ${target_name} APPEND PROPERTY
+	  INTERFACE_LINK_LIBRARIES "minicl"
+	)
+endif()
+
