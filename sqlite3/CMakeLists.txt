@@ -16,6 +16,13 @@ endif()
 set_target_properties(${target_name} PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
+
+if(OHOS)
+set_target_properties(${target_name} PROPERTIES
+IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/libraries/ohos/lib${lib_name}.a"
+)
+endif()
+
 if(WINDOWS)
   set_target_properties(${target_name} PROPERTIES
     IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/libraries/${platform_name}/${lib_name}.dll"

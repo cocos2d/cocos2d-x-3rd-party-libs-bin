@@ -22,7 +22,12 @@ set_target_properties(${target_name} PROPERTIES
 
 set_property(TARGET ${target_name} APPEND PROPERTY INTERFACE_LINK_LIBRARIES "ext_ssl")
 set_property(TARGET ${target_name} APPEND PROPERTY INTERFACE_LINK_LIBRARIES "ext_crypto")
-set_property(TARGET ${target_name} APPEND PROPERTY INTERFACE_LINK_LIBRARIES "ext_uv")
+# ohos use the libuv which provided by os
+if(OHOS)
+  set_property(TARGET ${target_name} APPEND PROPERTY INTERFACE_LINK_LIBRARIES "uv")
+else()
+  set_property(TARGET ${target_name} APPEND PROPERTY INTERFACE_LINK_LIBRARIES "ext_uv")
+endif()
 
 if(WINDOWS)
   set_target_properties(${target_name} PROPERTIES
