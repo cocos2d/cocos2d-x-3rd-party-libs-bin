@@ -2,6 +2,9 @@
 * Internet domain functions
 * LuaSocket toolkit
 \*=========================================================================*/
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_OHOS)
+    #define _GNU_SOURCE 1
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

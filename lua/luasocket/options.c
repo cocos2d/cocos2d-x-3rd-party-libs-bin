@@ -2,6 +2,9 @@
 * Common option interface 
 * LuaSocket toolkit
 \*=========================================================================*/
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_OHOS)
+    #define _GNU_SOURCE 1
+#endif
 #include <string.h> 
 
 #include "lauxlib.h"

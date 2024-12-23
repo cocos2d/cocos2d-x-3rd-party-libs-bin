@@ -6,6 +6,10 @@
 * The penalty of calling select to avoid busy-wait is only paid when
 * the I/O call fail in the first place. 
 \*=========================================================================*/
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_OHOS)
+    #define _GNU_SOURCE 1
+#endif
+
 #include <string.h> 
 #include <signal.h>
 
