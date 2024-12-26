@@ -5,11 +5,19 @@ set(target_name ext_${lib_name})
 
 project(${lib_name})
 
-set(${target_name}_src
-  ioapi.cpp
-  unzip.cpp
-  ioapi_mem.cpp
-)
+if(OHOS)
+  set(${target_name}_src
+    ioapi-ohos.cpp
+    unzip.cpp
+    ioapi_mem.cpp
+  )
+elseif()
+  set(${target_name}_src
+    ioapi.cpp
+    unzip.cpp
+    ioapi_mem.cpp
+  )
+endif()
 
 add_library(${target_name} STATIC
   ${${target_name}_src}

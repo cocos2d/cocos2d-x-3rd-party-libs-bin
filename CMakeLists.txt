@@ -140,6 +140,20 @@ if(ANDROID)
     )
 endif()
 
+message("******** external cmakelists ***********")
+
+if(OHOS)
+    message("******** ohos add pvmp3dec and tremolo ***********")
+    #add_subdirectory(ohos-specific/cpufeatures) TBD need fixed?
+    add_subdirectory(ohos-specific/pvmp3dec)
+    add_subdirectory(ohos-specific/tremolo)
+    target_link_libraries(external 
+        # ext_cpufeatures  TBD need fixed?
+        ext_pvmp3dec 
+        ext_tremolo
+    )
+endif()
+
 if(WINDOWS)
     add_subdirectory(win32-specific/gles)
     add_subdirectory(win32-specific/icon)
@@ -162,7 +176,7 @@ if(WINDOWS OR MACOSX OR LINUX)
     )
 endif()
 
-if(MACOSX OR ANDROID OR WINDOWS)
+if(MACOSX OR ANDROID OR WINDOWS OR OHOS)
     if(BUILD_EXT_ZLIB)
         add_subdirectory(zlib)
         target_link_libraries(external 
