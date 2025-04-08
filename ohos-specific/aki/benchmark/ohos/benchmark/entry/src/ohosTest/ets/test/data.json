@@ -1,0 +1,39 @@
+{
+    "suites": [{
+        "describe": ["FunctionArgumentsBenchmark"],
+        "stress": 1,
+        "params": {
+        },
+        "items": [{
+            "it": "1.1.a_JSBIND_Foo",
+            "stress": 10
+        },{
+            "it": "1.1.b_NAPI_Foo",
+            "stress": 10
+        },{
+            "it": "1.2.a_JSBIND_PassingNoneReturnBool",
+            "stress": 10
+        },{
+            "it": "1.2.b_NAPI_PassingNoneReturnBool",
+            "stress": 10
+        },{
+            "it": "1.3.a_JSBIND_PassingStringReturnString",
+            "stress": 10
+        },{
+            "it": "1.3.b_NAPI_PassingStringReturnString",
+            "stress": 10
+        },{
+            "it": "1.4.a_JSBIND_PassingFunctionReturnVoid",
+            "stress": 10
+        },{
+            "it": "1.4.b_NAPI_PassingFunctionReturnVoid",
+            "stress": 10
+        },{
+            "it": "1.4.c_JSBIND_PassingCallbackReturnVoid",
+            "stress": 10
+        },{
+            "it": "1.4.d_JSBIND_PassingSafetyCallbackReturnVoid",
+            "stress": 10
+        }]
+    }]
+}

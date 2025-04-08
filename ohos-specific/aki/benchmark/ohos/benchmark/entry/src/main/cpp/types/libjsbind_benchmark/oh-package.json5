@@ -1,0 +1,6 @@
+{
+  "types": "./index.d.ts",
+  "name": "libjsbind_benchmark.so",
+  "description": "",
+  "version": ""
+}

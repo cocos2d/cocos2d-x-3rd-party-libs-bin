@@ -1,0 +1,18 @@
+{
+    "apiType": 'stageMode',
+    "buildOption": {
+        "externalNativeOptions": {
+            "path": "./../../../../../CMakeLists.txt",
+            "arguments": "-DAKI_ENABLE_UNITTEST=ON -DAKI_ENABLE_DECLARATION=ON",
+            "cppFlags": "-fvisibility=hidden",
+        }
+    },
+    "targets": [
+        {
+            "name": "default",
+        },
+        {
+            "name": "ohosTest",
+        }
+    ]
+}

@@ -1,16 +1,5 @@
 cmake_minimum_required(VERSION 3.6)
 
-
-
-if (OHOS-temp)
-    add_subdirectory(chipmunk_ohos)
-
-
-     set_target_properties(${target_name} PROPERTIES
-        IMPORTED_LOCATION "${platform_spec_path}/lib${lib_name}.a"
-     )
-else()
-
 set(lib_name chipmunk)
 set(target_name ext_${lib_name})
 
@@ -36,5 +25,4 @@ else()
   set_target_properties(${target_name} PROPERTIES
     IMPORTED_LOCATION "${platform_spec_path}/lib${lib_name}.a"
   )
-endif()
 endif()

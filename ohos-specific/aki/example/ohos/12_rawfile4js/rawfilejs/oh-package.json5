@@ -1,0 +1,11 @@
+{
+  "name": "@ohos/rawfilejs",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "types": "./index.ts",
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@types/librawfilejs.so": "file:./src/main/cpp/types/librawfilejs"
+  }
+}

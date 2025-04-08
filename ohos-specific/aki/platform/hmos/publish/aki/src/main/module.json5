@@ -1,0 +1,10 @@
+{
+    "module": {
+        "name": "aki",
+        "type": "har",
+        "deviceTypes": [
+            "default",
+            "tablet"
+        ]
+    }
+}

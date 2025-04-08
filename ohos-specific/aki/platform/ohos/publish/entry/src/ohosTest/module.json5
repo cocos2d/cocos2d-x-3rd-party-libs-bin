@@ -1,0 +1,38 @@
+{
+    "module": {
+        "name": "entry_test",
+        "type": "feature",
+        "srcEntrance": "./ets/Application/TestAbilityStage.ts",
+        "description": "$string:entry_test_desc",
+        "mainElement": "TestAbility",
+        "deviceTypes": [
+            "default",
+            "tablet"
+        ],
+        "deliveryWithInstall": true,
+        "installationFree": false,
+        "pages": "$profile:test_pages",
+        "abilities": [
+            {
+                "name": "TestAbility",
+                "srcEntrance": "./ets/TestAbility/TestAbility.ets",
+                "description": "$string:TestAbility_desc",
+                "icon": "$media:icon",
+                "label": "$string:TestAbility_label",
+                "visible": true,
+                "startWindowIcon": "$media:icon",
+                "startWindowBackground": "$color:white",
+                "skills": [
+                    {
+                        "actions": [
+                            "action.system.home"
+                        ],
+                        "entities": [
+                            "entity.system.home"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

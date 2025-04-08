@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name": "rawfilejs",
+    "type": "har",
+    "deviceTypes": [
+      "default"
+    ]
+  }
+}

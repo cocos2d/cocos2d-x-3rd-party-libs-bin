@@ -1,0 +1,16 @@
+{
+    "apiType": "stageMode",
+    "buildOption": {
+        "externalNativeOptions": {
+            "path": "./../../../../CMakeLists.txt",
+            "arguments": "-DAKI_ENABLE_INSTALL_OHOS=ON -DCMAKE_BUILD_TYPE=Release",
+            "cppFlags": ""
+        },
+    },
+    "targets": [
+        {
+            "name": "default",
+            "runtimeOS": "HarmonyOS"
+        }
+    ]
+}

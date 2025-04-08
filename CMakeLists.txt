@@ -144,13 +144,10 @@ message("******** external cmakelists ***********")
 
 if(OHOS)
     message("******** ohos add pvmp3dec and tremolo ***********")
-    #add_subdirectory(ohos-specific/cpufeatures) TBD need fixed?
-    add_subdirectory(ohos-specific/pvmp3dec)
-    add_subdirectory(ohos-specific/tremolo)
-    target_link_libraries(external 
-        # ext_cpufeatures  TBD need fixed?
-        ext_pvmp3dec 
-        ext_tremolo
+    # ArkTs FFI framework, refer to: https://gitee.com/openharmony-sig/aki/tree/master
+    add_subdirectory(ohos-specific/aki)
+    target_link_libraries(external
+        aki_jsbind
     )
 endif()
 

@@ -1,0 +1,12 @@
+{
+  "license": "ISC",
+  "devDependencies": {
+    "@types/libnapi_benchmark.so": "file:./src/main/cpp/types/libnapi_benchmark",
+    "@types/libjsbind_benchmark.so": "file:./src/main/cpp/types/libjsbind_benchmark"
+  },
+  "name": "entry",
+  "description": "example description",
+  "repository": {},
+  "version": "1.0.0",
+  "dependencies": {}
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@ohos/aki",
+  "version": "1.2.3",
+  "description": "AKI (Alpha Kernel Interacting) 是一款边界性编程体验友好的ArkTs FFI开发框架，针对OpenHarmony Native开发提供JS与C/C++跨语言访问场景解决方案。支持极简语法糖使用方式，一行代码完成JS与C/C++的无障碍跨语言互调，所键即所得。",
+  "keywords": ["FFI", "NAPI", "JSBind", "Native-API"],
+  "main": "index.d.ts",
+  "author": "guozhenxiong",
+  "homepage": "https://gitee.com/openharmony-sig/aki",
+  "repository": "https://gitee.com/openharmony-sig/aki",
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "devDependencies": {}
+}
