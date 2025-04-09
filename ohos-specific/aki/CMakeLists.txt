@@ -13,7 +13,3 @@ option(AKI_ENABLE_DECLARATION "" OFF)
 option(AKI_ENABLE_TRACING "DO NOT USE THIS option !!!" OFF)
 
 add_subdirectory(src)
-
-if (AKI_ENABLE_UNITTEST)
-    add_subdirectory(test)
-endif()

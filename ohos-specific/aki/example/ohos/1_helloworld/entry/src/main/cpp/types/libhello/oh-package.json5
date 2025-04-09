@@ -1,6 +1,0 @@
-{
-  "types": "./index.d.ts",
-  "name": "libhello.so",
-  "description": "",
-  "version": ""
-}

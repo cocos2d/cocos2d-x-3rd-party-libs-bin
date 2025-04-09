@@ -1,6 +1,0 @@
-{
-  "types": "./index.d.ts",
-  "name": "libnapi_benchmark.so",
-  "description": "",
-  "version": ""
-}
