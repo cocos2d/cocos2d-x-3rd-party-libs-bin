@@ -1,41 +1,18 @@
-/* lws_config.h  Generated from lws_config.h.in  */
+/* config.h.in.  Generated from configure.ac by autoheader.  */
 
-#ifndef NDEBUG
-	#ifndef _DEBUG
-		#define _DEBUG
-	#endif
+#ifndef WIN32
+#define _DEBUG
 #endif
 
-#define LWS_INSTALL_DATADIR "/Users/cocos/Github/cocos2d-x-3rd-party-libs-src/contrib/install-android/arm64/share"
-
-/* Define to 1 to use wolfSSL/CyaSSL as a replacement for OpenSSL.
+/* Define to 1 to use CyaSSL as a replacement for OpenSSL. 
  * LWS_OPENSSL_SUPPORT needs to be set also for this to work. */
-/* #undef USE_WOLFSSL */
-
-/* Also define to 1 (in addition to USE_WOLFSSL) when using the
-  (older) CyaSSL library */
-/* #undef USE_OLD_CYASSL */
-/* #undef LWS_WITH_BORINGSSL */
-
-/* #undef LWS_WITH_MBEDTLS */
-/* #undef LWS_WITH_POLARSSL */
-/* #undef LWS_WITH_ESP8266 */
-/* #undef LWS_WITH_ESP32 */
-
-/* #undef LWS_WITH_PLUGINS */
-/* #undef LWS_WITH_NO_LOGS */
+/* #undef USE_CYASSL */
 
 /* The Libwebsocket version */
-#define LWS_LIBRARY_VERSION "2.4.2"
-
-#define LWS_LIBRARY_VERSION_MAJOR 2
-#define LWS_LIBRARY_VERSION_MINOR 4
-#define LWS_LIBRARY_VERSION_PATCH 2
-/* LWS_LIBRARY_VERSION_NUMBER looks like 1005001 for e.g. version 1.5.1 */
-#define LWS_LIBRARY_VERSION_NUMBER (LWS_LIBRARY_VERSION_MAJOR*1000000)+(LWS_LIBRARY_VERSION_MINOR*1000)+LWS_LIBRARY_VERSION_PATCH
+#define LWS_LIBRARY_VERSION "1.3"
 
 /* The current git commit hash that we're building from */
-#define LWS_BUILD_HASH "cocos@cocoss-MacBook-Pro.local-v3.4-182-g408ba56"
+/* #undef LWS_BUILD_HASH */
 
 /* Build with OpenSSL support */
 #define LWS_OPENSSL_SUPPORT
@@ -47,31 +24,22 @@
 #define LWS_OPENSSL_CLIENT_CERTS "../share"
 
 /* Turn off websocket extensions */
-/* #undef LWS_NO_EXTENSIONS */
+#define LWS_NO_EXTENSIONS
 
 /* Enable libev io loop */
-/* #undef LWS_WITH_LIBEV */
-
-/* Enable libuv io loop */
-#define LWS_WITH_LIBUV
-
-/* Enable libevent io loop */
-/* #undef LWS_WITH_LIBEVENT */
+/* #undef LWS_USE_LIBEV */
 
 /* Build with support for ipv6 */
-#define LWS_WITH_IPV6
-
-/* Build with support for UNIX domain socket */
-/* #undef LWS_WITH_UNIX_SOCK */
+#define LWS_USE_IPV6
 
 /* Build with support for HTTP2 */
-/* #undef LWS_WITH_HTTP2 */
+/* #undef LWS_USE_HTTP2 */
 
 /* Turn on latency measuring code */
 /* #undef LWS_LATENCY */
 
 /* Don't build the daemonizeation api */
-#define LWS_NO_DAEMONIZE
+/* #undef LWS_NO_DAEMONIZE */
 
 /* Build without server support */
 /* #undef LWS_NO_SERVER */
@@ -83,74 +51,124 @@
 /* #undef LWS_MINGW_SUPPORT */
 
 /* Use the BSD getifaddrs that comes with libwebsocket, for uclibc support */
-#define LWS_BUILTIN_GETIFADDRS
+/* #undef LWS_BUILTIN_GETIFADDRS */
 
-/* use SHA1() not internal libwebsockets_SHA1 */
-/* #undef LWS_SHA1_USE_OPENSSL_NAME */
+/* Define to 1 if you have the `bzero' function. */
+#define HAVE_BZERO
 
-/* SSL server using ECDH certificate */
-/* #undef LWS_SSL_SERVER_WITH_ECDH_CERT */
-/* #undef LWS_HAVE_SSL_CTX_set1_param */
-/* #undef LWS_HAVE_X509_VERIFY_PARAM_set1_host */
-/* #undef LWS_HAVE_RSA_SET0_KEY */
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#define HAVE_DLFCN_H
 
-/* #undef LWS_HAVE_UV_VERSION_H */
+/* Define to 1 if you have the <fcntl.h> header file. */
+#define HAVE_FCNTL_H
 
-/* CGI apis */
-/* #undef LWS_WITH_CGI */
+/* Define to 1 if you have the `fork' function. */
+#define HAVE_FORK
 
-/* whether the Openssl is recent enough, and / or built with, ecdh */
-#define LWS_HAVE_OPENSSL_ECDH_H
+/* Define to 1 if you have the `getenv’ function. */
+#define HAVE_GETENV
 
-/* HTTP Proxy support */
-/* #undef LWS_WITH_HTTP_PROXY */
+/* Define to 1 if you have the <in6addr.h> header file. */
+/* #undef HAVE_IN6ADDR_H */
 
-/* HTTP Ranges support */
-#define LWS_WITH_RANGES
+/* Define to 1 if you have the <inttypes.h> header file. */
+#define HAVE_INTTYPES_H
 
-/* Http access log support */
-/* #undef LWS_WITH_ACCESS_LOG */
-/* #undef LWS_WITH_SERVER_STATUS */
+/* Define to 1 if you have the `ssl' library (-lssl). */
+/* #undef HAVE_LIBSSL */
 
-/* #undef LWS_WITH_STATEFUL_URLDECODE */
-/* #undef LWS_WITH_PEER_LIMITS */
+/* Define to 1 if your system has a GNU libc compatible `malloc' function, and
+   to 0 otherwise. */
+#define HAVE_MALLOC
 
-/* Maximum supported service threads */
-#define LWS_MAX_SMP 1
+/* Define to 1 if you have the <memory.h> header file. */
+#define HAVE_MEMORY_H
 
-/* Lightweight JSON Parser */
-/* #undef LWS_WITH_LEJP */
+/* Define to 1 if you have the `memset' function. */
+#define HAVE_MEMSET
 
-/* SMTP */
-/* #undef LWS_WITH_SMTP */
+/* Define to 1 if you have the <netinet/in.h> header file. */
+#define HAVE_NETINET_IN_H
 
-/* OPTEE */
-/* #undef LWS_PLAT_OPTEE */
+/* Define to 1 if your system has a GNU libc compatible `realloc' function,
+   and to 0 otherwise. */
+#define HAVE_REALLOC
 
-/* ZIP FOPS */
-#define LWS_WITH_ZIP_FOPS
-#define LWS_HAVE_STDINT_H
+/* Define to 1 if you have the `socket' function. */
+#define HAVE_SOCKET
 
-/* #undef LWS_AVOID_SIGPIPE_IGN */
+/* Define to 1 if you have the <stdint.h> header file. */
+#define HAVE_STDINT_H
 
-/* #undef LWS_FALLBACK_GETHOSTBYNAME */
+/* Define to 1 if you have the <stdlib.h> header file. */
+#define HAVE_STDLIB_H
 
-/* #undef LWS_WITH_STATS */
-/* #undef LWS_WITH_SOCKS5 */
+/* Define to 1 if you have the `strerror' function. */
+#define HAVE_STRERROR
 
-#define LWS_HAVE_SYS_CAPABILITY_H
-/* #undef LWS_HAVE_LIBCAP */
+/* Define to 1 if you have the <strings.h> header file. */
+#define HAVE_STRINGS_H
 
-#define LWS_HAVE_ATOLL
-/* #undef LWS_HAVE__ATOI64 */
-/* #undef LWS_HAVE__STAT32I64 */
+/* Define to 1 if you have the <string.h> header file. */
+#define HAVE_STRING_H
 
-/* OpenSSL various APIs */
+/* Define to 1 if you have the <sys/prctl.h> header file. */
+#define HAVE_SYS_PRCTL_H
 
-/* #undef LWS_HAVE_TLS_CLIENT_METHOD */
-/* #undef LWS_HAVE_TLSV1_2_CLIENT_METHOD */
-/* #undef LWS_HAVE_SSL_SET_INFO_CALLBACK */
+/* Define to 1 if you have the <sys/socket.h> header file. */
+#define HAVE_SYS_SOCKET_H
 
-#define LWS_HAS_INTPTR_T
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#define HAVE_SYS_STAT_H
 
+/* Define to 1 if you have the <sys/types.h> header file. */
+#define HAVE_SYS_TYPES_H
 
+/* Define to 1 if you have the <unistd.h> header file. */
+#define HAVE_UNISTD_H
+
+/* Define to 1 if you have the `vfork' function. */
+#define HAVE_VFORK
+
+/* Define to 1 if you have the <vfork.h> header file. */
+/* #undef HAVE_VFORK_H */
+
+/* Define to 1 if `fork' works. */
+#define HAVE_WORKING_FORK
+
+/* Define to 1 if `vfork' works. */
+#define HAVE_WORKING_VFORK
+
+/* Define to 1 if you have the <zlib.h> header file. */
+#define HAVE_ZLIB_H
+
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+#undef LT_OBJDIR // We're not using libtool
+
+/* Define to 1 if you have the ANSI C header files. */
+#define STDC_HEADERS
+
+/* Version number of package */
+#define VERSION
+
+/* Define to rpl_malloc if the replacement function should be used. */
+/* #undef malloc */
+
+/* Define to `int' if <sys/types.h> does not define. */
+/* #undef pid_t */
+
+/* Define to rpl_realloc if the replacement function should be used. */
+/* #undef realloc */
+
+/* Define to `unsigned int' if <sys/types.h> does not define. */
+/* #undef size_t */
+
+/* Define to 1 if we have getifaddrs */
+#define HAVE_GETIFADDRS
+
+/* Define as `fork' if `vfork' does not work. */
+/* #undef vfork */
+
+/* Define if the inline keyword doesn't exist. */
+/* #undef inline */
