@@ -10,7 +10,6 @@ if(OHOS)
 	add_subdirectory(jpeg)
 	add_subdirectory(openssl)
 	add_subdirectory(tiff)
-	add_subdirectory(uv)
 	add_subdirectory(webp)
 	add_subdirectory(websockets)
 	add_subdirectory(tinyxml2)
@@ -35,11 +34,7 @@ if(OHOS)
 	endif()
 
     add_subdirectory(curl)
-    add_subdirectory(png) 
-    message("******** ohos add pvmp3dec and tremolo ***********")
-    #add_subdirectory(ohos-specific/cpufeatures) TBD need fixed?
-    add_subdirectory(ohos-specific/pvmp3dec)
-    add_subdirectory(ohos-specific/tremolo) 
+    add_subdirectory(png)
     add_subdirectory(zlib) 
 
 	# unzip depend on zlib
